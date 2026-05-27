@@ -1,0 +1,104 @@
+/* src/index.css */
+
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f4ff;
+  --surface: rgba(255, 255, 255, 0.7);
+  --text: #161616;
+  --muted: #676767;
+  --purple: #a46eff;
+  --pink: #ffcef2;
+  --border: rgba(255, 255, 255, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background:
+    radial-gradient(circle at top left, #ffe4fa 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #e9dcff 0%, transparent 35%),
+    var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.25) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: -1;
+}
+
+section {
+  padding: 120px 8%;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(154, 114, 255, 0.15);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #8f5cff, #ff72d2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  line-height: 1;
+  font-weight: 900;
+  margin: 25px 0;
+  letter-spacing: -2px;
+}
+
+.section-subtitle {
+  max-width: 720px;
+  line-height: 1.9;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 90px 6%;
+  }
+}
