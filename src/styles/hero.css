@@ -285,6 +285,31 @@
     align-items: center;
   }
 
+  /* HERO TAG FIX */
+
+  .hero .tag {
+    width: fit-content;
+
+    max-width: 92%;
+
+    padding: 16px 24px;
+
+    border-radius: 999px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    text-align: center;
+
+    line-height: 1.5;
+
+    margin: 0 auto;
+  }
+
   /* HEADING */
 
   .hero-left h1 {
