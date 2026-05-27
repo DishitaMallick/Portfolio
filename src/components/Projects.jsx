@@ -21,7 +21,7 @@ const projects = [
 
     desc: "Creating a safer and more transparent ride-booking experience through proactive safety alerts and fair payment flows.",
 
-    image: "/u.jpg",
+    image: "/u.png",
 
     button: "View Full Medium Blog",
 
