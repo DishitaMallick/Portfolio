@@ -81,7 +81,9 @@
   text-transform: lowercase;
 }
 
-/* FLOAT */
+/* ======================================= */
+/* FLOAT ANIMATION */
+/* ======================================= */
 
 @keyframes floatHint {
 
@@ -115,6 +117,8 @@
 
   scroll-snap-type: x mandatory;
 
+  scroll-behavior: smooth;
+
   padding-bottom: 24px;
 
   scrollbar-width: none;
@@ -145,8 +149,6 @@
 
   cursor: pointer;
 
-  transition: 0.55s ease;
-
   background: rgba(255,255,255,0.08);
 
   backdrop-filter: blur(18px);
@@ -155,9 +157,29 @@
 
   box-shadow:
     0 15px 40px rgba(155,109,255,0.12);
+
+  transition:
+    box-shadow 0.5s ease;
+
+  transform-style: preserve-3d;
+
+  perspective: 1200px;
+
+  will-change: transform;
 }
 
+/* ======================================= */
+/* STRAIGHT ALIGNMENT */
+/* ======================================= */
+
+.project-card {
+  margin-top: 0;
+}
+
+
+/* ======================================= */
 /* SHINE EFFECT */
+/* ======================================= */
 
 .project-card::before {
   content: "";
@@ -189,16 +211,33 @@
   left: 140%;
 }
 
-/* HOVER */
+/* ======================================= */
+/* AMBIENT GLOW */
+/* ======================================= */
 
-.project-card:hover {
-  transform:
-    translateY(-14px)
-    scale(1.02)
-    rotate(-1deg);
+.project-card::after {
+  content: "";
 
-  box-shadow:
-    0 30px 70px rgba(165,122,255,0.25);
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.18),
+      transparent 60%
+    );
+
+  opacity: 0;
+
+  transition: 0.5s ease;
+
+  z-index: 2;
+}
+
+.project-card:hover::after {
+  opacity: 1;
 }
 
 /* ======================================= */
@@ -218,8 +257,11 @@
 
 .project-card:hover .project-cover {
   transform:
-    scale(1.12)
-    rotate(1deg);
+    scale(1.08);
+
+  filter:
+    brightness(0.9)
+    saturate(1.1);
 }
 
 /* ======================================= */
@@ -241,7 +283,7 @@
     linear-gradient(
       to top,
       rgba(0,0,0,0.96),
-      rgba(0,0,0,0.12)
+      rgba(0,0,0,0.08)
     );
 
   opacity: 0;
@@ -249,10 +291,20 @@
   transition: 0.45s ease;
 
   z-index: 5;
+
+  transform:
+    translateY(20px)
+    translateZ(40px);
+
+  backdrop-filter: blur(4px);
 }
 
 .project-card:hover .overlay {
   opacity: 1;
+
+  transform:
+    translateY(0)
+    translateZ(40px);
 }
 
 /* ======================================= */
@@ -310,6 +362,8 @@
   font-weight: 700;
 
   transition: 0.35s ease;
+
+  z-index: 10;
 }
 
 .case-btn:hover {
@@ -345,6 +399,11 @@
     height: 430px;
 
     border-radius: 28px;
+  }
+
+  .project-card:nth-child(2),
+  .project-card:nth-child(3) {
+    margin-top: 0;
   }
 
   .overlay {

@@ -142,3 +142,117 @@ a {
   }
 
 }
+/* ======================================= */
+/* CURSOR GLOW */
+/* ======================================= */
+
+.cursor-glow {
+  width: 380px;
+  height: 380px;
+
+  border-radius: 50%;
+
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168,120,255,0.18),
+      rgba(255,120,210,0.08),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  filter: blur(30px);
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    transform 0.08s linear;
+}
+
+/* ======================================= */
+/* FLOATING BLOBS */
+/* ======================================= */
+
+.blob {
+  position: fixed;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  opacity: 0.22;
+
+  z-index: -2;
+
+  animation:
+    blobMove 14s ease-in-out infinite;
+}
+
+.blob1 {
+  background: #c084ff;
+
+  top: -180px;
+  left: -120px;
+}
+
+.blob2 {
+  background: #ff8fd8;
+
+  bottom: -200px;
+  right: -120px;
+
+  animation-delay: 4s;
+}
+
+@keyframes blobMove {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(40px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+/* ======================================= */
+/* FILM GRAIN */
+/* ======================================= */
+
+body::after {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  opacity: 0.04;
+
+  pointer-events: none;
+
+  z-index: 999;
+
+  background-image:
+    radial-gradient(
+      rgba(255,255,255,0.15) 1px,
+      transparent 1px
+    );
+
+  background-size: 4px 4px;
+}

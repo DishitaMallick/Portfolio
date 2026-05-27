@@ -90,7 +90,20 @@ const Projects = () => {
         {projects.map((project, index) => (
 
           <motion.div
-            className="project-card"
+  className="project-card"
+
+  whileHover={{
+    rotateX: -4,
+    rotateY: 6,
+    y: -12,
+    scale: 1.02
+  }}
+
+  transition={{
+    type: "spring",
+    stiffness: 180,
+    damping: 14
+  }}
             key={index}
             initial={{ opacity: 0, y: 120 }}
             whileInView={{ opacity: 1, y: 0 }}
