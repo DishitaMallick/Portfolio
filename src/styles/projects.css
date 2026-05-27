@@ -358,50 +358,52 @@
 
 @media (max-width: 900px) {
 
-  .projects-top {
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
   .horizontal-scroll {
-    gap: 14px;
+    display: flex;
+    overflow-x: auto;
 
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 12px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+
+    scroll-snap-type: x mandatory;
   }
 
   .project-card {
-    min-width: 58vw;
+    flex: 0 0 65% !important;
 
-    height: 300px;
+    width: 65% !important;
+    min-width: 65% !important;
+    max-width: 65% !important;
 
-    border-radius: 22px;
+    height: 280px;
+
+    border-radius: 20px;
+  }
+
+  .project-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .overlay {
-    padding: 18px;
+    padding: 14px;
   }
 
   .overlay h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .overlay p {
-    font-size: 0.72rem;
-
-    line-height: 1.4;
-
-    margin-bottom: 12px;
+    font-size: 0.68rem;
+    line-height: 1.35;
   }
 
   .case-btn {
-    width: 100%;
-
-    justify-content: center;
-
-    padding: 10px 14px;
-
-    font-size: 0.72rem;
+    font-size: 0.68rem;
+    padding: 9px 12px;
   }
 
 }
