@@ -2,46 +2,80 @@
 
 .hero {
   min-height: 92vh;
+
   display: grid;
   grid-template-columns: 1.1fr 1fr;
+
   align-items: center;
+
   gap: 70px;
+}
+
+/* LEFT */
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-left h1 {
   font-size: clamp(3.2rem, 8vw, 6.7rem);
+
   line-height: 0.95;
+
   margin: 30px 0;
+
   font-weight: 900;
+
   letter-spacing: -4px;
 }
 
 .hero-left p {
   max-width: 640px;
+
   line-height: 1.9;
+
   color: var(--muted);
+
   font-size: 1.1rem;
 }
 
+/* BUTTONS */
+
 .hero-buttons {
   display: flex;
+
   gap: 18px;
+
   margin-top: 40px;
+
   flex-wrap: wrap;
 }
 
 .primary-btn,
 .secondary-btn {
   padding: 16px 28px;
+
   border-radius: 18px;
+
   font-weight: 700;
+
   transition: 0.35s ease;
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, #9f72ff, #ff79d7);
+  background:
+    linear-gradient(
+      135deg,
+      #9f72ff,
+      #ff79d7
+    );
+
   color: white;
-  box-shadow: 0 15px 30px rgba(155, 109, 255, 0.3);
+
+  box-shadow:
+    0 15px 30px rgba(155,109,255,0.3);
 }
 
 .primary-btn:hover {
@@ -50,6 +84,7 @@
 
 .secondary-btn {
   background: white;
+
   border: 1px solid rgba(0,0,0,0.08);
 }
 
@@ -70,6 +105,7 @@
 .canvas-board {
   width: 100%;
   max-width: 520px;
+
   height: 620px;
 
   position: relative;
@@ -105,7 +141,9 @@
 }
 
 .canvas-board:hover {
-  transform: rotate(0deg) translateY(-8px);
+  transform:
+    rotate(0deg)
+    translateY(-8px);
 }
 
 .canvas-board::before {
@@ -119,6 +157,8 @@
 
   border: 1px solid rgba(180,150,255,0.15);
 }
+
+/* CANVAS TEXT */
 
 .canvas-text {
   font-size: clamp(3rem, 5vw, 5rem);
@@ -160,11 +200,12 @@
 
   position: absolute;
 
-  background: linear-gradient(
-    135deg,
-    #b286ff,
-    #ff7cd7
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #b286ff,
+      #ff7cd7
+    );
 
   box-shadow:
     0 0 15px rgba(255,120,210,0.5);
@@ -224,30 +265,91 @@
   right: -220px;
 }
 
+/* ========================= */
 /* RESPONSIVE */
+/* ========================= */
 
 @media (max-width: 900px) {
 
   .hero {
     grid-template-columns: 1fr;
+
+    gap: 55px;
+
     text-align: center;
   }
 
-  .hero-buttons {
-    justify-content: center;
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
+  /* HEADING */
+
+  .hero-left h1 {
+    font-size: 2.7rem;
+
+    line-height: 0.92;
+
+    letter-spacing: -4px;
+
+    margin: 26px 0 16px;
+
+    white-space: nowrap;
+  }
+
+  /* SUBTEXT */
+
   .hero-left p {
+    font-size: 0.82rem;
+
+    line-height: 1.5;
+
+    white-space: nowrap;
+
     margin: auto;
   }
 
+  /* BUTTONS */
+
+  .hero-buttons {
+    justify-content: center;
+
+    width: 100%;
+
+    gap: 14px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 16px 20px;
+
+    font-size: 1rem;
+
+    flex: 1;
+
+    max-width: 170px;
+  }
+
+  /* CANVAS */
+
   .canvas-board {
     height: auto;
-    min-height: 500px;
 
-    padding: 70px 35px;
+    min-height: 420px;
+
+    padding: 50px 28px;
 
     transform: rotate(0deg);
+  }
+
+  .canvas-text {
+    font-size: 3rem;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
   }
 
 }
