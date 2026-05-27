@@ -1,7 +1,7 @@
 // src/components/DesignProcess.jsx
 
 import "../styles/process.css";
-
+import { motion } from "framer-motion";
 const steps = [
   {
     title: "Research & Discovery",
@@ -31,7 +31,13 @@ const steps = [
 
 const DesignProcess = () => {
   return (
-    <section id="process">
+    <motion.section
+  id="process"
+  initial={{ opacity: 0, y: 120 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+>
 
       <div className="tag">
         Design Process
@@ -71,7 +77,7 @@ const DesignProcess = () => {
 
       </div>
 
-    </section>
+    </motion.section>
   );
 };
 

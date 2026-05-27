@@ -1,5 +1,5 @@
 import "../styles/contact.css";
-
+import { motion } from "framer-motion";
 const Contact = () => {
 
   const glowIcons = () => {
@@ -23,7 +23,13 @@ const Contact = () => {
   return (
     <>
 
-      <section id="contact">
+      <motion.section
+  id="contact"
+  initial={{ opacity: 0, y: 120 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+>
 
         <div className="contact-box glass">
 
@@ -53,7 +59,7 @@ const Contact = () => {
 
         </div>
 
-      </section>
+      </motion.section>
 
       {/* FOOTER */}
 

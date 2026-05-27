@@ -1,10 +1,16 @@
 // src/components/About.jsx
 // About.jsx
 import "../styles/about.css";
-
+import { motion } from "framer-motion";
 const About = () => {
   return (
-    <section id="about">
+    <motion.section
+  id="about"
+  initial={{ opacity: 0, y: 120 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+>
 
       <div className="tag">
         About Me
@@ -49,7 +55,7 @@ const About = () => {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 

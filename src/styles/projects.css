@@ -1,96 +1,287 @@
-/* FULL UPDATED PROJECT CSS */
+/* ======================================= */
+/* PROJECTS SECTION */
+/* ======================================= */
 
-.project-grid {
-  margin-top: 70px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 32px;
+#projects {
+  position: relative;
 }
+
+/* ======================================= */
+/* TOP BAR */
+/* ======================================= */
+
+.projects-top {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  margin-top: 10px;
+
+  margin-bottom: 24px;
+}
+
+/* ======================================= */
+/* SCROLL INDICATOR */
+/* ======================================= */
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  opacity: 0.85;
+
+  animation:
+    floatHint 2.5s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  width: 55px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #9f72ff,
+      #ff79d7
+    );
+
+  position: relative;
+}
+
+.scroll-indicator span::after {
+  content: "";
+
+  width: 10px;
+  height: 10px;
+
+  border-top: 2px solid #ff79d7;
+  border-right: 2px solid #ff79d7;
+
+  position: absolute;
+
+  right: 0;
+  top: -4px;
+
+  transform: rotate(45deg);
+}
+
+.scroll-indicator p {
+  font-size: 0.9rem;
+
+  color: var(--muted);
+
+  letter-spacing: 1px;
+
+  text-transform: lowercase;
+}
+
+/* FLOAT */
+
+@keyframes floatHint {
+
+  0% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+
+}
+
+/* ======================================= */
+/* HORIZONTAL SCROLL */
+/* ======================================= */
+
+.horizontal-scroll {
+  display: flex;
+
+  gap: 24px;
+
+  overflow-x: auto;
+
+  scroll-snap-type: x mandatory;
+
+  padding-bottom: 24px;
+
+  scrollbar-width: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ======================================= */
+/* PROJECT CARD */
+/* ======================================= */
 
 .project-card {
-  overflow: hidden;
+  min-width: 340px;
 
-  border-radius: 34px;
-
-  background: rgba(255,255,255,0.72);
-
-  backdrop-filter: blur(18px);
-
-  transition: 0.4s ease;
-
-  display: flex;
-  flex-direction: column;
-
-  height: 100%;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-}
-
-/* IMAGE */
-
-.project-image {
-  width: 100%;
-  height: 320px;
+  height: 480px;
 
   position: relative;
 
   overflow: hidden;
 
-  background: #f4f4f4;
+  border-radius: 34px;
+
+  flex-shrink: 0;
+
+  scroll-snap-align: start;
+
+  cursor: pointer;
+
+  transition: 0.55s ease;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 15px 40px rgba(155,109,255,0.12);
 }
 
-.project-image img {
+/* SHINE EFFECT */
+
+.project-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 80%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,0.18),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: 0.8s ease;
+
+  z-index: 4;
+}
+
+.project-card:hover::before {
+  left: 140%;
+}
+
+/* HOVER */
+
+.project-card:hover {
+  transform:
+    translateY(-14px)
+    scale(1.02)
+    rotate(-1deg);
+
+  box-shadow:
+    0 30px 70px rgba(165,122,255,0.25);
+}
+
+/* ======================================= */
+/* IMAGE */
+/* ======================================= */
+
+.project-cover {
   width: 100%;
   height: 100%;
 
-  display: block;
-
   object-fit: cover;
 
-  /* CHANGE THIS */
-  object-position: 50% 20%;
+  object-position: center;
 
-  transition: 0.5s ease;
+  transition: 0.65s ease;
 }
 
-.project-card:hover .project-image img {
-  transform: scale(1.05);
+.project-card:hover .project-cover {
+  transform:
+    scale(1.12)
+    rotate(1deg);
 }
 
-/* CONTENT */
+/* ======================================= */
+/* OVERLAY */
+/* ======================================= */
 
-.project-content {
-  padding: 34px;
+.overlay {
+  position: absolute;
+
+  inset: 0;
 
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 
-  flex: 1;
+  padding: 32px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.96),
+      rgba(0,0,0,0.12)
+    );
+
+  opacity: 0;
+
+  transition: 0.45s ease;
+
+  z-index: 5;
 }
 
-.project-content h3 {
-  font-size: 2rem;
-
-  margin-bottom: 18px;
-
-  line-height: 1.2;
+.project-card:hover .overlay {
+  opacity: 1;
 }
 
-.project-content p {
-  color: var(--muted);
+/* ======================================= */
+/* TEXT */
+/* ======================================= */
 
-  line-height: 1.9;
+.overlay h3 {
+  color: white;
 
-  margin-bottom: 30px;
+  font-size: 1.7rem;
 
-  flex-grow: 1;
+  line-height: 1.25;
+
+  margin-bottom: 14px;
 }
 
+.overlay p {
+  color: rgba(255,255,255,0.82);
+
+  line-height: 1.75;
+
+  margin-bottom: 24px;
+
+  font-size: 0.94rem;
+}
+
+/* ======================================= */
 /* BUTTON */
+/* ======================================= */
 
 .case-btn {
   width: fit-content;
@@ -99,9 +290,9 @@
   align-items: center;
   justify-content: center;
 
-  gap: 14px;
+  gap: 12px;
 
-  padding: 16px 24px;
+  padding: 14px 22px;
 
   border-radius: 18px;
 
@@ -114,13 +305,11 @@
 
   color: white;
 
-  font-weight: 700;
-
   text-decoration: none;
 
-  transition: 0.35s ease;
+  font-weight: 700;
 
-  margin-top: auto;
+  transition: 0.35s ease;
 }
 
 .case-btn:hover {
@@ -131,37 +320,51 @@
 }
 
 .arrow {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-/* RESPONSIVE */
+/* ======================================= */
+/* MOBILE */
+/* ======================================= */
 
 @media (max-width: 900px) {
 
-  .project-grid {
-    grid-template-columns: 1fr;
+  .projects-top {
+    justify-content: center;
+
+    margin-bottom: 20px;
   }
 
-  .project-image {
-    height: 260px;
+  .horizontal-scroll {
+    gap: 18px;
   }
 
-  .project-image img {
-    height: 260px;
+  .project-card {
+    min-width: 82vw;
 
-    object-position: center;
+    height: 430px;
+
+    border-radius: 28px;
   }
 
-  .project-content {
-    padding: 28px 24px;
+  .overlay {
+    padding: 24px;
   }
 
-  .project-content h3 {
-    font-size: 1.7rem;
+  .overlay h3 {
+    font-size: 1.35rem;
+  }
+
+  .overlay p {
+    font-size: 0.88rem;
+
+    line-height: 1.65;
   }
 
   .case-btn {
     width: 100%;
+
+    justify-content: center;
   }
 
 }

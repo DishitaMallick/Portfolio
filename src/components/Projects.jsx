@@ -1,6 +1,7 @@
 // src/components/Projects.jsx
 
 import "../styles/projects.css";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -42,35 +43,71 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects">
+
+    <motion.section
+      id="projects"
+      initial={{ opacity: 0, y: 120 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
 
       <div className="tag">
         Featured Work
       </div>
 
-      <h2 className="section-title">
+      <motion.h2
+        className="section-title"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
         Projects crafted with
         <span className="gradient-text">
           {" "}emotion & expression
         </span>
-      </h2>
+      </motion.h2>
 
-      <div className="project-grid">
+      {/* TOP BAR */}
+
+      <div className="projects-top">
+
+        <div className="scroll-indicator">
+
+          <span></span>
+
+          <p>scroll to explore</p>
+
+        </div>
+
+      </div>
+
+      {/* HORIZONTAL PROJECTS */}
+
+      <div className="horizontal-scroll">
 
         {projects.map((project, index) => (
 
-          <div className="project-card glass" key={index}>
+          <motion.div
+            className="project-card"
+            key={index}
+            initial={{ opacity: 0, y: 120 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: index * 0.12
+            }}
+            viewport={{ once: true }}
+          >
 
-            <div className="project-image">
+            <img
+              src={project.image}
+              alt=""
+              className="project-cover"
+            />
 
-              <img
-                src={project.image}
-                alt=""
-              />
-
-            </div>
-
-            <div className="project-content">
+            <div className="overlay">
 
               <h3>{project.title}</h3>
 
@@ -93,13 +130,13 @@ const Projects = () => {
 
             </div>
 
-          </div>
+          </motion.div>
 
         ))}
 
       </div>
 
-    </section>
+    </motion.section>
   );
 };
 
