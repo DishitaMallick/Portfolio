@@ -1,4 +1,6 @@
-/* Hero CSS */
+/* ======================================= */
+/* HERO SECTION */
+/* ======================================= */
 
 .hero {
   min-height: 92vh;
@@ -11,7 +13,9 @@
   gap: 70px;
 }
 
-/* LEFT */
+/* ======================================= */
+/* LEFT SIDE */
+/* ======================================= */
 
 .hero-left {
   display: flex;
@@ -19,17 +23,47 @@
   justify-content: center;
 }
 
+/* TOP PILL */
+
+.hero .tag {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.75);
+
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+
+  color: #1f1f1f;
+}
+
+/* HEADING */
+
 .hero-left h1 {
   font-size: clamp(3.2rem, 8vw, 6.7rem);
 
   line-height: 0.95;
 
-  margin: 30px 0;
+  margin: 30px 0 20px;
 
   font-weight: 900;
 
   letter-spacing: -4px;
 }
+
+/* SUBTEXT */
 
 .hero-left p {
   max-width: 640px;
@@ -92,9 +126,9 @@
   transform: translateY(-5px);
 }
 
-/* ========================= */
+/* ======================================= */
 /* CANVAS SECTION */
-/* ========================= */
+/* ======================================= */
 
 .canvas-wrapper {
   display: flex;
@@ -265,9 +299,9 @@
   right: -220px;
 }
 
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
+/* ======================================= */
+/* MOBILE */
+/* ======================================= */
 
 @media (max-width: 900px) {
 
@@ -285,27 +319,20 @@
     align-items: center;
   }
 
-  /* HERO TAG FIX */
+  /* FIXED PILL */
 
   .hero .tag {
-    width: fit-content;
+    width: auto;
 
-    max-width: 92%;
+    max-width: fit-content;
 
-    padding: 16px 24px;
+    padding: 14px 22px;
 
     border-radius: 999px;
 
-    display: inline-flex;
+    white-space: nowrap;
 
-    justify-content: center;
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    text-align: center;
-
-    line-height: 1.5;
+    font-size: 0.88rem;
 
     margin: 0 auto;
   }
@@ -313,13 +340,13 @@
   /* HEADING */
 
   .hero-left h1 {
-    font-size: 2.7rem;
+    font-size: 2.5rem;
 
     line-height: 0.92;
 
     letter-spacing: -4px;
 
-    margin: 26px 0 16px;
+    margin: 24px 0 14px;
 
     white-space: nowrap;
   }
@@ -327,7 +354,7 @@
   /* SUBTEXT */
 
   .hero-left p {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
 
     line-height: 1.5;
 
@@ -348,13 +375,13 @@
 
   .primary-btn,
   .secondary-btn {
-    padding: 16px 20px;
+    padding: 15px 18px;
 
-    font-size: 1rem;
+    font-size: 0.95rem;
 
     flex: 1;
 
-    max-width: 170px;
+    max-width: 160px;
   }
 
   /* CANVAS */
