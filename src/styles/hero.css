@@ -1,16 +1,14 @@
-/* ======================================= */
-/* HERO SECTION */
-/* ======================================= */
+/* src/styles/hero.css */
 
 .hero {
   min-height: 92vh;
-
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-
   align-items: center;
-
   gap: 70px;
+  padding-top: 140px;
+  /* Offset for floating navbar */
+  transition: all 0.7s ease;
 }
 
 /* ======================================= */
@@ -21,8 +19,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   overflow: visible;
+  text-align: left;
 }
 
 /* ======================================= */
@@ -31,58 +29,56 @@
 
 .hero .tag {
   width: fit-content;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  padding: 14px 24px;
-
+  padding: 12px 20px;
   border-radius: 999px;
-
-  background: rgba(255,255,255,0.75);
-
-  backdrop-filter: blur(16px);
-
-  border: 1px solid rgba(255,255,255,0.4);
-
-  font-size: 0.95rem;
-
+  font-size: 0.9rem;
   font-weight: 700;
+  transition: all 0.7s ease;
+}
 
-  color: #1f1f1f;
+.site-wrapper.designer .hero .tag {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8B5CF6;
+}
+
+.site-wrapper.human .hero .tag {
+  background: #FFE7D1;
+  border: 1.5px dashed #E89B93;
+  color: #3D2D24;
+
 }
 
 /* ======================================= */
-/* HEADING */
+/* HEADING & SUBTEXT */
 /* ======================================= */
 
 .hero-left h1 {
-  font-size: clamp(3.2rem, 8vw, 6.4rem);
-
+  font-size: clamp(3.2rem, 7vw, 5.8rem);
   line-height: 0.95;
-
-  margin: 30px 0 20px;
-
+  margin: 25px 0 20px;
   font-weight: 900;
-
-  letter-spacing: -1px;
-
-  overflow: visible;
+  letter-spacing: -2px;
 }
 
-/* ======================================= */
-/* SUBTEXT */
-/* ======================================= */
-
 .hero-left p {
-  max-width: 640px;
-
-  line-height: 1.9;
-
-  color: var(--muted);
-
+  max-width: 580px;
+  line-height: 1.8;
   font-size: 1.1rem;
+  transition: color 0.7s ease;
+}
+
+.site-wrapper.designer .hero-left p {
+  color: #94A3B8;
+}
+
+.site-wrapper.human .hero-left p {
+  color: #3D2D24;
+
+
 }
 
 /* ======================================= */
@@ -91,51 +87,70 @@
 
 .hero-buttons {
   display: flex;
-
   gap: 18px;
-
-  margin-top: 40px;
-
+  margin-top: 35px;
   flex-wrap: wrap;
 }
 
 .primary-btn,
 .secondary-btn {
-  padding: 16px 28px;
-
+  padding: 15px 28px;
   border-radius: 18px;
-
   font-weight: 700;
-
-  transition: 0.35s ease;
+  transition: all 0.35s ease;
+  font-size: 1rem;
+  display: inline-block;
+  text-align: center;
 }
 
-.primary-btn {
-  background:
-    linear-gradient(
-      135deg,
-      #9f72ff,
-      #ff79d7
-    );
-
+/* Designer Buttons */
+.site-wrapper.designer .primary-btn {
+  background: linear-gradient(135deg, #8B5CF6, #6366F1);
   color: white;
-
-  box-shadow:
-    0 15px 30px rgba(155,109,255,0.3);
+  box-shadow: 0 12px 25px rgba(139, 92, 246, 0.25);
 }
 
-.primary-btn:hover {
-  transform: translateY(-5px);
+.site-wrapper.designer .primary-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 30px rgba(139, 92, 246, 0.35);
 }
 
-.secondary-btn {
-  background: white;
-
-  border: 1px solid rgba(0,0,0,0.08);
+.site-wrapper.designer .secondary-btn {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F8FAFC;
 }
 
-.secondary-btn:hover {
-  transform: translateY(-5px);
+.site-wrapper.designer .secondary-btn:hover {
+  transform: translateY(-4px);
+  background: rgba(30, 41, 59, 0.8);
+}
+
+/* Human Buttons */
+.site-wrapper.human .primary-btn {
+  background: linear-gradient(135deg, #FFE7D1, #FFB38A);
+  border: 2px solid #E89B93;
+  color: #3D2D24;
+  box-shadow: 0 10px 20px rgba(232, 155, 147, 0.15);
+
+}
+
+.site-wrapper.human .primary-btn:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 14px 28px rgba(232, 155, 147, 0.25);
+}
+
+.site-wrapper.human .secondary-btn {
+  background: #FFF8F0;
+  border: 2px solid #FFE7D1;
+  color: #8B7365;
+
+}
+
+.site-wrapper.human .secondary-btn:hover {
+  transform: translateY(-4px) rotate(1deg);
+  background: #FFE7D1;
+  color: #3D2D24;
 }
 
 /* ======================================= */
@@ -150,58 +165,59 @@
 
 .canvas-board {
   width: 100%;
-  max-width: 520px;
-
-  height: 620px;
-
+  max-width: 480px;
+  height: 540px;
   position: relative;
-
-  border-radius: 38px;
-
+  border-radius: 36px;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   padding: 40px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.88),
-      rgba(255,255,255,0.55)
-    );
-
-  backdrop-filter: blur(20px);
-
-  border: 1px solid rgba(255,255,255,0.5);
-
-  box-shadow:
-    0 25px 60px rgba(165,122,255,0.12);
-
-  transform: rotate(-4deg);
-
-  transition: 0.4s ease;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  transform: rotate(-3deg);
+  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .canvas-board:hover {
-  transform:
-    rotate(0deg)
-    translateY(-8px);
+  transform: rotate(0deg) translateY(-8px);
 }
 
-.canvas-board::before {
+/* Futuristic Designer Canvas */
+.canvas-board.futuristic {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 60px rgba(139, 92, 246, 0.08);
+}
+
+.canvas-board.futuristic::before {
   content: "";
-
   position: absolute;
+  inset: 15px;
+  border-radius: 26px;
+  border: 1px dashed rgba(139, 92, 246, 0.15);
+  pointer-events: none;
+}
 
-  inset: 14px;
+/* Scrapbook Human Canvas */
+.canvas-board.scrapbook {
+  background: #FFFDF9;
+  border: 2.5px solid #F6D6BD;
+  box-shadow: 0 15px 40px rgba(139, 115, 101, 0.1);
+  background-image:
+    linear-gradient(rgba(139, 115, 101, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 115, 101, 0.05) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
 
+.canvas-board.scrapbook::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
   border-radius: 28px;
-
-  border: 1px solid rgba(180,150,255,0.15);
+  border: 2px dashed #FFB38A;
+  pointer-events: none;
 }
 
 /* ======================================= */
@@ -209,56 +225,78 @@
 /* ======================================= */
 
 .canvas-text {
-  font-size: clamp(3rem, 5vw, 5rem);
-
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 900;
-
-  line-height: 1;
-
-  letter-spacing: -2px;
-
+  line-height: 1.05;
+  letter-spacing: -1px;
   text-align: center;
-
   position: relative;
-
   z-index: 2;
-
-  margin: 0;
+  margin: 8px 0;
+  transition: all 0.5s ease;
+  max-width: 100%;
 }
 
+/* Designer words */
 .ux {
-  color: #9467ff;
+  color: #8B5CF6;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 .code {
-  color: #ff69c7;
+  color: #6366F1;
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
 .aesthetic {
-  color: #232323;
+  color: #A855F7;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+/* Human words */
+.travel {
+  color: #E89B93;
+  font-family: 'Caveat', cursive;
+  font-size: 5.5rem;
+}
+
+.food {
+  color: #FFB38A;
+  font-family: 'Caveat', cursive;
+  font-size: 5.5rem;
+}
+
+.stories {
+  color: #8B7365;
+  font-family: 'Caveat', cursive;
+  font-size: 5.5rem;
 }
 
 /* ======================================= */
-/* PINS */
+/* PINS & SCRIBBLES */
 /* ======================================= */
 
 .pin {
   width: 14px;
   height: 14px;
-
   border-radius: 50%;
-
   position: absolute;
+  transition: all 0.7s ease;
+}
 
-  background:
-    linear-gradient(
-      135deg,
-      #b286ff,
-      #ff7cd7
-    );
+.futuristic .pin {
+  background: linear-gradient(135deg, #8B5CF6, #A855F7);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
 
-  box-shadow:
-    0 0 15px rgba(255,120,210,0.5);
+.scrapbook .pin {
+  background: #E89B93;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(30deg);
 }
 
 .pin1 {
@@ -271,158 +309,183 @@
   right: 65px;
 }
 
-/* ======================================= */
-/* DECOR */
-/* ======================================= */
-
+/* Scribbles & curves */
 .scribble {
   position: absolute;
-
   border-radius: 999px;
-
-  opacity: 0.4;
+  opacity: 0.25;
+  transition: all 0.7s ease;
 }
 
-.scribble1 {
+.futuristic .scribble1 {
   width: 140px;
   height: 140px;
-
-  border: 2px solid #d8b8ff;
-
+  border: 2px solid #8B5CF6;
   bottom: -60px;
   right: -30px;
 }
 
-.scribble2 {
+.futuristic .scribble2 {
   width: 80px;
   height: 80px;
-
-  border: 2px dashed #ffb5ea;
-
+  border: 2px dashed #A855F7;
   top: 80px;
   right: 40px;
 }
 
+.scrapbook .scribble1 {
+  width: 150px;
+  height: 150px;
+  border: 3px dotted #FFB38A;
+  bottom: -70px;
+  right: -20px;
+}
+
+.scrapbook .scribble2 {
+  width: 90px;
+  height: 90px;
+  border: 2px solid #FFE7D1;
+  top: 90px;
+  right: 30px;
+}
+
 .curve {
   position: absolute;
-
   width: 500px;
   height: 500px;
-
   border-radius: 50%;
-
-  border: 2px solid rgba(186,130,255,0.25);
-
+  border: 1px solid rgba(139, 92, 246, 0.1);
   bottom: -340px;
   right: -220px;
+  transition: all 0.7s ease;
+}
+
+.scrapbook .curve {
+  border: 2px dashed rgba(139, 115, 101, 0.1);
 }
 
 /* ======================================= */
-/* MOBILE */
+/* RESPONSIVE LAYOUT */
 /* ======================================= */
 
 @media (max-width: 900px) {
-
   .hero {
     grid-template-columns: 1fr;
-
-    gap: 55px;
-
-    text-align: center;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    padding-top: 120px;
+    min-height: unset;
+    padding-bottom: 60px;
   }
 
+  /* Intro text first */
   .hero-left {
+    order: 1;
+    text-align: center;
     align-items: center;
   }
 
-  /* TOP PILL */
-
   .hero .tag {
-    width: auto;
-
-    max-width: fit-content;
-
-    padding: 14px 20px;
-
-    border-radius: 999px;
-
-    white-space: nowrap;
-
-    font-size: 0.82rem;
-
     margin: 0 auto;
   }
 
-  /* MOBILE HEADING */
-
   .hero-left h1 {
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
-
-    line-height: 0.95;
-
-    letter-spacing: -1px;
-
-    margin: 24px 0 14px;
-
-    text-align: center;
-
-    white-space: normal;
-
-    overflow-wrap: break-word;
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+    line-height: 0.92;
   }
 
-  /* MOBILE SUBTEXT */
-
   .hero-left p {
-  font-size: 0.82rem;
-
-  line-height: 1.5;
-
-  white-space: nowrap;
-
-  text-align: center;
-
-  max-width: 100%;
-}
-  /* BUTTONS */
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: center;
+    max-width: 500px;
+  }
 
   .hero-buttons {
-    justify-content: center;
-
     width: 100%;
-
+    justify-content: center;
     gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  /* Canvas box below intro */
+  .hero-right {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .canvas-wrapper {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .canvas-board {
+    width: 100%;
+    max-width: 100%;
+    height: 320px;
+    padding: 24px;
+    border-radius: 24px;
+    transform: rotate(-2deg);
+  }
+
+  .canvas-text {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+  }
+
+  .travel,
+  .food,
+  .stories {
+    font-size: clamp(2.8rem, 9vw, 4rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 100px;
+    gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .hero .tag {
+    font-size: 0.7rem;
+    padding: 10px 16px;
+    text-align: center;
+  }
+
+  .hero-left h1 {
+    font-size: clamp(2.4rem, 12vw, 3.6rem);
+    line-height: 0.9;
+  }
+
+  .hero-left p {
+    font-size: 0.92rem;
+    line-height: 1.65;
   }
 
   .primary-btn,
   .secondary-btn {
-    padding: 15px 18px;
-
-    font-size: 0.95rem;
-
     flex: 1;
-
-    max-width: 160px;
+    min-width: 130px;
+    font-size: 0.9rem;
+    padding: 13px 18px;
   }
 
-  /* CANVAS */
-
   .canvas-board {
-    height: auto;
-
-    min-height: 420px;
-
-    padding: 50px 28px;
-
-    transform: rotate(0deg);
+    height: 280px;
+    padding: 20px;
+    border-radius: 20px;
   }
 
   .canvas-text {
-    font-size: 3rem;
-
-    line-height: 1;
-
-    letter-spacing: -1px;
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
   }
 
+  .travel,
+  .food,
+  .stories {
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+  }
 }

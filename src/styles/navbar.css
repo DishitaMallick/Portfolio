@@ -1,57 +1,167 @@
-/* Navbar CSS */
+/* src/styles/navbar.css */
 
 .navbar {
-  width: calc(100% - 80px);
-  margin: 24px auto;
-  padding: 18px 30px;
-  border-radius: 26px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: sticky;
+  position: fixed;
   top: 20px;
-  z-index: 999;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 30px;
+  border-radius: 24px;
+  transition: all 0.7s ease;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: 900;
+  transition: all 0.7s ease;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .resume-btn {
-  padding: 14px 24px;
+  padding: 10px 20px;
   border-radius: 16px;
-
-  background: linear-gradient(
-    135deg,
-    #9f72ff,
-    #ff79d7
-  );
-
+  background: var(--accent);
   color: white;
   font-weight: 700;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+  transition: all 0.35s ease;
+  font-size: 0.95rem;
+}
 
-  box-shadow: 0 12px 24px rgba(155, 109, 255, 0.28);
-
-  transition: 0.35s ease;
+.site-wrapper.human .resume-btn {
+  background: #E89B93;
+  color: #FFF8F0;
+  box-shadow: 0 8px 20px rgba(232, 155, 147, 0.2);
+  border: 1px solid #FFE7D1;
 }
 
 .resume-btn:hover {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.3);
+}
 
-  box-shadow: 0 18px 35px rgba(155, 109, 255, 0.35);
+.site-wrapper.human .resume-btn:hover {
+  box-shadow: 0 12px 28px rgba(232, 155, 147, 0.3);
+}
+
+/* MODE TOGGLE */
+
+.mode-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mode-toggle {
+  position: relative;
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 4px;
+  border-radius: 999px;
+  gap: 4px;
+  transition: all 0.7s ease;
+}
+
+.site-wrapper.human .mode-toggle {
+  background: rgba(139, 115, 101, 0.08);
+  border: 2px solid rgba(139, 115, 101, 0.12);
+}
+
+.toggle-btn {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  overflow: hidden;
+}
+
+.site-wrapper.designer .toggle-btn {
+  color: #94A3B8;
+}
+
+.site-wrapper.designer .toggle-btn.active {
+  color: #FFFFFF;
+}
+
+.site-wrapper.human .toggle-btn {
+  color: #5C4A3E;
+}
+
+.site-wrapper.human .toggle-btn.active {
+  color: #1A0F08;
+}
+
+.active-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.designer-pill {
+  background: linear-gradient(135deg, #8B5CF6, #6366F1);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35);
+}
+
+.human-pill {
+  background: linear-gradient(135deg, #FFE7D1, #FFB38A);
+  border: 1.5px solid #E89B93;
+  box-shadow: 0 4px 15px rgba(232, 155, 147, 0.2);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
   .navbar {
-    width: calc(100% - 24px);
-    padding: 16px 18px;
+    width: 95%;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+    top: 10px;
+    border-radius: 16px;
   }
 
-  .resume-btn {
-    padding: 12px 18px;
-    font-size: 0.9rem;
+  .logo {
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  .mode-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .toggle-btn {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .nav-right {
+    display: none; /* Hide resume button on small mobile screens to keep toggle readable */
   }
 }

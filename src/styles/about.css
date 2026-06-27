@@ -1,7 +1,7 @@
-/* About CSS */
+/* src/styles/about.css */
 
 .about-grid {
-  margin-top: 60px;
+  margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
@@ -9,26 +9,45 @@
 
 .about-card {
   padding: 40px 30px;
-  border-radius: 30px;
-  transition: 0.35s ease;
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .about-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+.about-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  color: #8B5CF6;
+  border: 1px solid rgba(139, 92, 246, 0.15);
 }
 
 .about-card h3 {
   font-size: 1.3rem;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .about-card p {
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 }

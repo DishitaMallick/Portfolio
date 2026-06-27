@@ -1,0 +1,1249 @@
+/* src/styles/human.css */
+
+/* ======================================= */
+/* SCRAPBOOK THEME BASICS */
+/* ======================================= */
+
+.bento-section {
+  padding: 120px 8%;
+  background: var(--bg);
+  transition: background 0.7s ease;
+}
+
+/* ======================================= */
+/* BENTO GRID LAYOUT */
+/* ======================================= */
+
+.bento-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 240px;
+  gap: 20px;
+}
+
+/* Base Card Styling */
+.bento-card {
+  position: relative;
+  overflow: visible; /* Changed to visible to let washitape display */
+  border-radius: 28px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  background: rgba(255, 248, 242, 0.95);
+  border: 2px solid #F6D6BD;
+  box-shadow: 0 8px 30px rgba(139, 115, 101, 0.04);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  will-change: transform;
+}
+
+/* Washi tape scrapbook effect on cards */
+.site-wrapper.human .bento-card::after {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2.5deg);
+  width: 110px;
+  height: 28px;
+  background: rgba(246, 214, 189, 0.6);
+  backdrop-filter: blur(1px);
+  border-left: 2px dashed rgba(255, 255, 255, 0.45);
+  border-right: 2px dashed rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 5px rgba(139, 115, 101, 0.05);
+  z-index: 12;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.site-wrapper.human .bento-card:nth-child(2n)::after {
+  transform: translateX(-50%) rotate(3.5deg);
+  background: rgba(232, 155, 147, 0.6);
+}
+
+.site-wrapper.human .bento-card:nth-child(3n)::after {
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgba(186, 215, 233, 0.65);
+}
+
+.site-wrapper.human .bento-card:hover::after {
+  transform: translateX(-50%) rotate(0deg) translateY(-2px);
+  background: rgba(232, 155, 147, 0.7);
+}
+
+.site-wrapper.human .bento-card p {
+  color: #3D2D24; /* Darker paragraph text */
+}
+
+.bento-card:hover {
+  border-color: #E89B93;
+  box-shadow: 0 15px 35px rgba(232, 155, 147, 0.18);
+}
+
+.card-decor {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: #E89B93;
+  background: #FFFDF9;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px dashed #F6D6BD;
+  z-index: 10;
+}
+
+.card-content {
+  position: relative;
+  z-index: 5;
+}
+
+.bento-card h3 {
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 6px;
+  font-weight: 700;
+  z-index: 5;
+}
+
+.bento-card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+  z-index: 5;
+}
+
+/* Card sizing configurations */
+.card-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.card-medium {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* ======================================= */
+/* CARD PREVIEWS */
+/* ======================================= */
+
+/* Polaroid Stack Preview */
+.polaroid-stack {
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.stacked-polaroid {
+  background: white;
+  padding: 10px 10px 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 140px;
+  transition: transform 0.4s ease;
+}
+
+.stacked-polaroid img {
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.stacked-polaroid span {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: #5d4d42;
+  margin-top: 8px;
+}
+
+.polaroid1 {
+  transform: rotate(-10deg) translateX(-40px);
+  z-index: 1;
+}
+
+.polaroid2 {
+  transform: rotate(8deg) translateX(40px);
+  z-index: 2;
+}
+
+.bento-card:hover .polaroid1 {
+  transform: rotate(-16deg) translateX(-60px) translateY(-5px);
+}
+
+.bento-card:hover .polaroid2 {
+  transform: rotate(14deg) translateX(60px) translateY(-5px);
+}
+
+/* Image preview rounded cover */
+.card-image-preview {
+  position: absolute;
+  top: 65px;
+  left: 20px;
+  right: 20px;
+  bottom: 110px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid #FFE7D1;
+  pointer-events: none;
+}
+
+.rounded-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.bento-card:hover .rounded-cover {
+  transform: scale(1.05);
+}
+
+/* Video Play Overlay inside card preview */
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover .video-play-overlay {
+  font-size: 3.4rem;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Lab blueprint preview */
+.lab-preview {
+  position: absolute;
+  top: 65px;
+  left: 20px;
+  right: 20px;
+  bottom: 110px;
+  background: #eff6ff;
+  border: 2px dashed #93c5fd;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blueprint-line {
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: rgba(147, 197, 253, 0.3);
+  transform: rotate(-30deg);
+}
+
+.lab-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 1.8rem;
+  color: #3b82f6;
+  z-index: 2;
+}
+
+/* Art preview */
+.art-preview {
+  position: absolute;
+  top: 65px;
+  left: 20px;
+  right: 20px;
+  bottom: 110px;
+  background: #FFFDF9;
+  border: 1px solid #E89B93;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(139, 115, 101, 0.05);
+  border-radius: 4px;
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+.art-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.bento-card:hover .art-preview {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* ======================================= */
+/* MODALS OVERLAY & WINDOW */
+/* ======================================= */
+
+.bento-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 13, 5, 0.55);
+  backdrop-filter: blur(8px);
+  z-index: 1010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.bento-modal-window {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 85vh;
+  background: #FFFDF9 !important;
+  border: 3px solid #F6D6BD !important;
+  border-radius: 36px;
+  padding: 45px 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 70px rgba(61, 45, 36, 0.25);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFE7D1;
+  border: 1.5px solid #E89B93;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-modal-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: #E89B93;
+  color: white;
+}
+
+.modal-header {
+  margin-bottom: 30px;
+  border-bottom: 2px dashed #FFE7D1;
+  padding-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.modal-header p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.modal-body-content {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+/* Styled Scrollbars */
+.modal-body-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body-content::-webkit-scrollbar-track {
+  background: rgba(139, 115, 101, 0.05);
+  border-radius: 99px;
+}
+
+.modal-body-content::-webkit-scrollbar-thumb {
+  background: #F6D6BD;
+  border-radius: 99px;
+}
+
+/* ======================================= */
+/* 📸 MASONRY GALLERY */
+/* ======================================= */
+
+.masonry-gallery {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.polaroid-photo {
+  background: white;
+  padding: 12px 12px 24px;
+  border: 1px solid #FFE7D1;
+  box-shadow: 0 6px 18px rgba(139, 115, 101, 0.06);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.polaroid-photo img {
+  width: 100%;
+  border-radius: 2px;
+}
+
+.polaroid-photo:hover {
+  transform: scale(1.02) rotate(-1deg);
+  box-shadow: 0 12px 28px rgba(139, 115, 101, 0.12);
+  border-color: #E89B93;
+}
+
+.polaroid-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* ======================================= */
+/* 🍝 RECIPE GRID (FLIP CARDS) */
+/* ======================================= */
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.recipe-card-wrapper {
+  height: 380px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.recipe-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.recipe-card-wrapper.flipped .recipe-card-inner {
+  transform: rotateY(180deg);
+}
+
+.recipe-card-front, .recipe-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  border: 2px solid #F6D6BD;
+  overflow: hidden;
+}
+
+.recipe-card-front {
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card-front img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.recipe-front-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.recipe-front-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.tap-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: #E89B93;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.recipe-card-back {
+  background: #FFFDF9;
+  transform: rotateY(180deg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card-back h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  border-bottom: 1.5px dashed #FFE7D1;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  color: var(--text);
+}
+
+.recipe-section-block {
+  margin-bottom: 15px;
+}
+
+.recipe-section-block strong {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: #E89B93;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.recipe-section-block p {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+
+.learned-block {
+  flex-grow: 1;
+}
+
+/* ======================================= */
+/* 🚀 CURIOSITY LAB BLUEPRINTS */
+/* ======================================= */
+
+.blueprints-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.blueprint-card {
+  background: #fbfdff;
+  border: 2px solid #bfdbfe;
+  border-radius: 24px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blueprint-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(191, 219, 254, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(191, 219, 254, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.blueprint-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  z-index: 2;
+  position: relative;
+}
+
+.blueprint-tag {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid #bfdbfe;
+}
+
+.blueprint-no {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #60a5fa;
+}
+
+.blueprint-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #1e3a8a;
+  z-index: 2;
+  position: relative;
+}
+
+.bp-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #1e293b;
+  margin-bottom: 16px;
+  z-index: 2;
+  position: relative;
+}
+
+.bp-details, .bp-learned {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-top: 10px;
+  z-index: 2;
+  position: relative;
+}
+
+.bp-details {
+  background: rgba(239, 246, 255, 0.5);
+  border-left: 3.5px solid #60a5fa;
+  color: #1e293b;
+}
+
+.bp-learned {
+  background: #f0fdf4;
+  border-left: 3.5px solid #4ade80;
+  color: #166534;
+}
+
+/* ======================================= */
+/* 🎨 ART GALLERY */
+/* ======================================= */
+
+.art-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.art-card-item {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.art-frame {
+  background: white;
+  border: 12px solid white;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+  height: 220px;
+  transition: transform 0.3s ease;
+}
+
+.art-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.art-card-item:hover .art-frame {
+  transform: scale(1.03) rotate(1deg);
+}
+
+.art-card-item h4 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ======================================= */
+/* 🎬 MOTION REELS */
+/* ======================================= */
+
+.motion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.video-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid #F6D6BD;
+  background: white;
+}
+
+.video-thumb-container {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.video-thumb-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.video-card:hover .video-thumb-container img {
+  transform: scale(1.05);
+}
+
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.video-card:hover .video-play-overlay {
+  opacity: 1;
+  font-size: 3.4rem;
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.video-info {
+  padding: 18px;
+}
+
+.video-tag {
+  color: #E89B93;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.video-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ======================================= */
+/* ✨ CREATIVE CHAOS */
+/* ======================================= */
+
+.chaos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.chaos-card {
+  background: white;
+  border: 2px solid #F6D6BD;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(139,115,101,0.02);
+}
+
+.chaos-tag {
+  color: #E89B93;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.chaos-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.chaos-card p {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ======================================= */
+/* 🔍 LIGHTBOX LAYOUT */
+/* ======================================= */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-lightbox-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-lightbox-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+.lightbox-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  max-height: 80vh;
+}
+
+.lightbox-window img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.lightbox-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: #fff;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* ======================================= */
+/* RESPONSIVE LAYOUT */
+/* ======================================= */
+
+@media (max-width: 1100px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-section {
+    padding: 80px 5%;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 32px;
+    margin-top: 36px;
+  }
+
+  /* Every card: reset grid spans, use fixed full-width layout */
+  .card-large,
+  .card-medium {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+
+  /* Card shell: structured like designer mode cards — image top, content bottom */
+  .bento-card {
+    height: auto !important;
+    min-height: unset !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+  }
+
+  /* Card decor tag stays absolutely positioned at top-left */
+  .card-decor {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    font-size: 1.05rem;
+    padding: 3px 10px;
+    z-index: 10;
+  }
+
+  /* ---- Polaroid Stack Card (Photography) ---- */
+  .polaroid-stack {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: 200px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #fff8f5;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    pointer-events: none;
+  }
+
+  .stacked-polaroid {
+    width: 110px;
+    padding: 8px 8px 20px;
+  }
+
+  .stacked-polaroid img {
+    width: 94px;
+    height: 75px;
+    object-fit: cover;
+  }
+
+  .stacked-polaroid span {
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+
+  .polaroid1 {
+    transform: rotate(-9deg) translateX(-25px) !important;
+  }
+
+  .polaroid2 {
+    transform: rotate(7deg) translateX(25px) !important;
+  }
+
+  .bento-card:hover .polaroid1 {
+    transform: rotate(-13deg) translateX(-35px) translateY(-4px) !important;
+  }
+
+  .bento-card:hover .polaroid2 {
+    transform: rotate(11deg) translateX(35px) translateY(-4px) !important;
+  }
+
+  /* ---- Image Preview (Culinary, Motion, Chaos cards) ---- */
+  .card-image-preview {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+
+  .card-image-preview .rounded-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  /* ---- Lab Blueprint Preview ---- */
+  .lab-preview {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ---- Art Preview ---- */
+  .art-preview {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .art-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  /* ---- Card content area: text below the visual ---- */
+  .card-content {
+    padding: 18px 20px 20px !important;
+    position: relative !important;
+    z-index: 5;
+    background: transparent;
+  }
+
+  .bento-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .bento-card p {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  /* ---- Video play overlay on cards ---- */
+  .card-image-preview .video-play-overlay {
+    font-size: 2.2rem;
+  }
+
+  /* ---- Washi tape ---- */
+  .site-wrapper.human .bento-card::after {
+    width: 80px;
+    height: 20px;
+    top: -10px;
+  }
+
+  /* ======================================= */
+  /* MODAL — mobile full-screen style */
+  /* ======================================= */
+
+  .bento-modal-overlay {
+    padding: 10px;
+    align-items: flex-end;
+  }
+
+  .bento-modal-window {
+    padding: 20px 18px 28px;
+    max-height: 94vh;
+    border-radius: 24px 24px 20px 20px;
+    width: 100%;
+  }
+
+  .close-modal-btn {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+
+  .modal-header {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+
+  .modal-header p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  /* ======================================= */
+  /* MODAL CONTENT GRIDS */
+  /* ======================================= */
+
+  /* Photography masonry: 2 columns */
+  .masonry-gallery {
+    column-count: 2;
+    column-gap: 14px;
+  }
+
+  .masonry-item {
+    margin-bottom: 14px;
+  }
+
+  /* Recipe: single column, shorter card */
+  .recipe-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .recipe-card-wrapper {
+    height: 300px;
+  }
+
+  .recipe-card-front img {
+    height: 170px;
+  }
+
+  .recipe-card-back {
+    padding: 20px;
+  }
+
+  .recipe-card-back h3 {
+    font-size: 1.1rem;
+  }
+
+  .recipe-section-block p {
+    font-size: 0.83rem;
+  }
+
+  /* Lab blueprints: single column */
+  .blueprints-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .blueprint-card {
+    padding: 22px 20px;
+  }
+
+  .blueprint-card h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Art gallery: 2 columns */
+  .art-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .art-frame {
+    height: 160px;
+    border-width: 8px;
+  }
+
+  .art-card-item h4 {
+    font-size: 1rem;
+    margin-top: 7px;
+  }
+
+  /* Motion videos: single column */
+  .motion-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .video-thumb-container {
+    height: 160px;
+  }
+
+  .video-info {
+    padding: 14px;
+  }
+
+  .video-info h3 {
+    font-size: 1rem;
+  }
+
+  /* Creative Chaos: single column */
+  .chaos-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .chaos-card {
+    padding: 18px;
+  }
+
+  .chaos-card h3 {
+    font-size: 1rem;
+  }
+
+  /* Lightbox */
+  .lightbox-window {
+    max-width: 96%;
+    max-height: 85vh;
+  }
+
+  .lightbox-window img {
+    max-height: 65vh;
+  }
+
+  .lightbox-caption {
+    font-size: 1.3rem;
+    margin-top: 10px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .bento-section {
+    padding: 70px 4%;
+  }
+
+  .masonry-gallery {
+    column-count: 1;
+  }
+
+  .art-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-header h2 {
+    font-size: 1.3rem;
+  }
+}

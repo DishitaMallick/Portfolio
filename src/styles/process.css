@@ -89,7 +89,7 @@
 }
 
 .process-content p {
-  color: #8d8d8d;
+  color: var(--muted);
 
   font-size: 0.95rem;
 

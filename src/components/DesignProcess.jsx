@@ -32,12 +32,12 @@ const steps = [
 const DesignProcess = () => {
   return (
     <motion.section
-  id="process"
-  initial={{ opacity: 0, y: 120 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  viewport={{ once: true }}
->
+      id="process"
+      initial={{ opacity: 0, y: 120 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
 
       <div className="tag">
         Design Process
@@ -46,7 +46,8 @@ const DesignProcess = () => {
       <h2 className="section-title">
         Thoughtful process.
         <br />
-        Human-centered outcomes.
+
+        <span className="gradient-text">Human-centered outcomes.</span>
       </h2>
 
       <div className="process-wrapper">

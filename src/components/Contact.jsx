@@ -24,12 +24,12 @@ const Contact = () => {
     <>
 
       <motion.section
-  id="contact"
-  initial={{ opacity: 0, y: 120 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  viewport={{ once: true }}
->
+        id="contact"
+        initial={{ opacity: 0, y: 120 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
 
         <div className="contact-box glass">
 
@@ -38,16 +38,17 @@ const Contact = () => {
           </div>
 
           <h2>
-            Let’s create
+            Let’s create <br />
             <span className="gradient-text">
-              {" "}something meaningful
+              something meaningful
             </span>
-            {" "}together.
+            <br />
+            together.
           </h2>
 
           <p>
             Whether it’s a collaboration, freelance project or simply a friendly
-            conversation about design — I’d love to connect.
+            conversation about design - I’d love to connect.
           </p>
 
           <button

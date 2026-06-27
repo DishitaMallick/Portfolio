@@ -1,49 +1,34 @@
-// src/components/Projects.jsx
-
 import "../styles/projects.css";
 import { motion } from "framer-motion";
 
 const projects = [
   {
     title: "PawCare",
-
     desc: "A heartfelt digital experience designed to make pet care feel more compassionate, supportive and emotionally connected.",
-
     image: "/p.jpg",
-
     button: "View Full UX Case Study",
-
     link: "https://www.behance.net/gallery/249819973/Pawcare-UX-CASE-STUDY",
   },
-
   {
     title: "UBER Redesign",
-
     desc: "Creating a safer and more transparent ride-booking experience through proactive safety alerts and fair payment flows.",
-
     image: "/u.png",
-
     button: "View Full Medium Blog",
-
     link: "https://medium.com/@dishita.mallick/designing-safer-rides-rethinking-trust-protection-in-ride-hailing-apps-3e9273ef8858",
   },
-
   {
     title: "Richa Skateboard - E-commerce Platform",
-
     desc: "Creating a responsive and visually engaging skateboard shopping experience tailored for modern users.",
-
     image: "/richaa.png",
-
     button: "View Project on Behance",
-
     link: "https://www.behance.net/gallery/250042755/RICHA-Skateboard-E-Commerce-UIUX",
   },
 ];
 
+const infiniteProjects = [...projects, ...projects];
+
 const Projects = () => {
   return (
-
     <motion.section
       id="projects"
       initial={{ opacity: 0, y: 120 }}
@@ -51,10 +36,7 @@ const Projects = () => {
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-
-      <div className="tag">
-        Featured Work
-      </div>
+      <div className="tag">Featured Work</div>
 
       <motion.h2
         className="section-title"
@@ -64,91 +46,58 @@ const Projects = () => {
         viewport={{ once: true }}
       >
         Projects crafted with
-        <span className="gradient-text">
-          {" "}emotion & expression
-        </span>
+        <span className="gradient-text"> emotion & expression</span>
       </motion.h2>
 
-      {/* TOP BAR */}
-
       <div className="projects-top">
-
         <div className="scroll-indicator">
-
           <span></span>
-
           <p>scroll to explore</p>
-
         </div>
-
       </div>
 
-      {/* HORIZONTAL PROJECTS */}
+      <div className="projects-wrapper">
+        <div className="projects-track">
+          {infiniteProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="project-card"
+              whileHover={{
+                rotateX: -4,
+                rotateY: 6,
+                y: -12,
+                scale: 1.02,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 180,
+                damping: 14,
+              }}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="project-cover"
+              />
 
-      <div className="horizontal-scroll">
+              <div className="overlay">
+                <h3>{project.title}</h3>
+                <p>{project.desc}</p>
 
-        {projects.map((project, index) => (
-
-          <motion.div
-  className="project-card"
-
-  whileHover={{
-    rotateX: -4,
-    rotateY: 6,
-    y: -12,
-    scale: 1.02
-  }}
-
-  transition={{
-    type: "spring",
-    stiffness: 180,
-    damping: 14
-  }}
-            key={index}
-            initial={{ opacity: 0, y: 120 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: index * 0.12
-            }}
-            viewport={{ once: true }}
-          >
-
-            <img
-              src={project.image}
-              alt=""
-              className="project-cover"
-            />
-
-            <div className="overlay">
-
-              <h3>{project.title}</h3>
-
-              <p>{project.desc}</p>
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="case-btn"
-              >
-
-                {project.button}
-
-                <span className="arrow">
-                  ↗
-                </span>
-
-              </a>
-
-            </div>
-
-          </motion.div>
-
-        ))}
-
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-btn"
+                >
+                  {project.button}
+                  <span className="arrow">↗</span>
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
     </motion.section>
   );
 };
