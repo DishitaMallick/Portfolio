@@ -12,6 +12,7 @@ import Experience from "./components/Experience";
 
 import HumanBento from "./components/HumanBento";
 import Contact from "./components/Contact";
+import CustomCursor from "./components/CustomCursor";
 
 import "./index.css";
 
@@ -50,6 +51,9 @@ function App() {
 
       {/* CURSOR GLOW */}
       <div className="cursor-glow"></div>
+
+      {/* CUSTOM CURSOR */}
+      <CustomCursor mode={mode} />
 
       {/* NAVBAR */}
       <Navbar

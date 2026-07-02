@@ -1,5 +1,8 @@
 /* src/styles/hero.css */
 
+/* ======================================= */
+/* HERO LAYOUT                             */
+/* ======================================= */
 .hero {
   min-height: 92vh;
   display: grid;
@@ -7,14 +10,10 @@
   align-items: center;
   gap: 70px;
   padding-top: 140px;
-  /* Offset for floating navbar */
   transition: all 0.7s ease;
 }
 
-/* ======================================= */
-/* LEFT SIDE */
-/* ======================================= */
-
+/* ─── LEFT SIDE ─── */
 .hero-left {
   display: flex;
   flex-direction: column;
@@ -23,144 +22,153 @@
   text-align: left;
 }
 
-/* ======================================= */
-/* TOP PILL */
-/* ======================================= */
-
+/* ─── TOP PILL ─── */
 .hero .tag {
   width: fit-content;
+  min-width: 520px;
+  white-space: nowrap;
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  padding: 12px 20px;
+  align-items: center;
+  padding: 12px 24px;
   border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  transition: all 0.7s ease;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.04em;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.1s both;
 }
 
 .site-wrapper.designer .hero .tag {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #8B5CF6;
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  color: #A78BFA;
 }
 
 .site-wrapper.human .hero .tag {
-  background: #FFE7D1;
-  border: 1.5px dashed #E89B93;
-  color: #3D2D24;
-
+  background: #FEE7D0;
+  border: 1.5px dashed #DC6B6B;
+  color: #6B3020;
 }
 
-/* ======================================= */
-/* HEADING & SUBTEXT */
-/* ======================================= */
-
+/* ─── HEADING & SUBTEXT ─── */
 .hero-left h1 {
-  font-size: clamp(3.2rem, 7vw, 5.8rem);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(3.4rem, 7vw, 6.2rem);
   line-height: 0.95;
-  margin: 25px 0 20px;
+  margin: 28px 0 22px;
   font-weight: 900;
-  letter-spacing: -2px;
+  letter-spacing: -0.035em;
+  animation: fadeSlideUp 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.2s both;
 }
 
 .hero-left p {
-  max-width: 580px;
-  line-height: 1.8;
-  font-size: 1.1rem;
+  max-width: 560px;
+  line-height: 1.85;
+  font-size: 1.05rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
   transition: color 0.7s ease;
+  animation: fadeSlideUp 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.32s both;
 }
 
-.site-wrapper.designer .hero-left p {
-  color: #94A3B8;
-}
+.site-wrapper.designer .hero-left p { color: #7E8AAE; }
+.site-wrapper.human   .hero-left p { color: #6B5344; }
 
-.site-wrapper.human .hero-left p {
-  color: #3D2D24;
-
-
-}
-
-/* ======================================= */
-/* BUTTONS */
-/* ======================================= */
-
+/* ─── BUTTONS ─── */
 .hero-buttons {
   display: flex;
   gap: 18px;
-  margin-top: 35px;
+  margin-top: 38px;
   flex-wrap: wrap;
+  animation: fadeSlideUp 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.44s both;
 }
 
 .primary-btn,
 .secondary-btn {
-  padding: 15px 28px;
-  border-radius: 18px;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  transition: all 0.35s ease;
-  font-size: 1rem;
+  transition: all 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 0.97rem;
   display: inline-block;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Designer Buttons */
+.primary-btn::before,
+.secondary-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.primary-btn:hover::before,
+.secondary-btn:hover::before {
+  opacity: 1;
+}
+
+/* Designer buttons */
 .site-wrapper.designer .primary-btn {
-  background: linear-gradient(135deg, #8B5CF6, #6366F1);
+  background: linear-gradient(135deg, #A78BFA, #818CF8);
   color: white;
-  box-shadow: 0 12px 25px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 12px 30px rgba(167, 139, 250, 0.28);
 }
 
 .site-wrapper.designer .primary-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 30px rgba(139, 92, 246, 0.35);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(167, 139, 250, 0.4);
 }
 
 .site-wrapper.designer .secondary-btn {
-  background: rgba(30, 41, 59, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #F8FAFC;
+  background: rgba(167, 139, 250, 0.06);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  color: #EEF0F8;
 }
 
 .site-wrapper.designer .secondary-btn:hover {
-  transform: translateY(-4px);
-  background: rgba(30, 41, 59, 0.8);
+  transform: translateY(-5px);
+  background: rgba(167, 139, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.35);
 }
 
-/* Human Buttons */
+/* Human buttons */
 .site-wrapper.human .primary-btn {
-  background: linear-gradient(135deg, #FFE7D1, #FFB38A);
-  border: 2px solid #E89B93;
-  color: #3D2D24;
-  box-shadow: 0 10px 20px rgba(232, 155, 147, 0.15);
-
+  background: linear-gradient(135deg, #DC6B6B, #E8856B);
+  color: white;
+  border: none;
+  box-shadow: 0 10px 24px rgba(220, 107, 107, 0.25);
 }
 
 .site-wrapper.human .primary-btn:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  box-shadow: 0 14px 28px rgba(232, 155, 147, 0.25);
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 18px 36px rgba(220, 107, 107, 0.35);
 }
 
 .site-wrapper.human .secondary-btn {
-  background: #FFF8F0;
-  border: 2px solid #FFE7D1;
-  color: #8B7365;
-
+  background: #FDF8F2;
+  border: 1.5px solid rgba(180, 140, 110, 0.3);
+  color: #6B5344;
 }
 
 .site-wrapper.human .secondary-btn:hover {
-  transform: translateY(-4px) rotate(1deg);
-  background: #FFE7D1;
-  color: #3D2D24;
+  transform: translateY(-5px) rotate(1deg);
+  background: #FEE7D0;
+  color: #1C1008;
+  border-color: #DC6B6B;
 }
 
-/* ======================================= */
-/* CANVAS SECTION */
-/* ======================================= */
-
+/* ─── CANVAS SECTION ─── */
 .canvas-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: scalePop 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
 }
 
 .canvas-board {
@@ -168,46 +176,48 @@
   max-width: 480px;
   height: 540px;
   position: relative;
-  border-radius: 36px;
+  border-radius: 40px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
   transform: rotate(-3deg);
-  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .canvas-board:hover {
-  transform: rotate(0deg) translateY(-8px);
+  transform: rotate(0deg) translateY(-10px);
 }
 
 /* Futuristic Designer Canvas */
 .canvas-board.futuristic {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 25px 60px rgba(139, 92, 246, 0.08);
+  background: rgba(18, 22, 38, 0.75);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  box-shadow:
+    0 30px 70px rgba(167, 139, 250, 0.12),
+    inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
 .canvas-board.futuristic::before {
   content: "";
   position: absolute;
   inset: 15px;
-  border-radius: 26px;
-  border: 1px dashed rgba(139, 92, 246, 0.15);
+  border-radius: 30px;
+  border: 1px dashed rgba(167, 139, 250, 0.18);
   pointer-events: none;
+  animation: pulseRing 3s ease-in-out infinite;
 }
 
 /* Scrapbook Human Canvas */
 .canvas-board.scrapbook {
   background: #FFFDF9;
   border: 2.5px solid #F6D6BD;
-  box-shadow: 0 15px 40px rgba(139, 115, 101, 0.1);
+  box-shadow: 0 20px 50px rgba(180, 140, 110, 0.12);
   background-image:
-    linear-gradient(rgba(139, 115, 101, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 115, 101, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(180, 140, 110, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 140, 110, 0.04) 1px, transparent 1px);
   background-size: 25px 25px;
 }
 
@@ -215,20 +225,19 @@
   content: "";
   position: absolute;
   inset: 12px;
-  border-radius: 28px;
-  border: 2px dashed #FFB38A;
+  border-radius: 32px;
+  border: 2px dashed #FCA786;
+  opacity: 0.6;
   pointer-events: none;
 }
 
-/* ======================================= */
-/* CANVAS TEXT */
-/* ======================================= */
-
+/* ─── CANVAS TEXT ─── */
 .canvas-text {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
   font-weight: 900;
   line-height: 1.05;
-  letter-spacing: -1px;
+  letter-spacing: -0.02em;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -239,44 +248,44 @@
 
 /* Designer words */
 .ux {
-  color: #8B5CF6;
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  color: #A78BFA;
+  text-shadow: 0 0 30px rgba(167, 139, 250, 0.4);
 }
 
 .code {
-  color: #6366F1;
-  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  color: #818CF8;
+  text-shadow: 0 0 30px rgba(129, 140, 248, 0.4);
 }
 
 .aesthetic {
-  color: #A855F7;
-  text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-  font-size: clamp(1.8rem, 3vw, 3rem);
+  color: #F472B6;
+  text-shadow: 0 0 30px rgba(244, 114, 182, 0.4);
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
 }
 
 /* Human words */
 .travel {
-  color: #E89B93;
+  color: #DC6B6B;
   font-family: 'Caveat', cursive;
   font-size: 5.5rem;
+  font-weight: 600;
 }
 
 .food {
-  color: #FFB38A;
+  color: #D97706;
   font-family: 'Caveat', cursive;
   font-size: 5.5rem;
+  font-weight: 600;
 }
 
 .stories {
-  color: #8B7365;
+  color: #92400E;
   font-family: 'Caveat', cursive;
   font-size: 5.5rem;
+  font-weight: 600;
 }
 
-/* ======================================= */
-/* PINS & SCRIBBLES */
-/* ======================================= */
-
+/* ─── PINS & SCRIBBLES ─── */
 .pin {
   width: 14px;
   height: 14px;
@@ -286,108 +295,87 @@
 }
 
 .futuristic .pin {
-  background: linear-gradient(135deg, #8B5CF6, #A855F7);
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+  background: linear-gradient(135deg, #A78BFA, #F472B6);
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.7);
+  animation: pulseRing 2.5s ease-in-out infinite;
 }
 
 .scrapbook .pin {
-  background: #E89B93;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 25px;
-  height: 8px;
-  border-radius: 2px;
+  background: #DC6B6B;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 26px;
+  height: 9px;
+  border-radius: 3px;
   transform: rotate(30deg);
 }
 
-.pin1 {
-  top: 30px;
-  right: 35px;
-}
+.pin1 { top: 30px; right: 35px; }
+.pin2 { top: 55px; right: 68px; }
 
-.pin2 {
-  top: 55px;
-  right: 65px;
-}
-
-/* Scribbles & curves */
 .scribble {
   position: absolute;
   border-radius: 999px;
-  opacity: 0.25;
+  opacity: 0.2;
   transition: all 0.7s ease;
 }
 
 .futuristic .scribble1 {
-  width: 140px;
-  height: 140px;
-  border: 2px solid #8B5CF6;
-  bottom: -60px;
-  right: -30px;
+  width: 140px; height: 140px;
+  border: 1.5px solid #A78BFA;
+  bottom: -60px; right: -30px;
+  animation: blobMorph 10s ease-in-out infinite;
 }
 
 .futuristic .scribble2 {
-  width: 80px;
-  height: 80px;
-  border: 2px dashed #A855F7;
-  top: 80px;
-  right: 40px;
+  width: 80px; height: 80px;
+  border: 1.5px dashed #F472B6;
+  top: 80px; right: 40px;
+  animation: blobMorph 8s ease-in-out 2s infinite;
 }
 
 .scrapbook .scribble1 {
-  width: 150px;
-  height: 150px;
-  border: 3px dotted #FFB38A;
-  bottom: -70px;
-  right: -20px;
+  width: 150px; height: 150px;
+  border: 2.5px dotted #FCA786;
+  bottom: -70px; right: -20px;
 }
 
 .scrapbook .scribble2 {
-  width: 90px;
-  height: 90px;
-  border: 2px solid #FFE7D1;
-  top: 90px;
-  right: 30px;
+  width: 90px; height: 90px;
+  border: 2px solid #FEE7D0;
+  top: 90px; right: 30px;
 }
 
 .curve {
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: 500px; height: 500px;
   border-radius: 50%;
-  border: 1px solid rgba(139, 92, 246, 0.1);
-  bottom: -340px;
-  right: -220px;
+  border: 1px solid rgba(167, 139, 250, 0.08);
+  bottom: -340px; right: -220px;
   transition: all 0.7s ease;
 }
 
 .scrapbook .curve {
-  border: 2px dashed rgba(139, 115, 101, 0.1);
+  border: 2px dashed rgba(180, 140, 110, 0.08);
 }
 
-/* ======================================= */
-/* RESPONSIVE LAYOUT */
-/* ======================================= */
-
+/* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 40px;
-    padding-top: 120px;
+    padding-top: 210px;
     min-height: unset;
     padding-bottom: 60px;
   }
 
-  /* Intro text first */
   .hero-left {
     order: 1;
     text-align: center;
     align-items: center;
   }
 
-  .hero .tag {
-    margin: 0 auto;
-  }
+  .hero .tag { margin: 0 auto; }
 
   .hero-left h1 {
     font-size: clamp(2.8rem, 10vw, 4.5rem);
@@ -396,7 +384,7 @@
 
   .hero-left p {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.75;
     text-align: center;
     max-width: 500px;
   }
@@ -409,83 +397,89 @@
     margin-top: 28px;
   }
 
-  /* Canvas box below intro */
-  .hero-right {
-    order: 2;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+  .hero-right { order: 2; width: 100%; display: flex; justify-content: center; }
 
-  .canvas-wrapper {
-    width: 100%;
-    max-width: 420px;
-  }
+  .canvas-wrapper { width: 100%; max-width: 420px; }
 
   .canvas-board {
-    width: 100%;
-    max-width: 100%;
-    height: 320px;
-    padding: 24px;
-    border-radius: 24px;
+    width: 100%; max-width: 100%;
+    height: 320px; padding: 24px;
+    border-radius: 28px;
     transform: rotate(-2deg);
   }
 
-  .canvas-text {
-    font-size: clamp(1.8rem, 6vw, 2.6rem);
-  }
+  .canvas-text { font-size: clamp(1.8rem, 6vw, 2.6rem); }
 
-  .travel,
-  .food,
-  .stories {
-    font-size: clamp(2.8rem, 9vw, 4rem);
-  }
+  .travel, .food, .stories { font-size: clamp(2.8rem, 9vw, 4rem); }
 }
 
 @media (max-width: 480px) {
   .hero {
-    padding-top: 100px;
+    padding-top: 220px;
     gap: 32px;
     padding-bottom: 48px;
   }
 
   .hero .tag {
-    font-size: 0.7rem;
-    padding: 10px 16px;
-    text-align: center;
+    width: fit-content;
+    min-width: auto;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-size: 0.72rem;
+    padding: 10px 18px;
   }
 
   .hero-left h1 {
-    font-size: clamp(2.4rem, 12vw, 3.6rem);
-    line-height: 0.9;
+    font-size: 2.9rem;
+    line-height: .93;
+    margin-top: 22px;
   }
 
   .hero-left p {
-    font-size: 0.92rem;
-    line-height: 1.65;
+    font-size: 0.9rem;
+    line-height: 1.7;
   }
 
-  .primary-btn,
-  .secondary-btn {
+  .primary-btn, .secondary-btn {
     flex: 1;
     min-width: 130px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     padding: 13px 18px;
   }
 
   .canvas-board {
     height: 280px;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 22px;
   }
 
-  .canvas-text {
-    font-size: clamp(1.6rem, 8vw, 2.2rem);
-  }
+  .canvas-text { font-size: clamp(1.6rem, 8vw, 2.2rem); }
 
-  .travel,
-  .food,
-  .stories {
-    font-size: clamp(2.4rem, 10vw, 3.2rem);
-  }
+  .travel, .food, .stories { font-size: clamp(2.4rem, 10vw, 3.2rem); }
+}
+
+/* ─── KEYFRAME references ─── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scalePop {
+  from { opacity: 0; transform: scale(0.88) rotate(-3deg); }
+  to   { opacity: 1; transform: scale(1) rotate(-3deg); }
+}
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.35); opacity: 0.5; }
+  70%  { box-shadow: 0 0 0 16px rgba(167, 139, 250, 0); opacity: 0.2; }
+  100% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0); opacity: 0.5; }
+}
+
+@keyframes blobMorph {
+  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  33%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  66%  { border-radius: 50% 60% 30% 60% / 40% 60% 70% 30%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 }

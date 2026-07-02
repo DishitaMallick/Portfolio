@@ -6,33 +6,32 @@ import "../styles/human.css";
 
 // 📸 Photography gallery data
 const photographyData = [
-  { url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800", caption: "Sunrise boat ride, chasing reflections", category: "travel" },
-  { url: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800", caption: "Foggy mornings in the woods", category: "nature" },
-  { url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800", caption: "Cozy café corners & city lights", category: "street" },
-  { url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800", caption: "Espresso talks & quiet hours", category: "everyday" },
-  { url: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800", caption: "Fresh greens & color palettes", category: "food" },
-  { url: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800", caption: "Lost in transit, wanderlust moments", category: "travel" }
+  { url: "/tml1.jpeg" },
+  { url: "/tml2.jpeg" },
+  { url: "/tml3.jpeg" },
+  { url: "/tml4.jpeg" },
+  { url: "/tml5.JPG" },
+  { url: "/tml6.JPG" },
+  { url: "/tml7.JPG" }
 ];
 
 // 🍝 Culinary canvas data
 const culinaryData = [
   {
     title: "Homemade Potato Gnocchi",
-    image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=600",
-    story: "Attempted making Italian gnocchi from scratch. Boiling potatoes to the right consistency and rolling them over a fork to get the classic ridges is almost therapeutic.",
-    learned: "Patience and texture control. If potatoes are too hot, the dough absorbs too much flour and gets heavy. Keep it light!"
+    image: "cc2.jpg",
+    story: "There's something satisfying about turning a few simple ingredients into something comforting. Today's takeaway: craft over speed."
+
   },
   {
-    title: "Slow-Cooked Tomato Ragù",
-    image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=600",
-    story: "Simmered tomatoes, fresh basil, garlic, and red wine for 4 hours. The aroma filled the house, making the wait absolutely worth it.",
-    learned: "Low & slow is key. You can't rush flavor extraction. Iteration makes a simple recipe extraordinary."
+    title: "Homemade Soya Seekh Kebab",
+    image: "cc1.jpg",
+    story: "Today's kitchen experiment: homemade soya seekh kebabs. Learned that great flavor comes from patience, seasoning and balance."
   },
   {
-    title: "Classic Crème Brûlée",
-    image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600",
-    story: "Infused cream with vanilla bean pod and caramelized the sugar crust with a blowtorch. Watching the sugar bubble and harden is pure magic.",
-    learned: "Contrast is design. The crunch of the burnt sugar against the velvety custard is what makes this dessert unforgettable."
+    title: "Homemade Onion Rings",
+    image: "cc3.png",
+    story: "A lesson in patience, precision and the perfect crunch."
   }
 ];
 
@@ -76,12 +75,7 @@ const motionData = [
   { title: "Travel Log: Chennai Coastline", duration: "2:00", type: "Cinematic B-Roll", thumbnail: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600" }
 ];
 
-// ✨ Creative Chaos logs
-const chaosData = [
-  { title: "Rebranding: Local Bakery", type: "Logo Explorations", desc: "Crafted minimal, warm typography logs combining wheat shapes and coffee cups." },
-  { title: "Visual Design Poster: Cyberpunk Chennai", type: "Poster Art", desc: "A creative exercise merging retro neon overlays with Chennai local trains." },
-  { title: "Figma UI Playground: Polaroid Journal", type: "UX Concept", desc: "Experimental layout that inspired the Human Mode of this very website." }
-];
+
 
 const HumanBento = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -105,9 +99,7 @@ const HumanBento = () => {
         <br />
         <span className="gradient-text">here is what inspires me.</span>
       </h2>
-      <p className="section-subtitle">
-        Click on any category card below to flip open the journal pages, travel logs, food experiments, and design labs.
-      </p>
+
 
       {/* BENTO GRID */}
       <div className="bento-grid">
@@ -121,17 +113,17 @@ const HumanBento = () => {
           <div className="card-decor">📸 Travel & Street</div>
           <div className="polaroid-stack">
             <div className="stacked-polaroid polaroid1">
-              <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=250" alt="" />
+              <img src="tml4.jpeg" alt="" />
               <span>travels.</span>
             </div>
             <div className="stacked-polaroid polaroid2">
-              <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=250" alt="" />
+              <img src="tml1.jpeg" alt="" />
               <span>moments.</span>
             </div>
           </div>
           <div className="card-content">
             <h3>Through My Lens</h3>
-            <p>Photography gallery, visual storytelling, and everyday observations.</p>
+            <p>Photography gallery, visual storytelling and everyday observations.</p>
           </div>
         </motion.div>
 
@@ -143,11 +135,11 @@ const HumanBento = () => {
         >
           <div className="card-decor">🍝 Kitchen Logs</div>
           <div className="card-image-preview">
-            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=300" alt="Gnocchi" className="rounded-cover" />
+            <img src="cc2.jpg" alt="Gnocchi" className="rounded-cover" />
           </div>
           <div className="card-content">
             <h3>Culinary Canvas</h3>
-            <p>Cooking, baking, and plating experiments from scratch.</p>
+            <p>Cooking, baking and plating experiments from scratch.</p>
           </div>
         </motion.div>
 
@@ -183,8 +175,8 @@ const HumanBento = () => {
             <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=250" alt="Watercolors" />
           </div>
           <div className="card-content">
-            <h3>Handmade & Illustrated</h3>
-            <p>Paintings, sketches, and paper quilling art logs.</p>
+            <h3>Creations</h3>
+            <p>Paintings, rangolis and paper quilling art logs.</p>
           </div>
         </motion.div>
 
@@ -207,21 +199,7 @@ const HumanBento = () => {
           </div>
         </motion.div>
 
-        {/* Card 6: Creative Chaos (1x2) */}
-        <motion.div
-          className="bento-card card-medium glass"
-          whileHover={{ y: -8, rotate: -1 }}
-          onClick={() => openCategory("chaos")}
-        >
-          <div className="card-decor">✨ Side Drafts</div>
-          <div className="card-image-preview">
-            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600" alt="Chaos preview" className="rounded-cover" />
-          </div>
-          <div className="card-content">
-            <h3>Creative Chaos</h3>
-            <p>Logo redesigns, graphic drafts, and random mockups.</p>
-          </div>
-        </motion.div>
+
 
       </div>
 
@@ -251,19 +229,19 @@ const HumanBento = () => {
                 {activeCategory === "lens" && (
                   <>
                     <h2>📸 Through My Lens</h2>
-                    <p>Wandering streets and collecting perspectives. Photography is how I capture shadows, contrast, and emotions.</p>
+                    <p>Wandering streets and collecting perspectives. Photography is how I capture shadows, contrast and emotions.</p>
                   </>
                 )}
                 {activeCategory === "culinary" && (
                   <>
                     <h2>🍝 Culinary Canvas</h2>
-                    <p>Cooking, baking, and plating. Food is edible art, teaching patience, iteration, and visual styling.</p>
+                    <p>Cooking, baking and plating. Food is edible art, teaching patience, iteration and visual styling.</p>
                   </>
                 )}
                 {activeCategory === "lab" && (
                   <>
                     <h2>🚀 Curiosity Lab</h2>
-                    <p>Showcasing physical engineering experiments, microcontrollers, and custom prototyping builds.</p>
+                    <p>Showcasing physical engineering experiments, microcontrollers and custom prototyping builds.</p>
                   </>
                 )}
                 {activeCategory === "art" && (
@@ -278,28 +256,22 @@ const HumanBento = () => {
                     <p>Visual logs, promotional edits, and motion design frames stitched together with music.</p>
                   </>
                 )}
-                {activeCategory === "chaos" && (
-                  <>
-                    <h2>✨ Creative Chaos</h2>
-                    <p>Unfinished graphics, random drafts, logos, and snippets of ideas that deserve a home.</p>
-                  </>
-                )}
+
               </div>
 
               {/* Modal Scrollable Content */}
               <div className="modal-body-content">
 
-                {/* 1. PHOTOGRAPHY GRID */}
+                {/* 1. PHOTOGRAPHY SIMPLE GRID */}
                 {activeCategory === "lens" && (
-                  <div className="masonry-gallery">
+                  <div className="photo-grid-simple">
                     {photographyData.map((photo, index) => (
                       <div
-                        className="masonry-item polaroid-photo"
+                        className="photo-item-simple"
                         key={index}
                         onClick={() => setLightboxImage(photo)}
                       >
-                        <img src={photo.url} alt={photo.caption} />
-                        <div className="polaroid-caption">{photo.caption}</div>
+                        <img src={photo.url} alt={`Photo ${index + 1}`} />
                       </div>
                     ))}
                   </div>
@@ -330,10 +302,7 @@ const HumanBento = () => {
                               <strong>The Story:</strong>
                               <p>{recipe.story}</p>
                             </div>
-                            <div className="recipe-section-block learned-block">
-                              <strong>What I Learned:</strong>
-                              <p>{recipe.learned}</p>
-                            </div>
+
                             <span className="tap-hint">Tap to flip back <i className="ri-repeat-line"></i></span>
                           </div>
                         </div>
@@ -403,18 +372,7 @@ const HumanBento = () => {
                   </div>
                 )}
 
-                {/* 6. CREATIVE CHAOS */}
-                {activeCategory === "chaos" && (
-                  <div className="chaos-grid">
-                    {chaosData.map((chaos, index) => (
-                      <div className="chaos-card" key={index}>
-                        <span className="chaos-tag">{chaos.type}</span>
-                        <h3>{chaos.title}</h3>
-                        <p>{chaos.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+
 
               </div>
             </motion.div>
@@ -441,10 +399,7 @@ const HumanBento = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
             >
-              <img src={lightboxImage.url} alt={lightboxImage.caption} />
-              {lightboxImage.caption && (
-                <div className="lightbox-caption">{lightboxImage.caption}</div>
-              )}
+              <img src={lightboxImage.url} alt="" />
             </motion.div>
           </motion.div>
         )}

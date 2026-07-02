@@ -38,7 +38,7 @@ const Contact = () => {
           </div>
 
           <h2>
-            Let’s create <br />
+            Let's create <br />
             <span className="gradient-text">
               something meaningful
             </span>

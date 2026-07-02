@@ -30,54 +30,69 @@ const steps = [
 ];
 
 const DesignProcess = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+  };
+
   return (
     <motion.section
       id="process"
-      initial={{ opacity: 0, y: 120 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
     >
-
-      <div className="tag">
+      <motion.div variants={itemVariants} className="tag">
         Design Process
-      </div>
+      </motion.div>
 
-      <h2 className="section-title">
+      <motion.h2 variants={itemVariants} className="section-title">
         Thoughtful process.
         <br />
-
         <span className="gradient-text">Human-centered outcomes.</span>
-      </h2>
+      </motion.h2>
 
-      <div className="process-wrapper">
-
+      <motion.div 
+        className="process-wrapper"
+        variants={containerVariants}
+      >
         {steps.map((step, index) => (
-
-          <div className="process-card glass" key={index}>
-
+          <motion.div 
+            className="process-card glass" 
+            key={index}
+            variants={itemVariants}
+            whileHover={{ scale: 1.03, x: 8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+          >
             <span>
               0{index + 1}
             </span>
 
             <div className="process-content">
-
               <h3>
                 {step.title}
               </h3>
-
               <p>
                 {step.points}
               </p>
-
             </div>
-
-          </div>
-
+          </motion.div>
         ))}
-
-      </div>
-
+      </motion.div>
     </motion.section>
   );
 };

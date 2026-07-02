@@ -354,14 +354,14 @@
 }
 
 .modal-header h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 2.2rem;
   color: var(--text);
   margin-bottom: 8px;
 }
 
 .modal-header p {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.05rem;
   color: var(--muted);
   line-height: 1.6;
@@ -390,48 +390,44 @@
 }
 
 /* ======================================= */
-/* 📸 MASONRY GALLERY */
+/* 📸 SIMPLE PHOTOGRAPHY GRID */
 /* ======================================= */
 
-.masonry-gallery {
-  column-count: 3;
-  column-gap: 20px;
+.photo-grid-simple {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 16px 8px;
 }
 
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 20px;
+.photo-item-simple {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
-}
-
-.polaroid-photo {
-  background: white;
-  padding: 12px 12px 24px;
   border: 1px solid #FFE7D1;
-  box-shadow: 0 6px 18px rgba(139, 115, 101, 0.06);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
+  background: #FFFDF9;
+  box-shadow: 0 4px 12px rgba(139, 115, 101, 0.05);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.polaroid-photo img {
-  width: 100%;
-  border-radius: 2px;
-}
-
-.polaroid-photo:hover {
-  transform: scale(1.02) rotate(-1deg);
-  box-shadow: 0 12px 28px rgba(139, 115, 101, 0.12);
+.photo-item-simple:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(232, 155, 147, 0.15);
   border-color: #E89B93;
 }
 
-.polaroid-caption {
-  font-family: 'Caveat', cursive;
-  font-size: 1.25rem;
-  color: var(--text);
-  text-align: center;
-  margin-top: 14px;
+.photo-item-simple img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.photo-item-simple:hover img {
+  transform: scale(1.05);
 }
 
 /* ======================================= */
@@ -493,7 +489,7 @@
 }
 
 .recipe-front-info h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.2rem;
   color: var(--text);
   margin: 0;
@@ -518,7 +514,7 @@
 }
 
 .recipe-card-back h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.3rem;
   border-bottom: 1.5px dashed #FFE7D1;
   padding-bottom: 10px;
@@ -605,7 +601,7 @@
 }
 
 .blueprint-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.3rem;
   margin-bottom: 12px;
   color: #1e3a8a;
@@ -766,7 +762,7 @@
 }
 
 .video-info h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.1rem;
   color: var(--text);
   margin: 0;
@@ -800,7 +796,7 @@
 }
 
 .chaos-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.15rem;
   margin-bottom: 8px;
   color: var(--text);
@@ -1115,16 +1111,6 @@
   /* MODAL CONTENT GRIDS */
   /* ======================================= */
 
-  /* Photography masonry: 2 columns */
-  .masonry-gallery {
-    column-count: 2;
-    column-gap: 14px;
-  }
-
-  .masonry-item {
-    margin-bottom: 14px;
-  }
-
   /* Recipe: single column, shorter card */
   .recipe-grid {
     grid-template-columns: 1fr;
@@ -1233,10 +1219,6 @@
 @media (max-width: 400px) {
   .bento-section {
     padding: 70px 4%;
-  }
-
-  .masonry-gallery {
-    column-count: 1;
   }
 
   .art-gallery {
