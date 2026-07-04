@@ -19,18 +19,18 @@ const photographyData = [
 const culinaryData = [
   {
     title: "Homemade Potato Gnocchi",
-    image: "cc2.jpg",
+    image: "/cc2.jpg",
     story: "There's something satisfying about turning a few simple ingredients into something comforting. Today's takeaway: craft over speed."
 
   },
   {
     title: "Homemade Soya Seekh Kebab",
-    image: "cc1.jpg",
+    image: "/cc1.jpg",
     story: "Today's kitchen experiment: homemade soya seekh kebabs. Learned that great flavor comes from patience, seasoning and balance."
   },
   {
     title: "Homemade Onion Rings",
-    image: "cc3.png",
+    image: "/cc3.png",
     story: "A lesson in patience, precision and the perfect crunch."
   }
 ];
