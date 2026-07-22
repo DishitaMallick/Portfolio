@@ -62,7 +62,7 @@ const artData = [
   { url: "eye.jpg", title: "Destruction vs Hope" },
   { url: "gd.png", title: "Google Doodle: Celebrating Science" },
   { url: "rangoli.JPG", title: "Rangoli: A Canvas of Tradition" },
-  { url: "q.JPG", title: "Handcrafted Quilling Necklace" }
+  { url: "q.jpg", title: "Handcrafted Quilling Necklace" }
 ];
 
 // Framer Motion staggered grid variants
