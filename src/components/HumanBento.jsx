@@ -35,7 +35,7 @@ const labData = [
   {
     title: "Working River Cleaning Boat",
     tag: "STEM",
-    video: "boat.mp4",
+    video: "boat.MP4",
     desc: "Designed and built my first ever working engineering model for Quanta, my school's annual science fest. The project showcased a functional river cleaning boat capable of collecting floating waste using a conveyor-based mechanism.",
 
     details: "Constructed the prototype using recycled cans for buoyancy, lightweight cloth for the conveyor belt, DC motors, batteries, electrical wiring, switches and a handcrafted frame. The working model demonstrated the concept of collecting floating waste from water bodies.",
