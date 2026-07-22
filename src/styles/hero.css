@@ -10,6 +10,10 @@
   align-items: center;
   gap: 70px;
   padding-top: 140px;
+  max-width: none;
+  margin: 0;
+  padding-left: 8%;
+  padding-right: 8%;
   transition: all 0.7s ease;
 }
 

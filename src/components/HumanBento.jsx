@@ -4,15 +4,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "../styles/human.css";
 
-// 📸 Photography gallery data
+// 📸 Photography gallery data with custom captions
 const photographyData = [
-  { url: "/tml1.jpeg" },
-  { url: "/tml2.jpeg" },
-  { url: "/tml3.jpeg" },
-  { url: "/tml4.jpeg" },
-  { url: "/tml5.JPG" },
-  { url: "/tml6.JPG" },
-  { url: "/tml7.JPG" }
+  { url: "/tml1.jpeg", caption: "Sun-dappled Greenhouse" },
+  { url: "/tml2.jpeg", caption: "Urban Contemplation" },
+  { url: "/tml3.jpeg", caption: "Mist-covered Lake" },
+  { url: "/tml4.jpeg", caption: "Polaroid Travels" },
+  { url: "/tml5.JPG", caption: "Warm Cafes & Cafe Lights" },
+  { url: "/tml6.JPG", caption: "Golden Hour Textures" },
+  { url: "/tml7.JPG", caption: "Everyday Shadows" }
 ];
 
 // 🍝 Culinary canvas data
@@ -21,13 +21,8 @@ const culinaryData = [
     title: "Homemade Potato Gnocchi",
     image: "/cc2.jpg",
     story: "There's something satisfying about turning a few simple ingredients into something comforting. Today's takeaway: craft over speed."
+  },
 
-  },
-  {
-    title: "Homemade Soya Seekh Kebab",
-    image: "/cc1.jpg",
-    story: "Today's kitchen experiment: homemade soya seekh kebabs. Learned that great flavor comes from patience, seasoning and balance."
-  },
   {
     title: "Homemade Onion Rings",
     image: "/cc3.png",
@@ -39,43 +34,61 @@ const culinaryData = [
 const labData = [
   {
     title: "Working River Cleaning Boat",
-    tag: "STEM / Environment",
-    desc: "Built a solar-powered prototype vessel equipped with a mechanical conveyor belt to skim floating garbage off lakes and rivers. Features wireless control and autonomous obstacle avoidance.",
-    details: "Utilized lightweight PVC floats, high-torque DC motors, and solar controllers. Programmed with Arduino to monitor battery cells and telemetry.",
-    learned: "Hydrodynamics and mechanical loading. Learned to optimize power ratios so solar cells can charge while motors run."
+    tag: "STEM",
+    video: "boat.mp4",
+    desc: "Designed and built my first ever working engineering model for Quanta, my school's annual science fest. The project showcased a functional river cleaning boat capable of collecting floating waste using a conveyor-based mechanism.",
+
+    details: "Constructed the prototype using recycled cans for buoyancy, lightweight cloth for the conveyor belt, DC motors, batteries, electrical wiring, switches and a handcrafted frame. The working model demonstrated the concept of collecting floating waste from water bodies.",
+
+    learned: "This project introduced me to hands on prototyping, mechanical assembly, electrical circuits and iterative problem solving. Building my first functional model strengthened my interest in engineering, robotic and designing practical solutions for real world challenges."
   },
   {
-    title: "Gesture-Controlled Tele-presence Arm",
-    tag: "Robotics / Sensors",
-    desc: "A robotic arm that replicates hand movements using gesture flex sensors and IMU accelerators mounted on an operator's glove.",
-    details: "Engineered with servo motors, Arduino Nano, and RF wireless transceivers. Smoothed telemetry with moving average filters.",
-    learned: "Sensor signal noise filtration. Calibrating variable resistance from fingers requires dynamic thresholding."
-  },
-  {
-    title: "Smart Irrigation & Soil Telemetry",
-    tag: "Arduino / IoT",
-    desc: "An automated watering unit that monitors volumetric water content in soil and uploads data to a custom web interface.",
-    details: "Uses capacitive moisture sensors, ESP8266 Wi-Fi, and solar power harvesting.",
-    learned: "Power consumption optimization. Deep sleep cycles on microcontrollers are vital for long-term deployments."
+    title: "Obstacle Detection Car",
+    tag: "MPMC/Sensors",
+    video: "od.mov",
+    desc: "Designed and built an obstacle detection and line following robot as part of the MPMC course project. The robot autonomously followed a predefined path while detecting and avoiding obstacles using sensor based navigation.",
+
+    details: "Developed the prototype using an 8051 microcontroller, IR sensors, obstacle detection sensors, DC motors, batteries, electrical wiring. Integrated the hardware components to achieve reliable autonomous movement and real time obstacle detection.",
+
+    learned: "Gained hands on experience with 8051 microcontroller programming, embedded systems, sensor interfacing, motor control, circuit assembly and troubleshooting. The project strengthened my understanding of autonomous robotic systems and hardware integration."
   }
+
 ];
 
 // 🎨 Handmade art pieces
 const artData = [
-  { url: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800", title: "Floral Watercolor Painting" },
-  { url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800", title: "Charcoal Portrait Sketch" },
-  { url: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=800", title: "Intricate Quilling Paper Craft" },
-  { url: "https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?q=80&w=800", title: "Abstract Acrylic Canvas" }
+  { url: "rabbit.jpg", title: "Whiskers & Wings" },
+  { url: "dolphin.jpg", title: "Into the blue" },
+  { url: "eye.jpg", title: "Destruction vs Hope" },
+  { url: "gd.png", title: "Google Doodle: Celebrating Science" },
+  { url: "rangoli.JPG", title: "Rangoli: A Canvas of Tradition" },
+  { url: "q.JPG", title: "Handcrafted Quilling Necklace" }
 ];
 
-// 🎬 Motion & Stories video edits
-const motionData = [
-  { title: "Robotics Fest Promo Reel", duration: "1:15", type: "Club Event Edit", thumbnail: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600" },
-  { title: "Motion Graphics Showcase", duration: "0:45", type: "Visual FX", thumbnail: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=600" },
-  { title: "Travel Log: Chennai Coastline", duration: "2:00", type: "Cinematic B-Roll", thumbnail: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600" }
-];
+// Framer Motion staggered grid variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+};
 
-
+const cardVariants = {
+  hidden: { y: 40, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15
+    }
+  }
+};
 
 const HumanBento = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -93,34 +106,58 @@ const HumanBento = () => {
 
   return (
     <section id="bento" className="bento-section">
-      <div className="tag">Human Mode</div>
-      <h2 className="section-title">
+      {/* Animated Tag and Heading */}
+      <motion.div
+        className="tag"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Human Mode
+      </motion.div>
+
+      <motion.h2
+        className="section-title"
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         Beyond the screen,
         <br />
         <span className="gradient-text">here is what inspires me.</span>
-      </h2>
-
+      </motion.h2>
 
       {/* BENTO GRID */}
-      <div className="bento-grid">
-
+      <motion.div
+        className="bento-grid"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Card 1: Photography (2x2) */}
         <motion.div
           className="bento-card card-large glass"
+          variants={cardVariants}
           whileHover={{ y: -8, rotate: -0.5 }}
           onClick={() => openCategory("lens")}
         >
           <div className="card-decor">📸 Travel & Street</div>
+
           <div className="polaroid-stack">
             <div className="stacked-polaroid polaroid1">
-              <img src="tml4.jpeg" alt="" />
+              <img src="/tml4.jpeg" alt="Travels" />
               <span>travels.</span>
             </div>
             <div className="stacked-polaroid polaroid2">
-              <img src="tml1.jpeg" alt="" />
+              <img src="/tml3.jpeg" alt="Moments" />
               <span>moments.</span>
             </div>
+            <div className="stacked-polaroid polaroid3">
+              <img src="/tml1.jpeg" alt="Streets" />
+              <span>streets.</span>
+            </div>
           </div>
+
           <div className="card-content">
             <h3>Through My Lens</h3>
             <p>Photography gallery, visual storytelling and everyday observations.</p>
@@ -130,12 +167,13 @@ const HumanBento = () => {
         {/* Card 2: Culinary Canvas (1x2) */}
         <motion.div
           className="bento-card card-medium glass"
+          variants={cardVariants}
           whileHover={{ y: -8, rotate: 1 }}
           onClick={() => openCategory("culinary")}
         >
           <div className="card-decor">🍝 Kitchen Logs</div>
           <div className="card-image-preview">
-            <img src="cc2.jpg" alt="Gnocchi" className="rounded-cover" />
+            <img src="/cc2.jpg" alt="Gnocchi" className="rounded-cover" />
           </div>
           <div className="card-content">
             <h3>Culinary Canvas</h3>
@@ -146,6 +184,7 @@ const HumanBento = () => {
         {/* Card 3: Curiosity Lab (1x2) */}
         <motion.div
           className="bento-card card-medium glass"
+          variants={cardVariants}
           whileHover={{ y: -8, rotate: -1 }}
           onClick={() => openCategory("lab")}
         >
@@ -164,15 +203,16 @@ const HumanBento = () => {
           </div>
         </motion.div>
 
-        {/* Card 4: Handmade Art (1x2) */}
+        {/* Card 4: Creations (1x2) */}
         <motion.div
           className="bento-card card-medium glass"
+          variants={cardVariants}
           whileHover={{ y: -8, rotate: 0.5 }}
           onClick={() => openCategory("art")}
         >
           <div className="card-decor">🎨 Craft & Draw</div>
           <div className="art-preview">
-            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=250" alt="Watercolors" />
+            <img src="creations.png" alt="Watercolors" />
           </div>
           <div className="card-content">
             <h3>Creations</h3>
@@ -180,15 +220,16 @@ const HumanBento = () => {
           </div>
         </motion.div>
 
-        {/* Card 5: Motion & Video (2x2) */}
+        {/* Card 5: Motion & Stories (2x2) */}
         <motion.div
           className="bento-card card-large glass"
+          variants={cardVariants}
           whileHover={{ y: -8, rotate: -0.5 }}
           onClick={() => openCategory("motion")}
         >
           <div className="card-decor">🎬 Editing & Reels</div>
           <div className="card-image-preview">
-            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=600" alt="Video editing preview" className="rounded-cover" />
+            <img src="motion.png" alt="Video editing timeline" className="rounded-cover" />
             <div className="video-play-overlay">
               <i className="ri-play-circle-fill"></i>
             </div>
@@ -198,10 +239,7 @@ const HumanBento = () => {
             <p>Video editing, promotional clips, and motion graphic loops.</p>
           </div>
         </motion.div>
-
-
-
-      </div>
+      </motion.div>
 
       {/* DETAILED CATEGORY MODALS */}
       <AnimatePresence>
@@ -256,23 +294,26 @@ const HumanBento = () => {
                     <p>Visual logs, promotional edits, and motion design frames stitched together with music.</p>
                   </>
                 )}
-
               </div>
 
               {/* Modal Scrollable Content */}
               <div className="modal-body-content">
-
-                {/* 1. PHOTOGRAPHY SIMPLE GRID */}
+                {/* 1. PHOTOGRAPHY POLAROID GALLERY */}
                 {activeCategory === "lens" && (
-                  <div className="photo-grid-simple">
+                  <div className="polaroid-gallery">
                     {photographyData.map((photo, index) => (
-                      <div
-                        className="photo-item-simple"
+                      <motion.div
+                        className={`polaroid-gallery-item polaroid-rot-${index % 3}`}
                         key={index}
                         onClick={() => setLightboxImage(photo)}
+                        whileHover={{ scale: 1.04, rotate: 0, zIndex: 10 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
-                        <img src={photo.url} alt={`Photo ${index + 1}`} />
-                      </div>
+                        <div className="polaroid-image-wrapper">
+                          <img src={photo.url} alt={photo.caption} />
+                        </div>
+                        <span className="polaroid-caption">{photo.caption}</span>
+                      </motion.div>
                     ))}
                   </div>
                 )}
@@ -302,7 +343,6 @@ const HumanBento = () => {
                               <strong>The Story:</strong>
                               <p>{recipe.story}</p>
                             </div>
-
                             <span className="tap-hint">Tap to flip back <i className="ri-repeat-line"></i></span>
                           </div>
                         </div>
@@ -316,17 +356,30 @@ const HumanBento = () => {
                   <div className="blueprints-grid">
                     {labData.map((project, index) => (
                       <div className="blueprint-card" key={index}>
-                        <div className="blueprint-header">
-                          <span className="blueprint-tag">{project.tag}</span>
-                          <span className="blueprint-no">BUILD-0{index + 1}</span>
+                        <div className="blueprint-video-wrapper">
+                          <video
+                            src={project.video}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            controls
+                            className="blueprint-video"
+                          />
                         </div>
-                        <h3>{project.title}</h3>
-                        <p className="bp-desc">{project.desc}</p>
-                        <div className="bp-details">
-                          <strong>Tech & Modules:</strong> {project.details}
-                        </div>
-                        <div className="bp-learned">
-                          <strong>Lesson:</strong> {project.learned}
+                        <div className="blueprint-info">
+                          <div className="blueprint-header">
+                            <span className="blueprint-tag">{project.tag}</span>
+                            <span className="blueprint-no">BUILD-0{index + 1}</span>
+                          </div>
+                          <h3>{project.title}</h3>
+                          <p className="bp-desc">{project.desc}</p>
+                          <div className="bp-details">
+                            <strong>Tech & Modules:</strong> {project.details}
+                          </div>
+                          <div className="bp-learned">
+                            <strong>Lesson:</strong> {project.learned}
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -351,29 +404,14 @@ const HumanBento = () => {
                   </div>
                 )}
 
-                {/* 5. MOTION VIDEOS GRID */}
+                {/* 5. MOTION VIDEOS COMING SOON */}
                 {activeCategory === "motion" && (
-                  <div className="motion-grid">
-                    {motionData.map((video, index) => (
-                      <div className="video-card" key={index}>
-                        <div className="video-thumb-container">
-                          <img src={video.thumbnail} alt={video.title} />
-                          <div className="video-play-overlay">
-                            <i className="ri-play-circle-line"></i>
-                          </div>
-                          <span className="video-duration">{video.duration}</span>
-                        </div>
-                        <div className="video-info">
-                          <span className="video-tag">{video.type}</span>
-                          <h3>{video.title}</h3>
-                        </div>
-                      </div>
-                    ))}
+                  <div className="motion-coming-soon">
+                    <i className="ri-vidicon-line"></i>
+                    <h3>Working on it!</h3>
+                    <p>Reels, visual edits, and motion graphic loops are currently being compiled. Stay tuned for updates!</p>
                   </div>
                 )}
-
-
-
               </div>
             </motion.div>
           </motion.div>
@@ -400,6 +438,9 @@ const HumanBento = () => {
               exit={{ scale: 0.95, opacity: 0 }}
             >
               <img src={lightboxImage.url} alt="" />
+              {lightboxImage.caption && (
+                <div className="lightbox-caption">{lightboxImage.caption}</div>
+              )}
             </motion.div>
           </motion.div>
         )}
