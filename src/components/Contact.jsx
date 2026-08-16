@@ -1,11 +1,12 @@
+// src/components/Contact.jsx
+
 import "../styles/contact.css";
 import { motion } from "framer-motion";
+
 const Contact = () => {
-
   const glowIcons = () => {
-
-    const footer =
-      document.querySelector(".footer");
+    const footer = document.querySelector(".footer");
+    if (!footer) return;
 
     footer.classList.add("footer-active");
 
@@ -13,69 +14,74 @@ const Contact = () => {
       footer.classList.remove("footer-active");
     }, 2200);
 
-    document
-      .querySelector("#socials")
-      .scrollIntoView({
-        behavior: "smooth",
-      });
+    document.querySelector("#socials")?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
-
       <motion.section
         id="contact"
-        initial={{ opacity: 0, y: 120 }}
+        initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-
         <div className="contact-box glass">
-
-          <div className="tag">
-            Contact
-          </div>
+          <div className="tag">Contact</div>
 
           <h2>
-            Let's create <br />
-            <span className="gradient-text">
-              something meaningful
-            </span>
-            <br />
-            together.
+            LET'S BUILD <br />
+            <span className="gradient-text">SOMETHING.</span>
           </h2>
 
           <p>
-            Whether it’s a collaboration, freelance project or simply a friendly
-            conversation about design - I’d love to connect.
+            Have an interesting idea, project, or opportunity? Let's talk.
           </p>
 
-          <button
-            className="contact-btn"
-            onClick={glowIcons}
-          >
-            Say Hello
-          </button>
-
+          <div className="contact-actions">
+            <a
+              href="mailto:dishita.mallick@gmail.com"
+              className="contact-primary-link"
+            >
+              EMAIL ME
+            </a>
+            <button className="contact-btn" onClick={glowIcons}>
+              CONNECT ON SOCIALS
+            </button>
+          </div>
         </div>
-
       </motion.section>
 
       {/* FOOTER */}
-
-      <footer
-        className="footer"
-        id="socials"
-      >
+      <footer className="footer" id="socials">
+        <a
+          href="mailto:dishita.mallick@gmail.com"
+          className="social-icon"
+          title="Email"
+        >
+          <i className="ri-mail-fill"></i>
+        </a>
 
         <a
           href="https://www.linkedin.com/in/dishita-mallick-72a712321"
           target="_blank"
           rel="noopener noreferrer"
           className="social-icon"
+          title="LinkedIn"
         >
           <i className="ri-linkedin-fill"></i>
+        </a>
+
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-icon"
+          title="GitHub"
+        >
+          <i className="ri-github-fill"></i>
         </a>
 
         <a
@@ -83,19 +89,11 @@ const Contact = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="social-icon"
+          title="Behance"
         >
           <i className="ri-behance-fill"></i>
         </a>
-
-        <a
-          href="mailto:dishita.mallick@gmail.com"
-          className="social-icon"
-        >
-          <i className="ri-mail-fill"></i>
-        </a>
-
       </footer>
-
     </>
   );
 };

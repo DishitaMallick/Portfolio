@@ -1,101 +1,223 @@
-import "../styles/projects.css";
-import { motion } from "framer-motion";
+// src/components/Projects.jsx
 
-const projects = [
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import "../styles/projects.css";
+
+const projectsData = [
   {
+    id: "pawcare",
     title: "PawCare",
     desc: "A heartfelt digital experience designed to make pet care feel more compassionate, supportive and emotionally connected.",
     image: "/p.jpg",
-    button: "View Full UX Case Study",
+    isVideo: false,
+    categories: ["FRONTEND", "UI/UX"],
+    categoryLabel: "FRONTEND • UI/UX",
+    techStack: ["React", "JavaScript", "HTML", "CSS", "Figma"],
     link: "https://www.behance.net/gallery/249819973/Pawcare-UX-CASE-STUDY",
+    buttonText: "VIEW PROJECT →",
   },
   {
+    id: "richa-skateboard",
+    title: "Richa Skateboard",
+    desc: "Creating a responsive and visually engaging skateboard shopping experience tailored for modern users.",
+    image: "/richaa.png",
+    isVideo: false,
+    categories: ["FRONTEND", "UI/UX"],
+    categoryLabel: "FRONTEND • UI/UX",
+    techStack: ["HTML", "CSS", "JavaScript", "Figma"],
+    link: "https://www.behance.net/gallery/250042755/RICHA-Skateboard-E-Commerce-UIUX",
+    buttonText: "VIEW PROJECT →",
+  },
+  {
+    id: "uber-redesign",
     title: "UBER Redesign",
     desc: "Creating a safer and more transparent ride-booking experience through proactive safety alerts and fair payment flows.",
     image: "/u.png",
-    button: "View Full Medium Blog",
+    isVideo: false,
+    categories: ["UI/UX"],
+    categoryLabel: "UI/UX • PRODUCT DESIGN",
+    techStack: ["Figma", "UI/UX", "User Research"],
     link: "https://medium.com/@dishita.mallick/designing-safer-rides-rethinking-trust-protection-in-ride-hailing-apps-3e9273ef8858",
+    buttonText: "VIEW BLOG →",
   },
   {
-    title: "Richa Skateboard - E-commerce Platform",
-    desc: "Creating a responsive and visually engaging skateboard shopping experience tailored for modern users.",
-    image: "/richaa.png",
-    button: "View Project on Behance",
-    link: "https://www.behance.net/gallery/250042755/RICHA-Skateboard-E-Commerce-UIUX",
+    id: "smart-classroom-seat",
+    title: "Smart Classroom Seat",
+    desc: "Arduino & ESP32-CAM multi-sensor seat monitoring student presence, posture, health, engagement & stress with real-time sensor fusion.",
+    image: "/smart-seat.jpg",
+    isVideo: false,
+    categories: ["ROBOTICS", "CREATIVE"],
+    categoryLabel: "ROBOTICS • SENSOR FUSION",
+    techStack: ["Arduino", "ESP32-CAM", "FSR", "MPU6050", "MAX30100", "DS18B20"],
+    link: "/smart-classroom-seat",
+    buttonText: "VIEW PROJECT →",
+  },
+  {
+    id: "obstacle-car",
+    title: "Obstacle Detection Car",
+    desc: "Autonomous obstacle detection and line-following robot built using an 8051 microcontroller, IR sensors, and motor control.",
+    media: "/od.mov",
+    isVideo: true,
+    categories: ["ROBOTICS", "CREATIVE"],
+    categoryLabel: "ROBOTICS • CREATIVE",
+    techStack: ["8051 Microcontroller", "Sensors", "C / Embedded", "Hardware"],
+    buttonText: "ROBOTICS DEMO",
   },
 ];
 
-const infiniteProjects = [...projects, ...projects];
+const categories = ["ALL", "FRONTEND", "UI/UX", "ROBOTICS", "CREATIVE"];
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("ALL");
+
+  const filteredProjects = activeFilter === "ALL"
+    ? projectsData
+    : projectsData.filter((p) => p.categories.includes(activeFilter));
+
+  // Ensure enough items for smooth infinite horizontal loop
+  const displayProjects = filteredProjects.length < 4
+    ? [...filteredProjects, ...filteredProjects, ...filteredProjects]
+    : [...filteredProjects, ...filteredProjects];
+
   return (
     <motion.section
       id="projects"
-      initial={{ opacity: 0, y: 120 }}
+      initial={{ opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <div className="tag">Featured Work</div>
+      <div className="tag">Portfolio</div>
 
       <motion.h2
         className="section-title"
-        initial={{ opacity: 0, y: 80 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        Projects crafted with
-        <span className="gradient-text"> emotion & expression</span>
+        THINGS <span className="gradient-text">I'VE BUILT</span>
       </motion.h2>
 
-      <div className="projects-top">
-        <div className="scroll-indicator">
-          <span></span>
-          <p>scroll to explore</p>
-        </div>
+      <p className="section-subtitle">
+        Explore interactive web applications, design systems, robotics builds, and software experiments.
+      </p>
+
+      {/* FILTER BAR */}
+      <div className="filter-bar">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className={`filter-btn ${activeFilter === cat ? "active" : ""}`}
+            onClick={() => setActiveFilter(cat)}
+          >
+            {activeFilter === cat && (
+              <motion.span
+                layoutId="activeFilterPill"
+                className="filter-active-pill"
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              />
+            )}
+            <span className="filter-text">{cat}</span>
+          </button>
+        ))}
       </div>
 
-      <div className="projects-wrapper">
-        <div className="projects-track">
-          {infiniteProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="project-card"
-              whileHover={{
-                rotateX: -4,
-                rotateY: 6,
-                y: -12,
-                scale: 1.02,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 180,
-                damping: 14,
-              }}
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="project-cover"
-              />
+      {/* HORIZONTAL CAROUSEL */}
+      <div className="carousel-container">
+        <div className="scroll-indicator">
+          <span></span>
+          <p>hover to pause • drag or scroll horizontally</p>
+        </div>
 
-              <div className="overlay">
-                <h3>{project.title}</h3>
-                <p>{project.desc}</p>
+        <div className="carousel-wrapper">
+          <div className="carousel-track">
+            {displayProjects.map((project, index) => (
+              <motion.div
+                key={`${project.id}-${index}`}
+                className="project-card glass"
+                whileHover={{
+                  rotateX: -4,
+                  rotateY: 6,
+                  y: -10,
+                  scale: 1.02,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 180,
+                  damping: 14,
+                }}
+              >
+                {/* MEDIA PREVIEW */}
+                <div className="project-media-wrapper">
+                  {project.isVideo ? (
+                    <video
+                      src={project.media}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="project-cover"
+                    />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-cover"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/q.jpg";
+                      }}
+                    />
+                  )}
+                </div>
 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="case-btn"
-                >
-                  {project.button}
-                  <span className="arrow">↗</span>
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                {/* INFO CONTENT */}
+                <div className="project-info">
+                  {/* TOPIC NAME & CATEGORY OVAL TAG */}
+                  <div className="project-header">
+                    <h3>{project.title}</h3>
+                    <span className="project-cat-badge">{project.categoryLabel}</span>
+                  </div>
+
+                  <p className="project-desc">{project.desc}</p>
+
+                  {/* TECH STACK TAGS */}
+                  <div className="tech-tags">
+                    {project.techStack.map((tech, i) => (
+                      <span key={i} className="tech-pill">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* ACTION LINK */}
+                  {project.link ? (
+                    project.link.startsWith("/") ? (
+                      <Link to={project.link} className="case-btn">
+                        {project.buttonText}
+                      </Link>
+                    ) : (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="case-btn"
+                      >
+                        {project.buttonText}
+                      </a>
+                    )
+                  ) : (
+                    <span className="case-btn static-badge">
+                      {project.buttonText}
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </motion.section>

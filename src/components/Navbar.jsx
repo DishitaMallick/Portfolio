@@ -1,45 +1,36 @@
 // src/components/Navbar.jsx
 
-import { motion } from "framer-motion";
+import { useState } from "react";
 import "../styles/navbar.css";
 
-const Navbar = ({ mode, setMode }) => {
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { name: "ABOUT", href: "#about" },
+    { name: "WORK", href: "#projects" },
+    { name: "SKILLS", href: "#skills" },
+    { name: "CONTACT", href: "#contact" },
+  ];
+
   return (
     <nav className="navbar glass">
-      <div className="logo gradient-text">
-        Dishita ♡
-      </div>
+      <a href="#" className="logo">
+        <span className="logo-text gradient-text">Dishita</span>
+        <span className="logo-heart">♡</span>
+      </a>
 
-      <div className="mode-toggle-container">
-        <div className="mode-toggle">
-          <button
-            className={`toggle-btn ${mode === "designer" ? "active" : ""}`}
-            onClick={() => setMode("designer")}
+      <div className={`nav-links ${mobileMenuOpen ? "active" : ""}`}>
+        {navLinks.map((link) => (
+          <a
+            key={link.name}
+            href={link.href}
+            className="nav-link"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            {mode === "designer" && (
-              <motion.span
-                layoutId="active-pill"
-                className="active-pill designer-pill"
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              />
-            )}
-            <span className="btn-text">👩‍💻 Designer Mode</span>
-          </button>
-
-          <button
-            className={`toggle-btn ${mode === "human" ? "active" : ""}`}
-            onClick={() => setMode("human")}
-          >
-            {mode === "human" && (
-              <motion.span
-                layoutId="active-pill"
-                className="active-pill human-pill"
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              />
-            )}
-            <span className="btn-text">🌱 Human Mode</span>
-          </button>
-        </div>
+            {link.name}
+          </a>
+        ))}
       </div>
 
       <div className="nav-right">
@@ -49,8 +40,16 @@ const Navbar = ({ mode, setMode }) => {
           rel="noopener noreferrer"
           className="resume-btn"
         >
-          Resume
+          RESUME ↗
         </a>
+
+        <button
+          className="mobile-toggle-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <i className={mobileMenuOpen ? "ri-close-line" : "ri-menu-line"}></i>
+        </button>
       </div>
     </nav>
   );

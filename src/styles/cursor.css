@@ -1,138 +1,82 @@
 /* src/styles/cursor.css */
 
-/* ── Hide default OS cursor on pointer devices ── */
+/* Hide default OS cursor on pointer devices & apply pixel cursor fallback */
 @media (hover: hover) and (pointer: fine) {
-  *,
+  html, body {
+    cursor: url('/cursor-arrow.svg') 0 0, auto;
+  }
+
   a,
   button,
-  .toggle-btn,
-  .bento-card,
-  .photo-item-simple,
-  .recipe-card-wrapper,
-  .art-card-item,
-  .video-card,
+  .filter-btn,
+  .project-card,
+  .creative-card,
+  .skill-card,
+  .what-card,
+  .resume-btn,
   .close-modal-btn,
-  .close-lightbox-btn {
+  .close-lightbox-btn,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    cursor: url('/cursor-hand.svg') 13 0, pointer;
+  }
+
+  /* When JS CustomCursor component is active, hide system cursor */
+  body.has-custom-cursor *,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor .filter-btn,
+  body.has-custom-cursor .project-card,
+  body.has-custom-cursor .creative-card,
+  body.has-custom-cursor .skill-card,
+  body.has-custom-cursor .what-card,
+  body.has-custom-cursor .resume-btn,
+  body.has-custom-cursor .close-modal-btn,
+  body.has-custom-cursor .close-lightbox-btn {
     cursor: none !important;
   }
 }
 
-/* ── CRITICAL: NO transform or top/left transitions ──
-   Position is set directly via JS. CSS transitions on transform
-   would double-apply easing and re-introduce lag.
-   Only size, color, and opacity may be transitioned.
-*/
-
-/* ── DOT: follows mouse at native (synchronous) speed ── */
-.custom-cursor-dot {
+/* ── CUSTOM PIXEL ART CURSOR POINTER ── */
+.custom-cursor-pointer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   pointer-events: none;
   z-index: 99999;
   will-change: transform;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 8px rgba(167, 139, 250, 0.25));
   transition:
-    width 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-    height 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background-color 0.15s ease,
-    box-shadow 0.15s ease,
-    opacity 0.2s ease;
+    transform 0.05s ease-out,
+    filter 0.2s ease,
+    opacity 0.25s ease;
 }
 
-/* ── RING: lerped in rAF loop — subtle trail ── */
-.custom-cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  will-change: transform;
-  transition:
-    width 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
-    height 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color 0.18s ease,
-    background-color 0.18s ease,
-    box-shadow 0.18s ease,
-    opacity 0.2s ease;
+.custom-cursor-pointer img,
+.custom-cursor-pointer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
-/* ── Designer mode ── */
-.custom-cursor-dot.designer {
-  background-color: #A78BFA;
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.7);
+/* ── HOVER STATE FOR POINTER ── */
+.custom-cursor-pointer.hovered {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 12px rgba(167, 139, 250, 0.45));
+  transform: scale(1.06);
 }
 
-.custom-cursor-ring.designer {
-  border: 1.5px solid rgba(167, 139, 250, 0.5);
-  box-shadow: 0 0 10px rgba(167, 139, 250, 0.15);
+/* ── CLICK STATE FOR POINTER ── */
+.custom-cursor-pointer.clicked {
+  transform: scale(0.92) translateY(1px);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
 }
 
-/* ── Human mode ── */
-.custom-cursor-dot.human {
-  background-color: #DC6B6B;
-  box-shadow: 0 0 8px rgba(220, 107, 107, 0.6);
-}
 
-.custom-cursor-ring.human {
-  border: 2px dashed #DC6B6B;
-  background-color: rgba(220, 107, 107, 0.05);
-  border-radius: 42% 56% 48% 54% / 50% 45% 55% 48%;
-  animation: organicBlob 6s linear infinite;
-}
 
-/* ── Hover states ── */
-.custom-cursor-dot.designer.hovered {
-  width: 10px;
-  height: 10px;
-  background-color: #F472B6;
-  box-shadow: 0 0 12px rgba(244, 114, 182, 0.7);
-}
-
-.custom-cursor-ring.designer.hovered {
-  width: 46px;
-  height: 46px;
-  background-color: rgba(167, 139, 250, 0.07);
-  border-color: #A78BFA;
-  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
-}
-
-.custom-cursor-dot.human.hovered {
-  width: 10px;
-  height: 10px;
-  background-color: #D97706;
-  box-shadow: 0 0 12px rgba(217, 119, 6, 0.6);
-}
-
-.custom-cursor-ring.human.hovered {
-  width: 42px;
-  height: 42px;
-  border-style: solid;
-  border-color: #DC6B6B;
-  background-color: rgba(220, 107, 107, 0.07);
-}
-
-/* ── Click states ── */
-.custom-cursor-dot.clicked {
-  width: 3px;
-  height: 3px;
-}
-
-.custom-cursor-ring.clicked {
-  width: 18px;
-  height: 18px;
-}
-
-/* ── Organic blob animation (human ring only) ── */
-@keyframes organicBlob {
-  0%   { border-radius: 42% 56% 48% 54% / 50% 45% 55% 48%; }
-  25%  { border-radius: 53% 47% 61% 39% / 46% 52% 48% 54%; }
-  50%  { border-radius: 48% 52% 44% 56% / 54% 48% 52% 46%; }
-  75%  { border-radius: 38% 62% 55% 45% / 52% 44% 56% 48%; }
-  100% { border-radius: 42% 56% 48% 54% / 50% 45% 55% 48%; }
-}

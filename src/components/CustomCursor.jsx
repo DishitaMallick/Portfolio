@@ -1,58 +1,49 @@
-import { useEffect, useRef } from "react";
+// src/components/CustomCursor.jsx
+
+import { useEffect, useRef, useState } from "react";
+import cursorArrow from "../assets/cursor-arrow.svg";
+import cursorHand from "../assets/cursor-hand.svg";
 import "../styles/cursor.css";
 
 /**
- * Zero-lag custom cursor — no framer-motion, no React state.
- *
- * · DOT  → transform set synchronously inside mousemove (as fast as native cursor)
- * · RING → lerped in a rAF loop with a high lerp factor (0.22) so it feels
- *           smooth but catches up almost immediately
+ * Pixel-art space/cyber custom cursor matching the background and dark theme.
+ * Features instant hardware tracking, hover hand pointer switching, and click feedback.
  */
-const CustomCursor = ({ mode }) => {
-  const dotRef  = useRef(null);
-  const ringRef = useRef(null);
+const CustomCursor = () => {
+  const pointerRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const dot  = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const pointer = pointerRef.current;
+    if (!pointer) return;
 
     // Only on pointer devices
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    let mouse  = { x: -200, y: -200 };
-    let ringPos = { x: -200, y: -200 };
-    let rafId  = null;
-    let visible = false;
+    document.body.classList.add("has-custom-cursor");
 
-    // ── Dot: update transform synchronously in the event handler ──
-    // This is the fastest possible path — no rAF, no spring, no React.
+    let mouse   = { x: -200, y: -200 };
+    let visible = false;
+    let hovered = false;
+
+    // Pointer positioning (Zero lag)
     const onMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
 
-      // Dot follows at native speed
-      dot.style.transform = `translate(${mouse.x - 3}px, ${mouse.y - 3}px)`;
+      // Adjust hotspot offset: Arrow hotspot is (0,0), Hand hotspot is (13,0)
+      const offsetX = hovered ? 13 : 0;
+      const offsetY = 0;
+
+      pointer.style.transform = `translate3d(${mouse.x - offsetX}px, ${mouse.y - offsetY}px, 0)`;
 
       if (!visible) {
         visible = true;
-        dot.style.opacity  = "1";
-        ring.style.opacity = "1";
+        pointer.style.opacity = "1";
       }
     };
 
-    // ── Ring: lerp loop ──
-    const LERP = 0.22; // 0 = never catches up, 1 = instant; 0.22 feels silky
-
-    const tick = () => {
-      ringPos.x += (mouse.x - ringPos.x) * LERP;
-      ringPos.y += (mouse.y - ringPos.y) * LERP;
-      ring.style.transform = `translate(${ringPos.x - 15}px, ${ringPos.y - 15}px)`;
-      rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-
-    // ── Hover detection (direct class toggle, no React state) ──
+    // Hover detection for interactive elements
     const onOver = (e) => {
       const t = e.target;
       const isInteractive = !!(
@@ -60,36 +51,44 @@ const CustomCursor = ({ mode }) => {
         t.tagName === "BUTTON" ||
         t.closest("button") ||
         t.closest("a") ||
-        t.closest(".bento-card") ||
-        t.closest(".photo-item-simple") ||
-        t.closest(".recipe-card-wrapper") ||
-        t.closest(".art-card-item") ||
-        t.closest(".video-card")
+        t.closest(".project-card") ||
+        t.closest(".creative-card") ||
+        t.closest(".skill-card") ||
+        t.closest(".what-card") ||
+        t.closest(".filter-btn") ||
+        t.closest(".resume-btn") ||
+        t.closest(".close-modal-btn") ||
+        t.closest(".close-lightbox-btn") ||
+        t.getAttribute("role") === "button"
       );
-      dot.classList.toggle("hovered",  isInteractive);
-      ring.classList.toggle("hovered", isInteractive);
+
+      if (isInteractive !== hovered) {
+        hovered = isInteractive;
+        setIsHovered(isInteractive);
+        pointer.classList.toggle("hovered", isInteractive);
+
+        // Immediate position offset adjustment on state change
+        const offsetX = isInteractive ? 13 : 0;
+        pointer.style.transform = `translate3d(${mouse.x - offsetX}px, ${mouse.y}px, 0)`;
+      }
     };
 
-    // ── Click feedback ──
+    // Click feedback
     const onDown = () => {
-      dot.classList.add("clicked");
-      ring.classList.add("clicked");
+      pointer.classList.add("clicked");
     };
     const onUp = () => {
-      dot.classList.remove("clicked");
-      ring.classList.remove("clicked");
+      pointer.classList.remove("clicked");
     };
 
-    // ── Show/hide when pointer leaves the window ──
+    // Show/hide on mouse leave/enter
     const onLeave = () => {
       visible = false;
-      dot.style.opacity  = "0";
-      ring.style.opacity = "0";
+      pointer.style.opacity = "0";
     };
     const onEnter = () => {
       visible = true;
-      dot.style.opacity  = "1";
-      ring.style.opacity = "1";
+      pointer.style.opacity = "1";
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -100,7 +99,7 @@ const CustomCursor = ({ mode }) => {
     document.addEventListener("mouseenter", onEnter);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      document.body.classList.remove("has-custom-cursor");
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mousedown", onDown);
@@ -108,22 +107,23 @@ const CustomCursor = ({ mode }) => {
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
     };
-  }, []); // intentionally empty — mode handled via CSS class on the elements
+  }, []);
 
   return (
-    <>
-      <div
-        ref={ringRef}
-        className={`custom-cursor-ring ${mode}`}
-        style={{ opacity: 0 }}
+    <div
+      ref={pointerRef}
+      className="custom-cursor-pointer"
+      style={{ opacity: 0 }}
+    >
+      <img
+        src={isHovered ? cursorHand : cursorArrow}
+        alt="custom cursor"
+        draggable="false"
       />
-      <div
-        ref={dotRef}
-        className={`custom-cursor-dot ${mode}`}
-        style={{ opacity: 0 }}
-      />
-    </>
+    </div>
   );
 };
 
 export default CustomCursor;
+
+

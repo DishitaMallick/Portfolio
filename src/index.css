@@ -1,20 +1,37 @@
-/* src/index.css */
-
-@import "tailwindcss";
-
 /* ======================================= */
-/* FONT SYSTEM                             */
+/* TYPOGRAPHY SYSTEM                       */
 /* ======================================= */
-/* Headings  → Fraunces (optical, expressive, warm serif) */
-/* Body/UI   → Bricolage Grotesque (quirky, human grotesque) */
-/* Labels    → DM Sans (clean, readable) */
+/* Primary Font → Lora (Bold 700 for headers, Regular 400 for body) */
+/* H1 (Hero): 40px–48px (2.5rem–3rem)     */
+/* H2 (Section): 28px–32px (1.75rem–2rem) */
+/* H3 (Subheading/Project): 20px–24px (1.25rem–1.5rem) */
+/* Body Text: 16px–18px (1rem–1.125rem), Line-Height: 1.5–1.6 */
+/* Captions / Small Meta: 13px–14px (0.8125rem–0.875rem) */
 
 :root {
-  /* ─── Designer Mode palette ─── */
+  /* Typography Design Tokens */
+  --font-primary: 'Lora', Georgia, serif;
+  --font-heading: 'Lora', Georgia, serif;
+
+  /* Font Scale: H1 (40px-48px), H2 (28px-32px), H3 (20px-24px), Body (16px-18px), Caption (13px-14px) */
+  --font-size-h1: clamp(2.5rem, 4.5vw, 3rem);          /* 40px to 48px */
+  --font-size-h2: clamp(1.75rem, 3vw, 2rem);           /* 28px to 32px */
+  --font-size-h3: clamp(1.25rem, 2vw, 1.5rem);         /* 20px to 24px */
+  --font-size-body: 1.0625rem;                          /* 17px (16px to 18px / 1rem to 1.125rem) */
+  --font-size-caption: clamp(0.8125rem, 1.2vw, 0.875rem); /* 13px to 14px */
+
+  /* Leading & Measure */
+  --line-height-heading: 1.2;
+  --line-height-body: 1.55;                             /* 1.5 to 1.6 range */
+  --measure-paragraph: 65ch;                            /* 45 to 75 characters per line */
+
+  /* Contrast Rule: Dark grey instead of pure black on light surfaces */
+  --text-dark-contrast: #222222;
+
   --bg: #0C0F1A;
   --surface: rgba(18, 22, 38, 0.72);
   --text: #EEF0F8;
-  --muted: #7E8AAE;
+  --muted: #94A3B8;
   --purple: #A78BFA;
   --pink: #F472B6;
   --border: rgba(167, 139, 250, 0.12);
@@ -25,15 +42,11 @@
   --grid-opacity: 1;
   --grain-opacity: 0.035;
 
-  /* ─── Animation timing ─── */
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* ======================================= */
-/* RESET & BASE                            */
-/* ======================================= */
 * {
   margin: 0;
   padding: 0;
@@ -45,13 +58,20 @@ html {
 }
 
 body {
-  font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body); /* 16px-18px range (17px / 1.0625rem) */
+  line-height: var(--line-height-body); /* 1.5 to 1.6 */
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   transition: background 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contrast enforcement for light backgrounds */
+.light-bg, .light-surface, [data-theme="light"] {
+  color: var(--text-dark-contrast); /* #222222 instead of pure black */
 }
 
 /* Grid texture */
@@ -81,10 +101,10 @@ body::after {
 }
 
 section {
-  padding: 120px 24px;
+  padding: 100px 24px;
   max-width: 1200px;
   margin: 0 auto;
-  scroll-margin-top: 120px;
+  scroll-margin-top: 100px;
 }
 
 img {
@@ -97,19 +117,56 @@ a {
   color: inherit;
 }
 
-/* ======================================= */
-/* TYPOGRAPHY SYSTEM                       */
-/* ======================================= */
+/* Headings: Lora, tight line-height 1.2 */
 h1, h2, h3 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-style: normal;
+  letter-spacing: -0.015em;
+  line-height: var(--line-height-heading); /* 1.2 tight leading */
+}
+
+/* H1 / Main Hero Title: 40px to 48px (2.5rem - 3rem) */
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-heading);
+}
+
+/* H2 / Project Titles: 28px to 32px (1.75rem - 2rem) */
+h2, .section-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-heading);
+  font-weight: 700;
+  margin: 16px 0 14px;
   letter-spacing: -0.02em;
 }
 
-/* ======================================= */
-/* UTILITY CLASSES                         */
-/* ======================================= */
+/* H3 / Subsection Headers: 20px to 24px (1.25rem - 1.5rem) */
+h3 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-heading);
+  font-weight: 700;
+}
+
+/* Body Text: 16px to 18px (1rem - 1.125rem), Line-Height: 1.5 to 1.6, Measure: 45 to 75ch */
+p, .section-subtitle {
+  max-width: var(--measure-paragraph); /* 45-75 char measure for easy reading */
+  line-height: var(--line-height-body); /* 1.55 */
+  color: var(--muted);
+  font-size: var(--font-size-body);
+  font-family: var(--font-primary);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+/* Captions & Meta Data: 13px to 14px (0.8125rem - 0.875rem) */
+.caption, .meta-text, figcaption {
+  font-size: var(--font-size-caption);
+  line-height: 1.4;
+  font-family: var(--font-primary);
+}
+
 .glass {
   background: var(--surface);
   backdrop-filter: blur(20px) saturate(1.4);
@@ -127,33 +184,16 @@ h1, h2, h3 {
 
 .tag {
   display: inline-flex;
-  padding: 8px 18px;
+  padding: 6px 16px;
   border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: var(--font-size-caption); /* 13px to 14px */
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-family: 'DM Sans', sans-serif;
-  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.section-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(2.8rem, 4.5vw, 5.2rem);
-  line-height: 1.0;
-  font-weight: 800;
-  margin: 20px 0 16px;
-  letter-spacing: -0.035em;
-}
-
-.section-subtitle {
-  max-width: 780px;
-  line-height: 1.85;
-  color: var(--muted);
-  font-size: 1.06rem;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-  margin-bottom: 8px;
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  color: #A78BFA;
 }
 
 /* ======================================= */
@@ -271,10 +311,10 @@ h1, h2, h3 {
 }
 
 /* ======================================= */
-/* DESIGNER MODE                           */
+/* UNIFIED THEME                           */
 /* ======================================= */
-body.designer,
-.site-wrapper.designer {
+body,
+.site-wrapper {
   --bg: #0C0F1A;
   --surface: rgba(18, 22, 38, 0.72);
   --text: #EEF0F8;
@@ -287,29 +327,23 @@ body.designer,
               linear-gradient(90deg, rgba(167,139,250,0.04) 1px, transparent 1px);
   --grid-opacity: 1;
   --grain-opacity: 0.03;
-  font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
+  font-family: 'Lora', Georgia, serif;
 }
 
-body.designer h1,
-body.designer h2,
-body.designer h3,
-.site-wrapper.designer h1,
-.site-wrapper.designer h2,
-.site-wrapper.designer h3 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 800;
+h1, h2, h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-body.designer .glass,
-.site-wrapper.designer .glass {
+.glass {
   background: rgba(18, 22, 38, 0.72);
   backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid rgba(167, 139, 250, 0.12);
   box-shadow: 0 10px 40px rgba(129, 140, 248, 0.08), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-body.designer .gradient-text,
-.site-wrapper.designer .gradient-text {
+.gradient-text {
   background: linear-gradient(270deg, #A78BFA, #818CF8, #F472B6, #A78BFA);
   background-size: 300% auto;
   animation: shimmer 5s linear infinite;
@@ -318,98 +352,22 @@ body.designer .gradient-text,
   background-clip: text;
 }
 
-body.designer .tag,
-.site-wrapper.designer .tag {
+.tag {
   background: rgba(167, 139, 250, 0.08);
   border: 1px solid rgba(167, 139, 250, 0.2);
   color: #A78BFA;
   font-family: 'DM Sans', sans-serif;
 }
 
-/* ======================================= */
-/* HUMAN MODE                              */
-/* ======================================= */
-body.human,
-.site-wrapper.human {
-  --bg: #FDF8F2;
-  --surface: rgba(255, 251, 246, 0.97);
-  --text: #1C1008;
-  --muted: #6B5344;
-  --purple: #D97706;
-  --pink: #DC6B6B;
-  --border: rgba(180, 140, 110, 0.25);
-  --accent: #DC6B6B;
-  --grid-bg: radial-gradient(rgba(180, 140, 110, 0.12) 1px, transparent 1px);
-  --grid-opacity: 0.7;
-  --grain-opacity: 0.07;
-  font-family: 'Plus Jakarta Sans', 'Bricolage Grotesque', sans-serif;
-}
-
-body.human h1,
-body.human h2,
-body.human h3,
-.site-wrapper.human h1,
-.site-wrapper.human h2,
-.site-wrapper.human h3 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 700;
-  color: #1C1008;
-}
-
-body.human .glass,
-.site-wrapper.human .glass {
-  background: rgba(255, 251, 246, 0.97);
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(180, 140, 110, 0.25);
-  box-shadow: 0 8px 32px rgba(180, 140, 110, 0.07);
-}
-
-body.human .gradient-text,
-.site-wrapper.human .gradient-text {
-  background: linear-gradient(135deg, #C2410C 0%, #9A3412 40%, #B45309 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-body.human .tag,
-.site-wrapper.human .tag {
-  background: #FEE7D0;
-  border: 1.5px dashed #DC6B6B;
-  color: #1C1008;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* ======================================= */
-/* BLOB COLOURS PER MODE                   */
-/* ======================================= */
-body.human .blob1,
-.site-wrapper.human .blob1 {
-  background: radial-gradient(ellipse, #FDDCB0, #FCA786);
-}
-
-body.human .blob2,
-.site-wrapper.human .blob2 {
-  background: radial-gradient(ellipse, #F9B8B8, #FCA786);
-}
-
-body.designer .blob1,
-.site-wrapper.designer .blob1 {
+.blob1 {
   background: radial-gradient(ellipse at 40% 60%, #A78BFA, #818CF8);
 }
 
-body.designer .blob2,
-.site-wrapper.designer .blob2 {
+.blob2 {
   background: radial-gradient(ellipse at 60% 40%, #F472B6, #C084FC);
 }
 
-body.human .cursor-glow,
-.site-wrapper.human .cursor-glow {
-  background: radial-gradient(circle, rgba(220, 107, 107, 0.12), transparent 68%);
-}
-
-body.designer .cursor-glow,
-.site-wrapper.designer .cursor-glow {
+.cursor-glow {
   background: radial-gradient(circle, rgba(167, 139, 250, 0.14), rgba(244, 114, 182, 0.07), transparent 68%);
 }
 
@@ -428,15 +386,21 @@ body.designer .cursor-glow,
 
   body { width: 100%; }
 
+  /* ~30% reduction from 3rem max → ~2.1rem */
+  h1 {
+    font-size: clamp(1.75rem, 6vw, 2.1rem);
+    line-height: 1.2;
+  }
+
   .section-title {
-    font-size: clamp(2.2rem, 10vw, 3.8rem);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    font-size: clamp(1.5rem, 5.5vw, 1.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .section-subtitle {
     font-size: 0.95rem;
-    line-height: 1.8;
+    line-height: 1.6;
   }
 
   .tag {

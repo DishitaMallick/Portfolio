@@ -105,7 +105,7 @@
 }
 
 .timeline-company {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
@@ -115,19 +115,20 @@
 
 /* ─── CONTENT ─── */
 .timeline-content h3 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 1.4rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.2;
   margin-bottom: 12px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text);
   letter-spacing: -0.02em;
 }
 
 .timeline-content p {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Lora', Georgia, serif;
   color: var(--muted);
-  line-height: 1.75;
-  font-size: 0.93rem;
+  line-height: 1.6;
+  font-size: 0.9375rem;
   margin-bottom: 20px;
 }
 

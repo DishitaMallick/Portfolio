@@ -1,7 +1,7 @@
-// src/components/About.jsx
+// src/components/WhatIDo.jsx
 
-import "../styles/about.css";
 import { motion } from "framer-motion";
+import "../styles/whatido.css";
 
 const capabilities = [
   {
@@ -30,7 +30,7 @@ const capabilities = [
   },
 ];
 
-const About = () => {
+const WhatIDo = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,43 +52,35 @@ const About = () => {
 
   return (
     <motion.section
-      id="about"
+      id="what-i-do"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-80px" }}
       variants={containerVariants}
     >
       <motion.div variants={itemVariants} className="tag">
-        About Me
+        Capabilities
       </motion.div>
 
       <motion.h2 variants={itemVariants} className="section-title">
-        Driven by curiosity, <br />
-        <span className="gradient-text">shaped with intention.</span>
+        WHAT <span className="gradient-text">I DO</span>
       </motion.h2>
 
-      <motion.div variants={itemVariants} className="section-subtitle">
-        <p>
-          Currently pursuing B.Tech in Artificial Intelligence and Robotics at VIT Chennai, I’m someone who loves exploring where technology meets creativity. For me, learning has always been about building, experimenting and turning ideas into meaningful designs.
-        </p>
-        <br />
-        <p>
-          From innovative projects like a Working River Cleaning Boat to handcrafted creative works, every experience has shaped my problem-solving and design thinking. Inspired by music, painting, guitar and culinary art, I believe creativity exists in every form.
-        </p>
-      </motion.div>
+      <motion.p variants={itemVariants} className="section-subtitle">
+        Bridging the gap between engineering and design across multiple technical disciplines.
+      </motion.p>
 
-      {/* MERGED CAPABILITIES BOXES */}
-      <motion.div className="about-capabilities-grid" variants={containerVariants}>
+      <motion.div className="what-grid" variants={containerVariants}>
         {capabilities.map((item, idx) => (
           <motion.div
             key={idx}
-            className="about-cap-card glass"
+            className="what-card glass"
             variants={itemVariants}
             whileHover={{ y: -8, scale: 1.02 }}
           >
-            <div className="about-cap-top">
-              <span className="about-cap-num">{item.num}</span>
-              <div className="about-cap-icon">
+            <div className="what-card-top">
+              <span className="what-num">{item.num}</span>
+              <div className="what-icon">
                 <i className={item.icon}></i>
               </div>
             </div>
@@ -101,4 +93,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default WhatIDo;

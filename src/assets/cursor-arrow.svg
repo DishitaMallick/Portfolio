@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" shape-rendering="crispEdges">
+  <defs>
+    <!-- Dark theme gradient matching site background (#0C0F1A) -->
+    <linearGradient id="darkArrowBg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#181C2E"/>
+      <stop offset="50%" stop-color="#0C0F1A"/>
+      <stop offset="100%" stop-color="#131726"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <!-- Outer Dark Contour -->
+    <path d="
+      M 0,0 L 3,0 L 29,23 L 29,25 L 18,25 L 18,36 L 10,36 L 10,28 L 6,28 L 0,31 Z
+    " fill="#06080F"/>
+
+    <!-- Theme Soft Purple Inner Outline (#A78BFA) -->
+    <path d="
+      M 1,1 L 3,1 L 27,22 L 17,22 L 17,35 L 11,35 L 11,27 L 6,27 L 1,29 Z
+    " fill="#A78BFA"/>
+
+    <!-- Theme Dark Background Fill (#0C0F1A) -->
+    <path d="
+      M 3,3 L 24,20 L 15,20 L 15,33 L 13,33 L 13,25 L 8,25 L 3,27 Z
+    " fill="url(#darkArrowBg)"/>
+
+    <!-- Subtle Indigo/Purple Circuit Line -->
+    <path d="
+      M 4,8 L 4,24 L 6,24 L 6,15 L 11,15 L 11,18 L 16,18
+    " stroke="#818CF8" stroke-width="1.2" fill="none"/>
+    <rect x="15" y="17" width="2" height="2" fill="#A78BFA"/>
+    <rect x="10" y="14" width="2" height="2" fill="#F472B6"/>
+
+    <!-- Subdued Minimal Pixel Stars -->
+    <rect x="16" y="9" width="2" height="2" fill="#EEF0F8"/>
+    <rect x="15" y="10" width="4" height="1" fill="#EEF0F8" opacity="0.8"/>
+    <rect x="16" y="8" width="1" height="4" fill="#EEF0F8" opacity="0.8"/>
+
+    <rect x="8" y="7" width="2" height="2" fill="#A78BFA"/>
+    <rect x="19" y="15" width="1.5" height="1.5" fill="#818CF8"/>
+    <rect x="7" y="20" width="1.5" height="1.5" fill="#EEF0F8"/>
+    <rect x="11" y="23" width="1.5" height="1.5" fill="#F472B6"/>
+
+    <!-- Stem Theme Grip Bars -->
+    <rect x="13.5" y="28" width="1" height="3" fill="#A78BFA"/>
+    <rect x="15" y="28" width="1" height="3" fill="#A78BFA"/>
+    <rect x="16.5" y="28" width="1" height="3" fill="#A78BFA"/>
+  </g>
+</svg>

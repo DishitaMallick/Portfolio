@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import "../styles/hero.css";
 
-const Hero = ({ mode }) => {
+const Hero = () => {
   return (
     <motion.section
       className="hero"
@@ -22,37 +22,34 @@ const Hero = ({ mode }) => {
         }}
       >
         <div className="tag">
-          {mode === "designer"
-            ? "UI/UX Designer • Frontend Dev • Visual Design"
-            : "🌱 Creator • Explorer • Storyteller"}
+          FRONTEND • UI/UX • ROBOTICS • CREATIVE TECHNOLOGY
         </div>
 
         <h1>
-          Hi, I'm
-          <span className="gradient-text">
-            {" "}DISHITA
-          </span>
+          <span className="hero-line">I DESIGN.</span>
+          <span className="hero-line gradient-text">I BUILD.</span>
+          <span className="hero-line gradient-text">I EXPERIMENT.</span>
         </h1>
 
         <p>
-          {mode === "designer"
-            ? "Curious by nature, endlessly exploring and passionate about thoughtful design that turns ideas into meaningful experiences."
-            : "Driven by curiosity and a love for storytelling. I explore the world through travel, cooking, music, art, and the messy, beautiful process of creating."}
+          AI & Robotics student exploring the intersection of frontend development, design and technology.
         </p>
 
         <div className="hero-buttons">
           <a
-            href={mode === "designer" ? "#projects" : "#bento"}
+            href="#projects"
             className="primary-btn"
           >
-            {mode === "designer" ? "View Projects" : "Explore My World"}
+            EXPLORE MY WORK
           </a>
 
           <a
-            href="#contact"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="secondary-btn"
           >
-            Let's Connect
+            RESUME ↗
           </a>
         </div>
       </motion.div>
@@ -62,87 +59,53 @@ const Hero = ({ mode }) => {
         className="hero-right"
         initial={{
           opacity: 0,
-          rotate: mode === "designer" ? -4 : -8,
-          y: 120
+          rotate: -3,
+          y: 80
         }}
         animate={{
           opacity: 1,
-          rotate: mode === "designer" ? -2 : -4,
+          rotate: -2,
           y: 0
         }}
         transition={{
           duration: 1,
           ease: "easeOut"
         }}
-        key={mode}
       >
         <div className="canvas-wrapper">
-          <div className={`canvas-board glass ${mode === "human" ? "scrapbook" : "futuristic"}`}>
+          <div className="canvas-board glass futuristic">
             <div className="pin pin1"></div>
             <div className="pin pin2"></div>
 
             <div className="scribble scribble1"></div>
             <div className="scribble scribble2"></div>
 
-            {mode === "designer" ? (
-              <>
-                <motion.h2
-                  className="canvas-text ux"
-                  initial={{ opacity: 0, x: -80 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3, duration: 0.7 }}
-                >
-                  ux.
-                </motion.h2>
+            <motion.h2
+              className="canvas-text ux"
+              initial={{ opacity: 0, x: -80 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+            >
+              frontend.
+            </motion.h2>
 
-                <motion.h2
-                  className="canvas-text code"
-                  initial={{ opacity: 0, x: 80 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5, duration: 0.7 }}
-                >
-                  code.
-                </motion.h2>
+            <motion.h2
+              className="canvas-text code"
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+            >
+              ui/ux.
+            </motion.h2>
 
-                <motion.h2
-                  className="canvas-text aesthetic"
-                  initial={{ opacity: 0, y: 80 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.7 }}
-                >
-                  aesthetics.
-                </motion.h2>
-              </>
-            ) : (
-              <>
-                <motion.h2
-                  className="canvas-text travel"
-                  initial={{ opacity: 0, rotate: -15, scale: 0.8 }}
-                  animate={{ opacity: 1, rotate: -5, scale: 1 }}
-                  transition={{ delay: 0.3, duration: 0.7 }}
-                >
-                  travel.
-                </motion.h2>
-
-                <motion.h2
-                  className="canvas-text food"
-                  initial={{ opacity: 0, rotate: 15, scale: 0.8 }}
-                  animate={{ opacity: 1, rotate: 6, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.7 }}
-                >
-                  food.
-                </motion.h2>
-
-                <motion.h2
-                  className="canvas-text stories"
-                  initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.7, duration: 0.7 }}
-                >
-                  stories.
-                </motion.h2>
-              </>
-            )}
+            <motion.h2
+              className="canvas-text aesthetic"
+              initial={{ opacity: 0, y: 80 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.7 }}
+            >
+              robotics.
+            </motion.h2>
 
             <div className="curve"></div>
           </div>

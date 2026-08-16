@@ -1,24 +1,33 @@
 // src/App.jsx
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
-import DesignProcess from "./components/DesignProcess";
+import FrontendSkills from "./components/FrontendSkills";
 import Experience from "./components/Experience";
-
-import HumanBento from "./components/HumanBento";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
+import SmartSeatDetail from "./components/SmartSeatDetail";
 
 import "./index.css";
 
-function App() {
-  const [mode, setMode] = useState("designer");
+const MainPortfolio = () => (
+  <>
+    <Navbar />
+    <Hero />
+    <About />
+    <Projects />
+    <FrontendSkills />
+    <Experience />
+    <Contact />
+  </>
+);
 
+function App() {
   /* CURSOR GLOW */
   useEffect(() => {
     const glow = document.querySelector(".cursor-glow");
@@ -36,15 +45,8 @@ function App() {
     };
   }, []);
 
-  /* SYNC BODY CLASS FOR BACKGROUND TRANSITIONS */
-  useEffect(() => {
-    document.body.classList.remove("designer", "human");
-    document.body.classList.add(mode);
-  }, [mode]);
-
   return (
-    <div className={`site-wrapper ${mode}`}>
-
+    <div className="site-wrapper">
       {/* AMBIENT BLOBS */}
       <div className="blob blob1"></div>
       <div className="blob blob2"></div>
@@ -53,48 +55,14 @@ function App() {
       <div className="cursor-glow"></div>
 
       {/* CUSTOM CURSOR */}
-      <CustomCursor mode={mode} />
+      <CustomCursor />
 
-      {/* NAVBAR */}
-      <Navbar
-        mode={mode}
-        setMode={setMode}
-      />
-
-      {/* HERO */}
-      <Hero mode={mode} />
-
-      {/* DYNAMIC CONTENT TRANSITION */}
-      <AnimatePresence mode="wait">
-        {mode === "designer" ? (
-          <motion.div
-            key="designer-content"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <About />
-            <Projects />
-            <DesignProcess />
-            <Experience />
-
-          </motion.div>
-        ) : (
-          <motion.div
-            key="human-content"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <HumanBento />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* CONTACT */}
-      <Contact mode={mode} />
+      {/* ROUTING */}
+      <Routes>
+        <Route path="/" element={<MainPortfolio />} />
+        <Route path="/smart-classroom-seat" element={<SmartSeatDetail />} />
+        <Route path="/project/smart-classroom-seat" element={<SmartSeatDetail />} />
+      </Routes>
     </div>
   );
 }
