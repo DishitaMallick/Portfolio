@@ -1,7 +1,7 @@
 // src/components/Projects.jsx
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import "../styles/projects.css";
 
@@ -9,67 +9,69 @@ const projectsData = [
   {
     id: "pawcare",
     title: "PawCare",
-    desc: "A heartfelt digital experience designed to make pet care feel more compassionate, supportive and emotionally connected.",
+    desc: "A compassionate digital experience for pet care and emotional well-being.",
     image: "/p.jpg",
     isVideo: false,
     categories: ["FRONTEND", "UI/UX"],
     categoryLabel: "FRONTEND • UI/UX",
     techStack: ["React", "JavaScript", "HTML", "CSS", "Figma"],
     link: "https://www.behance.net/gallery/249819973/Pawcare-UX-CASE-STUDY",
-    buttonText: "VIEW PROJECT →",
+    buttonText: "VIEW PROJECT",
   },
   {
     id: "richa-skateboard",
     title: "Richa Skateboard",
-    desc: "Creating a responsive and visually engaging skateboard shopping experience tailored for modern users.",
+    desc: "Responsive skateboard e-commerce shopping experience for modern users.",
     image: "/richaa.png",
     isVideo: false,
     categories: ["FRONTEND", "UI/UX"],
     categoryLabel: "FRONTEND • UI/UX",
     techStack: ["HTML", "CSS", "JavaScript", "Figma"],
     link: "https://www.behance.net/gallery/250042755/RICHA-Skateboard-E-Commerce-UIUX",
-    buttonText: "VIEW PROJECT →",
+    buttonText: "VIEW PROJECT",
   },
   {
     id: "uber-redesign",
     title: "UBER Redesign",
-    desc: "Creating a safer and more transparent ride-booking experience through proactive safety alerts and fair payment flows.",
+    desc: "Safer ride-booking experience with proactive safety alerts and fair payments.",
     image: "/u.png",
     isVideo: false,
     categories: ["UI/UX"],
     categoryLabel: "UI/UX • PRODUCT DESIGN",
     techStack: ["Figma", "UI/UX", "User Research"],
     link: "https://medium.com/@dishita.mallick/designing-safer-rides-rethinking-trust-protection-in-ride-hailing-apps-3e9273ef8858",
-    buttonText: "VIEW BLOG →",
+    buttonText: "VIEW BLOG",
   },
   {
     id: "smart-classroom-seat",
     title: "Smart Classroom Seat",
-    desc: "Arduino & ESP32-CAM multi-sensor seat monitoring student presence, posture, health, engagement & stress with real-time sensor fusion.",
-    image: "/smart-seat.jpg",
+    desc: "Multi-sensor IoT seat monitoring student posture, health and engagement in real-time.",
+    image: "seatt.jpg",
     isVideo: false,
     categories: ["ROBOTICS", "CREATIVE"],
     categoryLabel: "ROBOTICS • SENSOR FUSION",
     techStack: ["Arduino", "ESP32-CAM", "FSR", "MPU6050", "MAX30100", "DS18B20"],
     link: "/smart-classroom-seat",
-    buttonText: "VIEW PROJECT →",
+    buttonText: "VIEW PROJECT",
   },
   {
     id: "obstacle-car",
     title: "Obstacle Detection Car",
-    desc: "Autonomous obstacle detection and line-following robot built using an 8051 microcontroller, IR sensors, and motor control.",
+    desc: "Autonomous robot car with ultrasonic, IR sensor, buzzer and LED alerts.",
     media: "/od.mov",
     isVideo: true,
     categories: ["ROBOTICS", "CREATIVE"],
-    categoryLabel: "ROBOTICS • CREATIVE",
-    techStack: ["8051 Microcontroller", "Sensors", "C / Embedded", "Hardware"],
-    buttonText: "ROBOTICS DEMO",
+    categoryLabel: "ROBOTICS • ASSEMBLY LANGUAGE",
+    techStack: ["8051", "Assembly Language", "Ultrasonic Sensor", "IR Sensor"],
+    link: "/obstacle-detection-car",
+    buttonText: "VIEW PROJECT",
   },
 ];
 
 const categories = ["ALL", "FRONTEND", "UI/UX", "ROBOTICS", "CREATIVE"];
 
 const Projects = () => {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("ALL");
 
   const filteredProjects = activeFilter === "ALL"
@@ -102,7 +104,7 @@ const Projects = () => {
       </motion.h2>
 
       <p className="section-subtitle">
-        Explore interactive web applications, design systems, robotics builds, and software experiments.
+        Explore interactive web applications, design systems, robotics builds and software experiments.
       </p>
 
       {/* FILTER BAR */}
@@ -138,16 +140,24 @@ const Projects = () => {
               <motion.div
                 key={`${project.id}-${index}`}
                 className="project-card glass"
+                style={{ cursor: project.link ? "pointer" : "default" }}
+                onClick={() => {
+                  if (project.link) {
+                    if (project.link.startsWith("/")) {
+                      navigate(project.link);
+                    } else {
+                      window.open(project.link, "_blank", "noopener,noreferrer");
+                    }
+                  }
+                }}
                 whileHover={{
-                  rotateX: -4,
-                  rotateY: 6,
-                  y: -10,
-                  scale: 1.02,
+                  y: -4,
+                  scale: 1.01,
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 180,
-                  damping: 14,
+                  stiffness: 250,
+                  damping: 20,
                 }}
               >
                 {/* MEDIA PREVIEW */}
@@ -196,7 +206,7 @@ const Projects = () => {
                   {/* ACTION LINK */}
                   {project.link ? (
                     project.link.startsWith("/") ? (
-                      <Link to={project.link} className="case-btn">
+                      <Link to={project.link} className="case-btn" onClick={(e) => e.stopPropagation()}>
                         {project.buttonText}
                       </Link>
                     ) : (
@@ -205,6 +215,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="case-btn"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         {project.buttonText}
                       </a>

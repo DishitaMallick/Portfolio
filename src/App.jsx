@@ -12,6 +12,7 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
 import SmartSeatDetail from "./components/SmartSeatDetail";
+import ObstacleCarDetail from "./components/ObstacleCarDetail";
 
 import "./index.css";
 
@@ -62,6 +63,8 @@ function App() {
         <Route path="/" element={<MainPortfolio />} />
         <Route path="/smart-classroom-seat" element={<SmartSeatDetail />} />
         <Route path="/project/smart-classroom-seat" element={<SmartSeatDetail />} />
+        <Route path="/obstacle-detection-car" element={<ObstacleCarDetail />} />
+        <Route path="/project/obstacle-car" element={<ObstacleCarDetail />} />
       </Routes>
     </div>
   );

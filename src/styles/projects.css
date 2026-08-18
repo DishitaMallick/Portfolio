@@ -130,6 +130,7 @@
 .carousel-track {
   display: flex;
   flex-wrap: nowrap;
+  align-items: stretch;
   gap: 24px;
   width: max-content;
   animation: marqueeScroll 35s linear infinite;
@@ -166,9 +167,7 @@
   backdrop-filter: blur(18px);
   border: 1px solid rgba(167, 139, 250, 0.15);
   box-shadow: 0 12px 30px rgba(129, 140, 248, 0.08);
-  transition: box-shadow 0.45s ease;
-  transform-style: preserve-3d;
-  perspective: 1200px;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;

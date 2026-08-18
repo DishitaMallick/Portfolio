@@ -42,7 +42,7 @@ const CreativeWork = () => {
       </h2>
 
       <p className="section-subtitle">
-        Exploring visual design, photography, hand sketches, and creative side experiments.
+        Exploring visual design, photography, hand sketches and creative side experiments.
       </p>
 
       {/* TABS */}

@@ -20,7 +20,7 @@ const SmartSeatDetail = () => {
     {
       name: "MPU6050 (3-Axis Gyro + Accelerometer)",
       role: "Posture & Motion Telemetry",
-      desc: "Monitors back angle, slumping, leaning tendencies, and micro-movements to evaluate ergonomic seating health.",
+      desc: "Monitors back angle, slumping, leaning tendencies and micro-movements to evaluate ergonomic seating health.",
       icon: "ri-compass-3-line",
     },
     {
@@ -63,11 +63,11 @@ const SmartSeatDetail = () => {
         <div className="tag">ROBOTICS • SENSOR FUSION • IoT</div>
         <h1>Smart Classroom Seat</h1>
         <p className="subtitle">
-          An Arduino & ESP32-CAM powered multi-sensor intelligent seat designed to monitor student presence, posture, health metrics, engagement, and stress levels in real-time.
+          An Arduino & ESP32-CAM powered multi-sensor intelligent seat designed to monitor student presence, posture, health metrics, engagement and stress levels in real-time.
         </p>
 
         <div className="tech-stack-row">
-          {["Arduino", "ESP32-CAM", "FSR", "MPU6050", "MAX30100", "DS18B20", "Embedded C++", "Sensor Fusion"].map((item, i) => (
+          {["Arduino", "ESP32-CAM", "FSR", "MPU6050", "MAX30100", "DS18B20", "IoT", "Sensor Fusion"].map((item, i) => (
             <span key={i} className="tech-pill">
               {item}
             </span>
@@ -79,7 +79,7 @@ const SmartSeatDetail = () => {
       <section className="media-banner-section">
         <div className="media-banner-wrapper glass">
           <img
-            src="/smart-seat.jpg"
+            src="/seat.jpg"
             alt="Smart Classroom Seat Project"
             className="smart-seat-main-img"
             onError={(e) => {
@@ -91,7 +91,7 @@ const SmartSeatDetail = () => {
           <div className="img-placeholder-fallback" style={{ display: "none" }}>
             <i className="ri-cpu-line placeholder-icon"></i>
             <h3>Smart Classroom Seat Media</h3>
-            <p>Place <code>smart-seat.jpg</code> in the <code>public/</code> folder to display your image here.</p>
+            <p>Place <code>seat.jpg</code> in the <code>public/</code> folder to display your image here.</p>
           </div>
         </div>
       </section>
@@ -110,7 +110,7 @@ const SmartSeatDetail = () => {
           <div className="card-icon"><i className="ri-shield-flash-line"></i></div>
           <h3>Abnormal Alerts System</h3>
           <p>
-            Triggers instant automated warnings for severe slouching, abnormal heart rates, sudden stress spikes, or prolonged absenteeism.
+            Triggers instant automated warnings for severe slouching, abnormal heart rates, sudden stress spikes or prolonged absenteeism.
           </p>
         </div>
 
@@ -141,6 +141,86 @@ const SmartSeatDetail = () => {
               <p>{sensor.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* SOFTWARE & MONITORING DASHBOARD SECTION */}
+      <section className="software-section">
+        <h2>Software Architecture & Real-Time Dashboard</h2>
+        <p className="section-desc">
+          A centralized web dashboard for live student telemetry, behavioral classification and instant anomaly alerts.
+        </p>
+
+        <div className="software-overview-card glass">
+          <div className="software-header-badge">
+            <i className="ri-dashboard-3-line"></i> REAL-TIME MONITORING ECOSYSTEM
+          </div>
+          <h3>Centralized Telemetry & Analytics Dashboard</h3>
+          <p className="software-intro">
+            The software interface streams multi-sensor data wirelessly over Wi-Fi, displaying real-time metrics for student presence, 3D posture angle, micro-movements, heart rate, body temperature and behavioral engagement status.
+          </p>
+
+          <div className="dashboard-features-grid">
+            <div className="dash-feature-item">
+              <div className="feature-icon"><i className="ri-line-chart-line"></i></div>
+              <div>
+                <h4>Live Telemetry Stream</h4>
+                <p>Monitors vital signs, body temperature (°C), postural gyro vectors and seat weight distribution in real-time.</p>
+              </div>
+            </div>
+
+            <div className="dash-feature-item">
+              <div className="feature-icon"><i className="ri-node-tree"></i></div>
+              <div>
+                <h4>Automated Classification Engine</h4>
+                <p>Processes raw sensor streams to algorithmically evaluate posture health, engagement levels and physical distress.</p>
+              </div>
+            </div>
+
+            <div className="dash-feature-item">
+              <div className="feature-icon"><i className="ri-notification-3-line"></i></div>
+              <div>
+                <h4>Instant Anomaly Alerts</h4>
+                <p>Triggers immediate visual and audio notifications when slouching, hyperthermia, stress or cardiac spikes are detected.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* STATUS CLASSIFICATION MATRIX */}
+        <div className="classification-section">
+          <h3>Behavioral & Health Classification Matrix</h3>
+          <p className="section-desc">The dashboard categorizes real-time telemetry into four primary state classifications:</p>
+
+          <div className="classification-grid">
+            <div className="status-card status-attentive glass">
+              <div className="status-pill green">
+                <span className="dot"></span> Attentive & Focused
+              </div>
+              <p>Balanced weight distribution, ergonomic back posture angle, stable vital signs and active engagement.</p>
+            </div>
+
+            <div className="status-card status-posture glass">
+              <div className="status-pill amber">
+                <span className="dot"></span> Improper Posture
+              </div>
+              <p>Detected severe back slumping, uneven force pressure or sustained slouching exceeding threshold limits.</p>
+            </div>
+
+            <div className="status-card status-stressed glass">
+              <div className="status-pill orange">
+                <span className="dot"></span> Stressed / Restless
+              </div>
+              <p>Elevated heart rate variability combined with high-frequency micro-movements and restlessness cues.</p>
+            </div>
+
+            <div className="status-card status-abnormal glass">
+              <div className="status-pill red">
+                <span className="dot"></span> Abnormal Health Alert
+              </div>
+              <p>Critical vital sign anomalies such as sudden fever, oxygen desaturation, arrhythmia or prolonged inactivity.</p>
+            </div>
+          </div>
         </div>
       </section>
 

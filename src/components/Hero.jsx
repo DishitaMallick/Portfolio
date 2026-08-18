@@ -49,7 +49,7 @@ const Hero = () => {
             rel="noopener noreferrer"
             className="secondary-btn"
           >
-            RESUME ↗
+            RESUME
           </a>
         </div>
       </motion.div>

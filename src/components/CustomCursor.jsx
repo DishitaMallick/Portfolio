@@ -7,7 +7,7 @@ import "../styles/cursor.css";
 
 /**
  * Pixel-art space/cyber custom cursor matching the background and dark theme.
- * Features instant hardware tracking, hover hand pointer switching, and click feedback.
+ * Features instant hardware tracking, hover hand pointer switching and click feedback.
  */
 const CustomCursor = () => {
   const pointerRef = useRef(null);

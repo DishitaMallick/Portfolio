@@ -69,11 +69,13 @@ const About = () => {
 
       <motion.div variants={itemVariants} className="section-subtitle">
         <p>
-          Currently pursuing B.Tech in Artificial Intelligence and Robotics at VIT Chennai, I’m someone who loves exploring where technology meets creativity. For me, learning has always been about building, experimenting and turning ideas into meaningful designs.
+          Currently pursuing a B.Tech in Artificial Intelligence and Robotics at VIT Chennai, I’m passionate about exploring the intersection of robotics, frontend development and UI/UX design. I enjoy turning technical ideas into intuitive, visually engaging experiences - whether it’s designing interfaces, building responsive frontends or working with robotic systems.
+
+
         </p>
         <br />
         <p>
-          From innovative projects like a Working River Cleaning Boat to handcrafted creative works, every experience has shaped my problem-solving and design thinking. Inspired by music, painting, guitar and culinary art, I believe creativity exists in every form.
+          From projects like a Working River Cleaning Boat to creative design and hands-on experiments, I’m driven by curiosity, problem-solving and the desire to build things that are both functional and meaningful. Outside technology, my interests in music, guitar, painting and culinary art continue to shape the way I think creatively and approach design.
         </p>
       </motion.div>
 

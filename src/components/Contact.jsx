@@ -37,7 +37,7 @@ const Contact = () => {
           </h2>
 
           <p>
-            Have an interesting idea, project, or opportunity? Let's talk.
+            Have an interesting idea, project or opportunity? Let's talk.
           </p>
 
           <div className="contact-actions">

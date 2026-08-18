@@ -199,7 +199,7 @@ const HumanBento = () => {
           </div>
           <div className="card-content">
             <h3>Curiosity Lab</h3>
-            <p>Robotics, Arduino builds, and STEM exploration concepts.</p>
+            <p>Robotics, Arduino builds and STEM exploration concepts.</p>
           </div>
         </motion.div>
 
@@ -236,7 +236,7 @@ const HumanBento = () => {
           </div>
           <div className="card-content">
             <h3>Motion & Stories</h3>
-            <p>Video editing, promotional clips, and motion graphic loops.</p>
+            <p>Video editing, promotional clips and motion graphic loops.</p>
           </div>
         </motion.div>
       </motion.div>
@@ -285,13 +285,13 @@ const HumanBento = () => {
                 {activeCategory === "art" && (
                   <>
                     <h2>🎨 Handmade & Illustrated</h2>
-                    <p>Creating beyond the digital screen. Hand sketches, quilling crafts, and organic watercolor splashes.</p>
+                    <p>Creating beyond the digital screen. Hand sketches, quilling crafts and organic watercolor splashes.</p>
                   </>
                 )}
                 {activeCategory === "motion" && (
                   <>
                     <h2>🎬 Motion & Stories</h2>
-                    <p>Visual logs, promotional edits, and motion design frames stitched together with music.</p>
+                    <p>Visual logs, promotional edits and motion design frames stitched together with music.</p>
                   </>
                 )}
               </div>
@@ -409,7 +409,7 @@ const HumanBento = () => {
                   <div className="motion-coming-soon">
                     <i className="ri-vidicon-line"></i>
                     <h3>Working on it!</h3>
-                    <p>Reels, visual edits, and motion graphic loops are currently being compiled. Stay tuned for updates!</p>
+                    <p>Reels, visual edits and motion graphic loops are currently being compiled. Stay tuned for updates!</p>
                   </div>
                 )}
               </div>

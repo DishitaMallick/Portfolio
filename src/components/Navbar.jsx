@@ -40,7 +40,7 @@ const Navbar = () => {
           rel="noopener noreferrer"
           className="resume-btn"
         >
-          RESUME ↗
+          RESUME
         </a>
 
         <button
