@@ -20,9 +20,9 @@ const skillCategories = [
     icon: "ri-palette-line",
   },
   {
-    title: "ROBOTICS",
-    skills: ["ROS", "Sensors", "TinkerCAD", "Hardware"],
-    icon: "ri-cpu-line",
+    title: "DEVELOPMENT",
+    skills: ["TypeScript", "Node.js", "REST APIs", "Tailwind CSS"],
+    icon: "ri-terminal-window-line",
   },
 ];
 
@@ -64,7 +64,7 @@ const FrontendSkills = () => {
       </motion.h2>
 
       <motion.p variants={itemVariants} className="section-subtitle">
-        I enjoy turning ideas and designs into responsive, interactive digital experiences — from polished landing pages to dashboards and web applications.
+        I enjoy turning ideas and designs into responsive, interactive digital experiences - from polished landing pages to dashboards and web applications.
       </motion.p>
 
       <motion.div className="skills-grid" variants={containerVariants}>

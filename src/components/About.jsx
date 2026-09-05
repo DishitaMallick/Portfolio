@@ -6,26 +6,26 @@ import { motion } from "framer-motion";
 const capabilities = [
   {
     num: "01",
-    title: "FRONTEND",
-    desc: "Building responsive and interactive web experiences.",
-    icon: "ri-code-s-slash-fill",
+    title: "SOFTWARE ENGINEERING",
+    desc: "Building performant web applications, clean APIs and scalable software solutions.",
+    icon: "ri-terminal-box-fill",
   },
   {
     num: "02",
-    title: "UI/UX",
-    desc: "Designing intuitive interfaces and product experiences.",
-    icon: "ri-layout-3-fill",
+    title: "FRONTEND ARCHITECTURE",
+    desc: "Building responsive, modern and interactive component-driven user interfaces.",
+    icon: "ri-code-s-slash-fill",
   },
   {
     num: "03",
-    title: "ROBOTICS",
-    desc: "Working with robotic systems, interfaces and physical technology.",
-    icon: "ri-robot-2-fill",
+    title: "UI/UX DESIGN",
+    desc: "Designing intuitive user flows, product interfaces and cohesive design systems.",
+    icon: "ri-layout-3-fill",
   },
   {
     num: "04",
     title: "CREATIVE TECHNOLOGY",
-    desc: "Exploring visual design, motion and experimental digital experiences.",
+    desc: "Exploring visual design, interactive motion and experimental web experiences.",
     icon: "ri-sparkling-2-fill",
   },
 ];
@@ -69,13 +69,11 @@ const About = () => {
 
       <motion.div variants={itemVariants} className="section-subtitle">
         <p>
-          Currently pursuing a B.Tech in Artificial Intelligence and Robotics at VIT Chennai, I’m passionate about exploring the intersection of robotics, frontend development and UI/UX design. I enjoy turning technical ideas into intuitive, visually engaging experiences - whether it’s designing interfaces, building responsive frontends or working with robotic systems.
-
-
+          Currently pursuing B.Tech at VIT Chennai, I’m passionate about Software Engineering (SDE), Frontend Architecture and UI/UX Design. I enjoy turning complex algorithms, technical problems and user needs into clean, intuitive and visually engaging digital experiences.
         </p>
         <br />
         <p>
-          From projects like a Working River Cleaning Boat to creative design and hands-on experiments, I’m driven by curiosity, problem-solving and the desire to build things that are both functional and meaningful. Outside technology, my interests in music, guitar, painting and culinary art continue to shape the way I think creatively and approach design.
+          From web dashboards to enterprise design systems and creative UI experiments, I’m driven by continuous learning, problem-solving and a commitment to building products that are both functional and delightful. Outside code, my background in music, guitar, painting and culinary art enriches my creative problem-solving and user-centric approach.
         </p>
       </motion.div>
 

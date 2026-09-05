@@ -18,9 +18,9 @@ const capabilities = [
   },
   {
     num: "03",
-    title: "ROBOTICS",
-    desc: "Working with robotic systems, interfaces and physical technology.",
-    icon: "ri-robot-2-fill",
+    title: "SOFTWARE ENGINEERING",
+    desc: "Building robust web architecture, state management and full-stack solutions.",
+    icon: "ri-terminal-window-fill",
   },
   {
     num: "04",

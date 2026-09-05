@@ -100,56 +100,15 @@
 }
 
 /* ======================================= */
-/* HORIZONTAL CAROUSEL TRACK               */
+/* PROJECTS GRID (SINGLE CARDS)            */
 /* ======================================= */
 
-.carousel-container {
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
   width: 100%;
-  position: relative;
-}
-
-.carousel-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 12px 0 28px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(167, 139, 250, 0.2) transparent;
-  -webkit-overflow-scrolling: touch;
-}
-
-.carousel-wrapper::-webkit-scrollbar {
-  height: 6px;
-}
-
-.carousel-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(167, 139, 250, 0.25);
-  border-radius: 999px;
-}
-
-.carousel-track {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  gap: 24px;
-  width: max-content;
-  animation: marqueeScroll 35s linear infinite;
-  will-change: transform;
-}
-
-/* PAUSE ON HOVER */
-.carousel-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeScroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+  margin-top: 16px;
 }
 
 /* ======================================= */
@@ -157,9 +116,10 @@
 /* ======================================= */
 
 .project-card {
-  min-width: 360px;
-  max-width: 360px;
-  height: 520px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 490px;
   position: relative;
   overflow: hidden;
   border-radius: 24px;
@@ -170,7 +130,6 @@
   transition: box-shadow 0.35s ease, border-color 0.35s ease;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
 }
 
 .project-card:hover {

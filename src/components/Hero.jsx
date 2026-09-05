@@ -22,17 +22,17 @@ const Hero = () => {
         }}
       >
         <div className="tag">
-          FRONTEND • UI/UX • ROBOTICS • CREATIVE TECHNOLOGY
+          SOFTWARE ENGINEERING • FRONTEND • UI/UX
         </div>
 
         <h1>
           <span className="hero-line">I DESIGN.</span>
           <span className="hero-line gradient-text">I BUILD.</span>
-          <span className="hero-line gradient-text">I EXPERIMENT.</span>
+          <span className="hero-line gradient-text">I ARCHITECT.</span>
         </h1>
 
         <p>
-          AI & Robotics student exploring the intersection of frontend development, design and technology.
+          Computer Science & Software Development Engineer crafting scalable web applications, modern frontends and intuitive digital products.
         </p>
 
         <div className="hero-buttons">
@@ -104,7 +104,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.7 }}
             >
-              robotics.
+              sde.
             </motion.h2>
 
             <div className="curve"></div>

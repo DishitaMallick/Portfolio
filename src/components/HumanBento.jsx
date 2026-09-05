@@ -33,26 +33,15 @@ const culinaryData = [
 // 🚀 Curiosity Lab engineering builds
 const labData = [
   {
-    title: "Working River Cleaning Boat",
+    title: "Working River Cleaning Model",
     tag: "STEM",
     video: "boat.MP4",
-    desc: "Designed and built my first ever working engineering model for Quanta, my school's annual science fest. The project showcased a functional river cleaning boat capable of collecting floating waste using a conveyor-based mechanism.",
+    desc: "Designed and built a functional working model for Quanta, my school's annual science fest. The project showcased a conveyor-based mechanism capable of collecting floating waste from water bodies.",
 
-    details: "Constructed the prototype using recycled cans for buoyancy, lightweight cloth for the conveyor belt, DC motors, batteries, electrical wiring, switches and a handcrafted frame. The working model demonstrated the concept of collecting floating waste from water bodies.",
+    details: "Constructed the prototype using lightweight buoyancy materials, conveyor belt assembly, DC motors, power wiring and a handcrafted frame structure.",
 
-    learned: "This project introduced me to hands on prototyping, mechanical assembly, electrical circuits and iterative problem solving. Building my first functional model strengthened my interest in engineering, robotic and designing practical solutions for real world challenges."
-  },
-  {
-    title: "Obstacle Detection Car",
-    tag: "MPMC/Sensors",
-    video: "od.mov",
-    desc: "Designed and built an obstacle detection and line following robot as part of the MPMC course project. The robot autonomously followed a predefined path while detecting and avoiding obstacles using sensor based navigation.",
-
-    details: "Developed the prototype using an 8051 microcontroller, IR sensors, obstacle detection sensors, DC motors, batteries, electrical wiring. Integrated the hardware components to achieve reliable autonomous movement and real time obstacle detection.",
-
-    learned: "Gained hands on experience with 8051 microcontroller programming, embedded systems, sensor interfacing, motor control, circuit assembly and troubleshooting. The project strengthened my understanding of autonomous robotic systems and hardware integration."
+    learned: "This project introduced me to hands-on prototyping, mechanical mechanisms, electrical circuits and iterative engineering problem solving."
   }
-
 ];
 
 // 🎨 Handmade art pieces
@@ -199,7 +188,7 @@ const HumanBento = () => {
           </div>
           <div className="card-content">
             <h3>Curiosity Lab</h3>
-            <p>Robotics, Arduino builds and STEM exploration concepts.</p>
+            <p>Engineering models, creative builds and STEM exploration concepts.</p>
           </div>
         </motion.div>
 
@@ -279,7 +268,7 @@ const HumanBento = () => {
                 {activeCategory === "lab" && (
                   <>
                     <h2>🚀 Curiosity Lab</h2>
-                    <p>Showcasing physical engineering experiments, microcontrollers and custom prototyping builds.</p>
+                    <p>Showcasing physical engineering experiments, mechanisms and custom prototyping builds.</p>
                   </>
                 )}
                 {activeCategory === "art" && (
