@@ -7,60 +7,58 @@
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
+  gap: 22px;
+  margin-top: 36px;
 }
 
 .skill-card {
-  padding: 30px 26px;
-  border-radius: 24px;
-  background: rgba(18, 22, 38, 0.65);
-  border: 1px solid rgba(167, 139, 250, 0.14);
-  transition: all 0.35s ease;
+  padding: 28px 24px;
+  border-radius: 14px;
+  background: #22211C;
+  border: 1px solid rgba(215, 215, 215, 0.12);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
 
 .skill-card:hover {
-  border-color: rgba(167, 139, 250, 0.35);
-  box-shadow: 0 14px 40px rgba(129, 140, 248, 0.14);
+  border-color: rgba(0, 105, 140, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .skill-card-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
-  position: relative;
+  margin-bottom: 20px;
 }
 
 .skill-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: rgba(167, 139, 250, 0.12);
-  border: 1px solid rgba(167, 139, 250, 0.2);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(0, 105, 140, 0.12);
+  border: 1px solid rgba(0, 105, 140, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  color: var(--purple);
+  font-size: 1.15rem;
+  color: #009BD1;
 }
 
 .skill-card-header h3 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.25rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--text);
+  letter-spacing: 0.05em;
+  color: #D7D7D7;
   margin: 0;
-  letter-spacing: 0.02em;
-  line-height: 1.2;
 }
 
 .skill-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .skill-item-pill {
@@ -69,27 +67,26 @@
   gap: 10px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
-  font-size: 0.92rem;
-  color: #E4E4E7;
-  padding: 8px 14px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.25s ease;
+  font-size: 0.86rem;
+  color: #D7D7D7;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background: rgba(215, 215, 215, 0.04);
+  border: 1px solid rgba(215, 215, 215, 0.08);
+  transition: all 0.2s ease;
 }
 
 .skill-item-pill:hover {
-  background: rgba(167, 139, 250, 0.1);
-  border-color: rgba(167, 139, 250, 0.25);
+  background: rgba(0, 105, 140, 0.12);
+  border-color: rgba(0, 105, 140, 0.3);
   color: #FFFFFF;
 }
 
 .skill-item-pill .dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--pink);
-  box-shadow: 0 0 8px var(--pink);
+  background: #009BD1;
 }
 
 @media (max-width: 768px) {

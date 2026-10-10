@@ -1,0 +1,46 @@
+[
+  {
+    "id": "exp-2",
+    "role": "Editorial & Social Media Lead",
+    "company": "Animation Club, VITC",
+    "duration": "April 2026 - Present",
+    "desc": "Directed editorial and creative content for club activities, producing engaging videos, promotional materials and social media campaigns while collaborating with cross-functional teams.",
+    "skills": [
+      "Leadership",
+      "Communication",
+      "Content Creation",
+      "Video Editing",
+      "Social Media Management",
+      "Team Collaboration"
+    ]
+  },
+  {
+    "id": "exp-1",
+    "role": "UI/UX, Digital Marketing Summer Intern",
+    "company": "IIT Jammu",
+    "duration": "June 2026 - August 2026",
+    "desc": "Learned core UI/UX concepts and design thinking while gaining practical insights from experienced industry professionals.",
+    "skills": [
+      "Design Principles",
+      "Colour Theory",
+      "Typography",
+      "Wireframing",
+      "Prototyping"
+    ]
+  },
+  {
+    "id": "exp-3",
+    "role": "Campus Ambassador",
+    "company": "E-cell MANIT Bhopal (NITB)",
+    "duration": "January 2026 - February 2026",
+    "desc": "Served as a Campus Ambassador for E-Summit, driving event awareness, student participation and community engagement through strategic outreach and promotion.",
+    "skills": [
+      "Leadership",
+      "Communication",
+      "Event Management",
+      "Marketing",
+      "Networking",
+      "Community Building"
+    ]
+  }
+]

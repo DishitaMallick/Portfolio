@@ -34,7 +34,7 @@
 }
 
 .what-num {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--purple);
@@ -55,7 +55,7 @@
 }
 
 .what-card h3 {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text);

@@ -1,99 +1,150 @@
 // src/components/Contact.jsx
 
-import "../styles/contact.css";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import "../styles/contact.css";
+
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
 
 const Contact = () => {
-  const glowIcons = () => {
-    const footer = document.querySelector(".footer");
-    if (!footer) return;
-
-    footer.classList.add("footer-active");
-
-    setTimeout(() => {
-      footer.classList.remove("footer-active");
-    }, 2200);
-
-    document.querySelector("#socials")?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
+  const [isGlowing, setIsGlowing] = useState(false);
 
   return (
     <>
       <motion.section
         id="contact"
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={sectionVariants}
       >
-        <div className="contact-box glass">
-          <div className="tag">Contact</div>
+        <motion.div className="contact-box glass" variants={fadeUp}>
+          <motion.div className="tag" variants={fadeUp}>Get in Touch</motion.div>
 
-          <h2>
-            LET'S BUILD <br />
-            <span className="gradient-text">SOMETHING.</span>
-          </h2>
+          <motion.h2 variants={fadeUp}>
+            Let's build something <br />
+            <span className="accent-text">meaningful together.</span>
+          </motion.h2>
 
-          <p>
-            Have an interesting idea, project or opportunity? Let's talk.
-          </p>
+          <motion.p variants={fadeUp}>
+            Whether you have an interesting software engineering challenge, a design collaboration or a full-time opportunity, my inbox is always open.
+          </motion.p>
 
-          <div className="contact-actions">
-            <a
-              href="mailto:dishita.mallick@gmail.com"
-              className="contact-primary-link"
+          <motion.div className="contact-actions" variants={fadeUp}>
+            <button
+              type="button"
+              id="say-hello-btn"
+              className={`primary-btn say-hello-btn ${isGlowing ? "active" : ""}`}
+              onClick={() => {
+                if (isGlowing) return;
+                setIsGlowing(true);
+                document.querySelector("#socials")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "nearest",
+                });
+                setTimeout(() => setIsGlowing(false), 2500);
+              }}
+              aria-pressed={isGlowing}
+              title="Click to illuminate social links!"
             >
-              EMAIL ME
-            </a>
-            <button className="contact-btn" onClick={glowIcons}>
-              CONNECT ON SOCIALS
+              <span>say HELLO, maybe?</span>
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </motion.section>
 
-      {/* FOOTER */}
-      <footer className="footer" id="socials">
-        <a
-          href="mailto:dishita.mallick@gmail.com"
-          className="social-icon"
-          title="Email"
+      {/* RECRUITER FOOTER */}
+      <motion.footer
+        className="footer"
+        id="socials"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <motion.div
+          className={`footer-social-links ${isGlowing ? "glowing" : ""}`}
+          variants={sectionVariants}
         >
-          <i className="ri-mail-fill"></i>
-        </a>
+          <motion.a
+            href="mailto:dishita.mallick@gmail.com"
+            className="social-icon"
+            title="Email"
+            aria-label="Email Dishita"
+            variants={scaleIn}
+            whileHover={{ y: -4, scale: 1.1 }}
+          >
+            <i className="ri-mail-line"></i>
+          </motion.a>
 
-        <a
-          href="https://www.linkedin.com/in/dishita-mallick-72a712321"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-icon"
-          title="LinkedIn"
-        >
-          <i className="ri-linkedin-fill"></i>
-        </a>
+          <motion.a
+            href="https://www.linkedin.com/in/dishita-mallick-72a712321"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            title="LinkedIn"
+            aria-label="LinkedIn Profile"
+            variants={scaleIn}
+            whileHover={{ y: -4, scale: 1.1 }}
+          >
+            <i className="ri-linkedin-line"></i>
+          </motion.a>
 
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-icon"
-          title="GitHub"
-        >
-          <i className="ri-github-fill"></i>
-        </a>
+          <motion.a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            title="GitHub"
+            aria-label="GitHub Profile"
+            variants={scaleIn}
+            whileHover={{ y: -4, scale: 1.1 }}
+          >
+            <i className="ri-github-line"></i>
+          </motion.a>
 
-        <a
-          href="https://www.behance.net/dsdiary"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-icon"
-          title="Behance"
-        >
-          <i className="ri-behance-fill"></i>
-        </a>
-      </footer>
+          <motion.a
+            href="https://www.behance.net/dsdiary"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            title="Behance"
+            aria-label="Behance Profile"
+            variants={scaleIn}
+            whileHover={{ y: -4, scale: 1.1 }}
+          >
+            <i className="ri-behance-line"></i>
+          </motion.a>
+        </motion.div>
+
+        <motion.div className="footer-bottom-info" variants={fadeUp}>
+          <p>© {new Date().getFullYear()} Dishita Mallick • Designed & Engineered with Care</p>
+        </motion.div>
+      </motion.footer>
     </>
   );
 };

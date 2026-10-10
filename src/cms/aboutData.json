@@ -1,0 +1,34 @@
+{
+  "title": "Driven by curiosity,",
+  "titleAccent": "engineered with precision.",
+  "bio1": "Currently pursuing B.Tech in Computer Science and Engineering at VIT Chennai, I bridge the gap between technical software engineering and human-centered design. I specialize in transforming complex workflows and algorithmic challenges into clean, accessible and delightful digital experiences.",
+  "bio2": "From reactive web applications and scalable dashboards to comprehensive design systems, my approach is grounded in clean code, structural clarity and continuous learning.",
+  "currentFocus": "Full-Stack Development, Design Systems, Reactive Frontends",
+  "resumeLink": "/Resume_Dishita.pdf",
+  "capabilities": [
+    {
+      "num": "01",
+      "title": "SOFTWARE ENGINEERING",
+      "desc": "Architecting modular, performant applications, robust backend logic and scalable web solutions.",
+      "icon": "ri-terminal-box-line"
+    },
+    {
+      "num": "02",
+      "title": "FRONTEND ARCHITECTURE",
+      "desc": "Building accessible, highly responsive, component-driven interfaces in modern React ecosystems.",
+      "icon": "ri-code-box-line"
+    },
+    {
+      "num": "03",
+      "title": "UI/UX & PRODUCT DESIGN",
+      "desc": "Designing user journeys, enterprise design systems and intuitive interactive workflows in Figma.",
+      "icon": "ri-layout-masonry-line"
+    },
+    {
+      "num": "04",
+      "title": "CREATIVE & MULTIDISCIPLINARY",
+      "desc": "Synthesizing principles from music, editorial design and visual art into creative technical problem-solving.",
+      "icon": "ri-compasses-2-line"
+    }
+  ]
+}

@@ -1,114 +1,132 @@
 // src/components/Hero.jsx
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "../styles/hero.css";
 
+const titles = [
+  "UI/UX Designer",
+  "Frontend Developer",
+  "Product Designer",
+  "AI/ML Engineer",
+  "Interaction Designer",
+];
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
 const Hero = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % titles.length);
+    }, 2600);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <motion.section
       className="hero"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.7 }}
     >
-      {/* LEFT */}
+      {/* LEFT CONTENT */}
       <motion.div
         className="hero-left"
-        initial={{ opacity: 0, y: 80 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.9,
-          ease: "easeOut"
-        }}
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
       >
-        <div className="tag">
-          SOFTWARE ENGINEERING • FRONTEND • UI/UX
-        </div>
+        <motion.div className="hero-eyebrow" variants={fadeUp}>
+          RESEARCHER. DESIGNER. PROBLEM SOLVER.
+        </motion.div>
 
-        <h1>
-          <span className="hero-line">I DESIGN.</span>
-          <span className="hero-line gradient-text">I BUILD.</span>
-          <span className="hero-line gradient-text">I ARCHITECT.</span>
-        </h1>
+        <motion.h1 className="hero-framer-title" variants={fadeUp}>
+          <span className="hero-title-row">I Design.</span>
+          <span className="hero-title-row">I Build.</span>
+          <span className="hero-title-row hero-architect-wrap">
+            I Architect.
+            <span className="hero-title-underline"></span>
+          </span>
+        </motion.h1>
 
-        <p>
-          Computer Science & Software Development Engineer crafting scalable web applications, modern frontends and intuitive digital products.
-        </p>
+        <motion.p className="hero-framer-desc" variants={fadeUp}>
+          I like taking an idea from &ldquo;this could be better&rdquo; to something people can actually use. My focus sits at the intersection of design, code and real world interaction.
+        </motion.p>
 
-        <div className="hero-buttons">
-          <a
-            href="#projects"
-            className="primary-btn"
-          >
-            EXPLORE MY WORK
+        <motion.div className="hero-buttons" variants={fadeUp}>
+          <a href="#projects" className="primary-btn">
+            VIEW MY WORK
           </a>
 
           <a
-            href="/resume.pdf"
+            href="/Resume_Dishita.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="secondary-btn"
           >
-            RESUME
+            RESUME →
           </a>
-        </div>
+        </motion.div>
       </motion.div>
 
-      {/* RIGHT */}
+      {/* RIGHT CANVAS SKETCHBOOK CARD */}
       <motion.div
         className="hero-right"
-        initial={{
-          opacity: 0,
-          rotate: -3,
-          y: 80
-        }}
-        animate={{
-          opacity: 1,
-          rotate: -2,
-          y: 0
-        }}
-        transition={{
-          duration: 1,
-          ease: "easeOut"
-        }}
+        initial={{ opacity: 0, rotate: -2, y: 35 }}
+        animate={{ opacity: 1, rotate: 2, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
       >
-        <div className="canvas-wrapper">
-          <div className="canvas-board glass futuristic">
-            <div className="pin pin1"></div>
-            <div className="pin pin2"></div>
+        <div className="sketchbook-canvas">
+          {/* Top-Left Colored Semi-Transparent Washi Tape */}
+          <div className="canvas-washi-tape"></div>
 
-            <div className="scribble scribble1"></div>
-            <div className="scribble scribble2"></div>
-
-            <motion.h2
-              className="canvas-text ux"
-              initial={{ opacity: 0, x: -80 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-            >
-              frontend.
-            </motion.h2>
-
-            <motion.h2
-              className="canvas-text code"
-              initial={{ opacity: 0, x: 80 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.7 }}
-            >
-              ui/ux.
-            </motion.h2>
-
-            <motion.h2
-              className="canvas-text aesthetic"
-              initial={{ opacity: 0, y: 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
-            >
-              sde.
-            </motion.h2>
-
-            <div className="curve"></div>
+          {/* Bottom Right Hand-drawn Star */}
+          <div className="canvas-star-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+            </svg>
           </div>
+
+          {/* DYNAMIC CHANGING TITLE */}
+          <div className="canvas-title-container">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={titles[currentIndex]}
+                className="canvas-animated-title-wrap"
+                initial={{ opacity: 0, y: 16, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -16, scale: 0.96 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+              >
+                <h2 className="canvas-dynamic-heading">
+                  {titles[currentIndex]}
+                </h2>
+                <div className="canvas-brush-underline"></div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <p className="canvas-subtext">
+            building things people use :)
+          </p>
         </div>
       </motion.div>
     </motion.section>

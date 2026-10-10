@@ -10,14 +10,15 @@ const Navbar = () => {
     { name: "ABOUT", href: "#about" },
     { name: "WORK", href: "#projects" },
     { name: "SKILLS", href: "#skills" },
+    { name: "EXPERIENCE", href: "#experience" },
     { name: "CONTACT", href: "#contact" },
   ];
 
   return (
     <nav className="navbar glass">
       <a href="#" className="logo">
-        <span className="logo-text gradient-text">Dishita</span>
-        <span className="logo-heart">♡</span>
+        <span className="logo-text">Dishita</span>
+        <span className="logo-dot">.</span>
       </a>
 
       <div className={`nav-links ${mobileMenuOpen ? "active" : ""}`}>
@@ -35,7 +36,7 @@ const Navbar = () => {
 
       <div className="nav-right">
         <a
-          href="/Resume_dishita.pdf"
+          href="/Resume_Dishita.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="resume-btn"

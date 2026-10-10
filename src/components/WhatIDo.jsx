@@ -55,7 +55,7 @@ const WhatIDo = () => {
       id="what-i-do"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: false, amount: 0.2 }}
       variants={containerVariants}
     >
       <motion.div variants={itemVariants} className="tag">

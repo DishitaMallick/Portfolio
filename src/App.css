@@ -202,7 +202,7 @@
   }
 
   .hero-left h1 {
-    font-family: 'Lora', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: clamp(1.75rem, 6vw, 2.1rem);
     letter-spacing: -0.02em;
   }
@@ -226,7 +226,7 @@
   }
 
   .logo {
-    font-family: 'Lora', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: 1.2rem;
   }
 
@@ -323,7 +323,7 @@
   }
 
   .contact-box h2 {
-    font-family: 'Lora', Georgia, serif;
+    font-family: var(--font-heading);
     font-size: clamp(1.4rem, 5vw, 1.75rem);
     line-height: 1.2;
   }

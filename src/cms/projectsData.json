@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pawcare",
+    "title": "PawCare",
+    "desc": "A compassionate digital experience for pet care and emotional well-being.",
+    "image": "/p.jpg",
+    "isVideo": false,
+    "categories": ["FRONTEND", "UI/UX"],
+    "categoryLabel": "FRONTEND • UI/UX",
+    "techStack": ["React", "JavaScript", "HTML", "CSS", "Figma"],
+    "link": "https://www.behance.net/gallery/249819973/Pawcare-UX-CASE-STUDY",
+    "buttonText": "VIEW PROJECT"
+  },
+  {
+    "id": "richa-skateboard",
+    "title": "Richa Skateboard",
+    "desc": "Responsive skateboard e-commerce shopping experience for modern users.",
+    "image": "/richaa.png",
+    "isVideo": false,
+    "categories": ["FRONTEND", "UI/UX"],
+    "categoryLabel": "FRONTEND • UI/UX",
+    "techStack": ["HTML", "CSS", "JavaScript", "Figma"],
+    "link": "https://www.behance.net/gallery/250042755/RICHA-Skateboard-E-Commerce-UIUX",
+    "buttonText": "VIEW PROJECT"
+  },
+  {
+    "id": "uber-redesign",
+    "title": "UBER Redesign",
+    "desc": "Safer ride-booking experience with proactive safety alerts and fair payments.",
+    "image": "/u.png",
+    "isVideo": false,
+    "categories": ["UI/UX"],
+    "categoryLabel": "UI/UX • PRODUCT DESIGN",
+    "techStack": ["Figma", "UI/UX", "User Research"],
+    "link": "https://medium.com/@dishita.mallick/designing-safer-rides-rethinking-trust-protection-in-ride-hailing-apps-3e9273ef8858",
+    "buttonText": "VIEW BLOG"
+  }
+]

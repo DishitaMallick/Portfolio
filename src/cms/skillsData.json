@@ -1,0 +1,34 @@
+[
+  {
+    "id": "skill-1",
+    "title": "FRONTEND & WEB",
+    "skills": ["React.js", "JavaScript (ES6+)", "HTML5", "CSS3", "Responsive UI"],
+    "icon": "ri-code-s-slash-line",
+    "published": true,
+    "order": 1
+  },
+  {
+    "id": "skill-2",
+    "title": "LANGUAGES & BACKEND",
+    "skills": ["TypeScript", "Node.js", "REST APIs", "C++", "Python Basics"],
+    "icon": "ri-terminal-box-line",
+    "published": true,
+    "order": 2
+  },
+  {
+    "id": "skill-3",
+    "title": "DESIGN & PROTOTYPING",
+    "skills": ["Figma", "FigJam", "Wireframing", "Design Systems", "UI Prototyping"],
+    "icon": "ri-palette-line",
+    "published": true,
+    "order": 3
+  },
+  {
+    "id": "skill-4",
+    "title": "TOOLS & DEPLOYMENT",
+    "skills": ["Git", "GitHub", "Vite", "Firebase", "Vercel"],
+    "icon": "ri-tools-line",
+    "published": true,
+    "order": 4
+  }
+]

@@ -1,6 +1,5 @@
 // src/App.jsx
 
-import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -11,11 +10,13 @@ import FrontendSkills from "./components/FrontendSkills";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
+import AdminPage from "./admin/AdminPage";
 
 import "./index.css";
 
 const MainPortfolio = () => (
-  <>
+  <div className="site-wrapper">
+    <CustomCursor />
     <Navbar />
     <Hero />
     <About />
@@ -23,44 +24,19 @@ const MainPortfolio = () => (
     <FrontendSkills />
     <Experience />
     <Contact />
-  </>
+  </div>
 );
 
 function App() {
-  /* CURSOR GLOW */
-  useEffect(() => {
-    const glow = document.querySelector(".cursor-glow");
-
-    const moveGlow = (e) => {
-      if (!glow) return;
-      glow.style.left = `${e.clientX}px`;
-      glow.style.top = `${e.clientY}px`;
-    };
-
-    window.addEventListener("mousemove", moveGlow);
-
-    return () => {
-      window.removeEventListener("mousemove", moveGlow);
-    };
-  }, []);
-
   return (
-    <div className="site-wrapper">
-      {/* AMBIENT BLOBS */}
-      <div className="blob blob1"></div>
-      <div className="blob blob2"></div>
+    <Routes>
+      {/* PRIVATE ADMIN CMS ROUTE */}
+      <Route path="/admin/*" element={<AdminPage />} />
+      <Route path="/admin" element={<AdminPage />} />
 
-      {/* CURSOR GLOW */}
-      <div className="cursor-glow"></div>
-
-      {/* CUSTOM CURSOR */}
-      <CustomCursor />
-
-      {/* ROUTING */}
-      <Routes>
-        <Route path="*" element={<MainPortfolio />} />
-      </Routes>
-    </div>
+      {/* PUBLIC RECRUITER-FACING PORTFOLIO */}
+      <Route path="*" element={<MainPortfolio />} />
+    </Routes>
   );
 }
 

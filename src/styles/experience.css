@@ -1,14 +1,15 @@
 /* src/styles/experience.css */
 
 .experience-timeline {
-  margin-top: 50px;
+  margin-top: 40px;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  overflow: hidden;
 }
 
-/* Vertical gradient line */
+/* Timeline Vertical Line */
 .experience-timeline::before {
   content: "";
   position: absolute;
@@ -16,22 +17,15 @@
   top: 10px;
   bottom: 10px;
   width: 2px;
-  background: linear-gradient(to bottom,
-    rgba(167, 139, 250, 0),
-    rgba(167, 139, 250, 0.5),
-    rgba(244, 114, 182, 0.5),
-    rgba(244, 114, 182, 0)
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 105, 140, 0.5) 15%,
+    rgba(0, 155, 209, 0.6) 50%,
+    rgba(0, 105, 140, 0.5) 85%,
+    transparent 100%
   );
   border-radius: 2px;
-}
-
-.site-wrapper.human .experience-timeline::before {
-  background: linear-gradient(to bottom,
-    rgba(220, 107, 107, 0),
-    rgba(220, 107, 107, 0.4),
-    rgba(217, 119, 6, 0.4),
-    rgba(217, 119, 6, 0)
-  );
 }
 
 /* ─── TIMELINE ITEM ─── */
@@ -39,53 +33,66 @@
   position: relative;
   display: grid;
   grid-template-columns: 240px 1fr;
-  gap: 40px;
-  padding: 36px 40px 36px 50px;
-  border-radius: 28px;
-  transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+  gap: 36px;
+  padding: 30px 36px 30px 48px;
+  border-radius: 14px;
+  background: #22211C;
+  border: 1px solid rgba(215, 215, 215, 0.12);
+  transition: transform 0.25s ease, border-color 0.35s ease, box-shadow 0.35s ease;
   cursor: default;
+  will-change: transform, opacity;
 }
 
-.site-wrapper.designer .timeline-item {
-  background: rgba(167, 139, 250, 0.03);
-  border: 1px solid rgba(167, 139, 250, 0.08);
+.timeline-item:hover {
+  transform: translateX(4px);
+  border-color: rgba(0, 105, 140, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 105, 140, 0.08);
 }
 
-.site-wrapper.human .timeline-item {
-  background: rgba(255, 251, 246, 0.8);
-  border: 1.5px solid rgba(180, 140, 110, 0.15);
+/* Subtle glow line on the side the card came from */
+.timeline-slide-indicator {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, transparent, rgba(0, 155, 209, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.3s;
 }
 
-/* Bullet dot */
+.timeline-slide-indicator[data-direction="left"] {
+  left: 0;
+}
+
+.timeline-slide-indicator[data-direction="right"] {
+  right: 0;
+}
+
+.timeline-item:hover .timeline-slide-indicator {
+  opacity: 1;
+}
+
+/* Timeline Indicator Dot */
 .timeline-item::after {
   content: "";
   position: absolute;
   left: 17px;
-  top: 42px;
+  top: 36px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--purple);
-  box-shadow: 0 0 12px var(--purple);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: #00698C;
+  border: 2px solid #292823;
+  box-sizing: content-box;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 5;
 }
 
 .timeline-item:hover::after {
-  background: var(--pink);
-  box-shadow: 0 0 20px var(--pink);
-  transform: scale(1.5);
-}
-
-.timeline-item:hover {
-  transform: translateY(-6px) translateX(4px);
-  border-color: rgba(167, 139, 250, 0.22);
-  box-shadow: 0 16px 40px rgba(167, 139, 250, 0.1);
-}
-
-.site-wrapper.human .timeline-item:hover {
-  border-color: rgba(220, 107, 107, 0.25);
-  box-shadow: 0 16px 40px rgba(220, 107, 107, 0.08);
+  background: #009BD1;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(0, 155, 209, 0.5);
 }
 
 /* ─── META ─── */
@@ -97,39 +104,38 @@
 
 .timeline-duration {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--purple);
-  letter-spacing: 0.06em;
+  color: #009BD1;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .timeline-company {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--text);
-  opacity: 0.95;
+  color: #D7D7D7;
   letter-spacing: -0.01em;
 }
 
 /* ─── CONTENT ─── */
 .timeline-content h3 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.35rem;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 10px;
   font-weight: 700;
-  color: var(--text);
+  color: #ECECEE;
   letter-spacing: -0.02em;
 }
 
 .timeline-content p {
   font-family: 'Lora', Georgia, serif;
-  color: var(--muted);
+  color: #9E9D97;
   line-height: 1.6;
-  font-size: 0.9375rem;
-  margin-bottom: 20px;
+  font-size: 0.92rem;
+  margin-bottom: 16px;
 }
 
 /* ─── SKILL TAGS ─── */
@@ -140,36 +146,24 @@
 }
 
 .skill-tag {
-  padding: 5px 12px;
-  border-radius: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: rgba(215, 215, 215, 0.05);
+  border: 1px solid rgba(215, 215, 215, 0.1);
+  color: #D7D7D7;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-.site-wrapper.designer .skill-tag {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--muted);
+.timeline-item:hover .skill-tag {
+  border-color: rgba(0, 105, 140, 0.3);
+  color: #FFFFFF;
 }
 
-.site-wrapper.human .skill-tag {
-  background: rgba(220, 107, 107, 0.07);
-  border: 1px solid rgba(220, 107, 107, 0.15);
-  color: #6B3020;
-}
-
-.site-wrapper.designer .timeline-item:hover .skill-tag {
-  background: rgba(167, 139, 250, 0.08);
-  border-color: rgba(167, 139, 250, 0.2);
-  color: #A78BFA;
-}
-
-.site-wrapper.human .timeline-item:hover .skill-tag {
-  background: rgba(220, 107, 107, 0.12);
-  border-color: rgba(220, 107, 107, 0.25);
+.skill-tag:hover {
+  transform: translateY(-2px);
 }
 
 /* ─── RESPONSIVE ─── */
@@ -179,46 +173,16 @@
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 14px;
-    padding: 25px 25px 25px 34px;
+    padding: 22px 20px 22px 30px;
   }
 
-  .timeline-item::after { left: 9px; top: 28px; }
+  .timeline-item::after { left: 9px; top: 26px; }
 
   .timeline-meta {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px dashed rgba(167, 139, 250, 0.08);
-    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(215, 215, 215, 0.08);
+    padding-bottom: 8px;
   }
-
-  .timeline-company { font-size: 0.95rem; }
-  .timeline-content h3 { font-size: 1.15rem; }
-  .timeline-content p { font-size: 0.88rem; }
-  .timeline-duration { font-size: 0.76rem; }
-}
-
-@media (max-width: 768px) {
-  #experience .section-title {
-    font-size: clamp(1.8rem, 8vw, 2.8rem);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-
-  .timeline-item {
-    padding: 20px 18px 20px 30px;
-    gap: 12px;
-  }
-
-  .timeline-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .timeline-company { font-size: 0.88rem; }
-  .timeline-content h3 { font-size: 1.05rem; margin-bottom: 8px; }
-  .timeline-content p { font-size: 0.82rem; line-height: 1.65; margin-bottom: 14px; }
-  .timeline-duration { font-size: 0.72rem; }
-  .skill-tag { font-size: 0.7rem; padding: 4px 10px; }
 }

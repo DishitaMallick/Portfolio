@@ -1,79 +1,92 @@
 // src/components/Experience.jsx
 
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { getExperiences, subscribeToCMS } from "../cms/cmsStore";
 import "../styles/experience.css";
-import { motion } from "framer-motion";
-
-const experiences = [
-  {
-    role: "UI/UX, Digital Marketing Summer Intern",
-    company: "IIT Jammu",
-    duration: "June 2026- Present",
-    desc: "Learned core UI/UX concepts and design thinking while gaining practical insights from experienced industry professionals.",
-    skills: ["Design Principles", "Colour Theory", "Typography", "Wireframing", "Prototyping"]
-  },
-  {
-    role: "Editorial Lead",
-    company: "Animation Club, VITC",
-    duration: "April 2026 - Present",
-    desc: "Directed editorial and creative content for club activities, producing engaging videos, promotional materials and social media campaigns while collaborating with cross-functional teams.",
-    skills: ["Leadership", "Communication", "Content Creation", "Video Editing", "Social Media Management", "Team Collaboration"]
-  },
-  {
-    role: "Campus Ambassador",
-    company: "E-cell MANIT Bhopal (NITB)",
-    duration: "January 2026 - February 2026",
-    desc: "Served as a Campus Ambassador for E-Summit, driving event awareness, student participation and community engagement through strategic outreach and promotion.",
-    skills: ["Leadership", "Communication", "Event Management", "Marketing", "Networking", "Community Building"]
-  }
-];
 
 const Experience = () => {
+  const [experiences, setExperiences] = useState(() => getExperiences());
+
+  useEffect(() => {
+    const unsubscribe = subscribeToCMS((event) => {
+      if (event.type === "experiences") {
+        setExperiences(event.data);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+  const publishedExperiences = experiences.filter((e) => e.published !== false);
+
   return (
     <motion.section
       id="experience"
-      initial={{ opacity: 0, y: 80 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: false, amount: 0.2 }}
     >
-      <div className="tag">Journey</div>
+      <div className="tag">Experience &amp; Roles</div>
 
       <h2 className="section-title">
-        Professional
-        <br />
-        <span className="gradient-text">Experience & Roles</span>
+        Professional Journey &amp; <span className="accent-text">Leadership</span>
       </h2>
 
       <div className="experience-timeline">
-        {experiences.map((exp, index) => (
-          <motion.div
-            className="timeline-item glass"
-            key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.15 }}
-            viewport={{ once: true }}
-          >
-            <div className="timeline-meta">
-              <span className="timeline-duration">{exp.duration}</span>
-              <h4 className="timeline-company">{exp.company}</h4>
-            </div>
-
-            <div className="timeline-content">
-              <h3>{exp.role}</h3>
-              <p>{exp.desc}</p>
-              <div className="timeline-skills">
-                {exp.skills.map((skill, sIdx) => (
-                  <span className="skill-tag" key={sIdx}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+        {publishedExperiences.map((exp, index) => (
+          <ExperienceItem key={exp.id || index} exp={exp} index={index} />
         ))}
       </div>
     </motion.section>
+  );
+};
+
+/* Each item slides in from alternating sides */
+const ExperienceItem = ({ exp, index }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, margin: "-60px" });
+  const fromLeft = index % 2 === 0;
+
+  return (
+    <motion.div
+      ref={ref}
+      className="timeline-item glass"
+      initial={{ opacity: 0, x: fromLeft ? -120 : 120, scale: 0.92 }}
+      animate={isInView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: fromLeft ? -120 : 120, scale: 0.92 }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.15,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+    >
+      <div className="timeline-slide-indicator" data-direction={fromLeft ? "left" : "right"} />
+
+      <div className="timeline-meta">
+        <span className="timeline-duration">{exp.duration}</span>
+        <h4 className="timeline-company">{exp.company}</h4>
+      </div>
+
+      <div className="timeline-content">
+        <h3>{exp.role}</h3>
+        <p>{exp.desc}</p>
+        {exp.skills && exp.skills.length > 0 && (
+          <div className="timeline-skills">
+            {exp.skills.map((skill, sIdx) => (
+              <motion.span
+                className="skill-tag"
+                key={sIdx}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.15 + 0.3 + sIdx * 0.05 }}
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
+        )}
+      </div>
+    </motion.div>
   );
 };
 

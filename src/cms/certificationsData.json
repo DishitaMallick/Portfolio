@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cert-1",
+    "name": "UI/UX Design Masterclass & Research",
+    "issuer": "IIT Jammu",
+    "date": "2026",
+    "credentialUrl": "https://linkedin.com",
+    "image": "",
+    "published": true,
+    "order": 1
+  },
+  {
+    "id": "cert-2",
+    "name": "Full Stack Software Engineering",
+    "issuer": "VIT Chennai",
+    "date": "2025",
+    "credentialUrl": "",
+    "image": "",
+    "published": true,
+    "order": 2
+  }
+]
