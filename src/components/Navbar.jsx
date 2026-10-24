@@ -36,7 +36,7 @@ const Navbar = () => {
 
       <div className="nav-right">
         <a
-          href="/Resume_Dishita.pdf"
+          href="/resumee.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="resume-btn"

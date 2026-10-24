@@ -5,9 +5,18 @@
     "desc": "A compassionate digital experience for pet care and emotional well-being.",
     "image": "/p.jpg",
     "isVideo": false,
-    "categories": ["FRONTEND", "UI/UX"],
+    "categories": [
+      "FRONTEND",
+      "UI/UX"
+    ],
     "categoryLabel": "FRONTEND • UI/UX",
-    "techStack": ["React", "JavaScript", "HTML", "CSS", "Figma"],
+    "techStack": [
+      "React",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Figma"
+    ],
     "link": "https://www.behance.net/gallery/249819973/Pawcare-UX-CASE-STUDY",
     "buttonText": "VIEW PROJECT"
   },
@@ -17,9 +26,17 @@
     "desc": "Responsive skateboard e-commerce shopping experience for modern users.",
     "image": "/richaa.png",
     "isVideo": false,
-    "categories": ["FRONTEND", "UI/UX"],
+    "categories": [
+      "FRONTEND",
+      "UI/UX"
+    ],
     "categoryLabel": "FRONTEND • UI/UX",
-    "techStack": ["HTML", "CSS", "JavaScript", "Figma"],
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Figma"
+    ],
     "link": "https://www.behance.net/gallery/250042755/RICHA-Skateboard-E-Commerce-UIUX",
     "buttonText": "VIEW PROJECT"
   },
@@ -29,10 +46,42 @@
     "desc": "Safer ride-booking experience with proactive safety alerts and fair payments.",
     "image": "/u.png",
     "isVideo": false,
-    "categories": ["UI/UX"],
+    "categories": [
+      "UI/UX"
+    ],
     "categoryLabel": "UI/UX • PRODUCT DESIGN",
-    "techStack": ["Figma", "UI/UX", "User Research"],
+    "techStack": [
+      "Figma",
+      "UI/UX",
+      "User Research"
+    ],
     "link": "https://medium.com/@dishita.mallick/designing-safer-rides-rethinking-trust-protection-in-ride-hailing-apps-3e9273ef8858",
     "buttonText": "VIEW BLOG"
+  },
+  {
+    "id": "smartmail",
+    "title": "Smart-Mail AI",
+    "desc": "SmartMail AI is an AI-powered email management platform that combines UX/UI design and full-stack development to simplify inbox organization, prioritization & task management.",
+    "image": "/no.png",
+    "isVideo": false,
+    "categories": [
+      "UI/UX",
+      "AI/ML",
+      "Full-Stack Development",
+      "SaaS"
+    ],
+    "categoryLabel": "UI/UX • AI/ML • Full-Stack Dev • Saas",
+    "techStack": [
+      "Figma",
+      "UI/UX",
+      "User Research",
+      "React",
+      "Python",
+      "SQLite",
+      "FastAPI",
+      "Gmail API"
+    ],
+    "link": "https://www.behance.net/gallery/256926483/Smart-Mail-AI-UX-Case-Study",
+    "buttonText": "VIEW PROJECT"
   }
 ]
