@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { getProjects, subscribeToCMS } from "../cms/cmsStore";
 import "../styles/projects.css";
 
@@ -37,16 +37,30 @@ const Projects = () => {
   );
   const categories = ["ALL", ...uniqueCats];
 
-  const filteredProjects =
-    activeFilter === "ALL"
-      ? publishedProjects
-      : publishedProjects.filter((p) => p.categories && p.categories.includes(activeFilter));
+  const isFiltered = activeFilter !== "ALL";
 
-  // Triple the items for seamless infinite loop
-  const carouselItems = [...filteredProjects, ...filteredProjects, ...filteredProjects];
+  const filteredProjects = !isFiltered
+    ? publishedProjects
+    : publishedProjects.filter(
+        (p) =>
+          p.categories &&
+          p.categories.some(
+            (cat) => cat.trim().toLowerCase() === activeFilter.trim().toLowerCase()
+          )
+      );
 
-  // Auto-scroll loop
+  // Show infinite marquee carousel ONLY for "ALL" when there are enough items to loop seamlessly.
+  // When a specific category is clicked, projects NEVER repeat — they render in a clean, non-repeating grid.
+  const showCarousel = !isFiltered && publishedProjects.length >= 3;
+
+  // Triple items ONLY for the infinite marquee carousel
+  const carouselItems = showCarousel
+    ? [...publishedProjects, ...publishedProjects, ...publishedProjects]
+    : [];
+
+  // Auto-scroll loop (active only in carousel mode)
   const animate = useCallback(() => {
+    if (!showCarousel) return;
     const track = trackRef.current;
     if (!track) return;
 
@@ -54,25 +68,31 @@ const Projects = () => {
       scrollPosRef.current += SCROLL_SPEED;
 
       const singleSetWidth = track.scrollWidth / 3;
-      if (scrollPosRef.current >= singleSetWidth) {
-        scrollPosRef.current -= singleSetWidth;
-      }
-      if (scrollPosRef.current < 0) {
-        scrollPosRef.current += singleSetWidth;
+      if (singleSetWidth > 0) {
+        if (scrollPosRef.current >= singleSetWidth) {
+          scrollPosRef.current -= singleSetWidth;
+        }
+        if (scrollPosRef.current < 0) {
+          scrollPosRef.current += singleSetWidth;
+        }
       }
 
       track.style.transform = `translateX(-${scrollPosRef.current}px)`;
     }
 
     animFrameRef.current = requestAnimationFrame(animate);
-  }, [isPaused]);
+  }, [isPaused, showCarousel]);
 
   useEffect(() => {
+    if (!showCarousel) {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      return;
+    }
     animFrameRef.current = requestAnimationFrame(animate);
     return () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [animate]);
+  }, [animate, showCarousel]);
 
   // Reset on filter change
   useEffect(() => {
@@ -82,7 +102,7 @@ const Projects = () => {
     }
   }, [activeFilter]);
 
-  // --- Drag / touch to scroll ---
+  // --- Drag / touch to scroll (for carousel) ---
   const handlePointerDown = (e) => {
     isDragging.current = true;
     dragStartX.current = e.clientX || e.touches?.[0]?.clientX || 0;
@@ -98,8 +118,10 @@ const Projects = () => {
     const track = trackRef.current;
     if (track) {
       const singleSetWidth = track.scrollWidth / 3;
-      if (scrollPosRef.current >= singleSetWidth) scrollPosRef.current -= singleSetWidth;
-      if (scrollPosRef.current < 0) scrollPosRef.current += singleSetWidth;
+      if (singleSetWidth > 0) {
+        if (scrollPosRef.current >= singleSetWidth) scrollPosRef.current -= singleSetWidth;
+        if (scrollPosRef.current < 0) scrollPosRef.current += singleSetWidth;
+      }
       track.style.transform = `translateX(-${scrollPosRef.current}px)`;
     }
   };
@@ -108,7 +130,7 @@ const Projects = () => {
     isDragging.current = false;
   };
 
-  // Mouse wheel horizontal scroll
+  // Mouse wheel horizontal scroll (for carousel)
   const handleWheel = (e) => {
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       e.preventDefault();
@@ -116,12 +138,109 @@ const Projects = () => {
       const track = trackRef.current;
       if (track) {
         const singleSetWidth = track.scrollWidth / 3;
-        if (scrollPosRef.current >= singleSetWidth) scrollPosRef.current -= singleSetWidth;
-        if (scrollPosRef.current < 0) scrollPosRef.current += singleSetWidth;
+        if (singleSetWidth > 0) {
+          if (scrollPosRef.current >= singleSetWidth) scrollPosRef.current -= singleSetWidth;
+          if (scrollPosRef.current < 0) scrollPosRef.current += singleSetWidth;
+        }
         track.style.transform = `translateX(-${scrollPosRef.current}px)`;
       }
     }
   };
+
+  // Card renderer
+  const renderCard = (project, key, delay = 0, isCarousel = false) => (
+    <motion.div
+      key={key}
+      className="project-card glass"
+      style={{ cursor: project.link ? "pointer" : "default" }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay }}
+      onClick={() => {
+        if (isCarousel && isDragging.current) return;
+        if (project.link) {
+          if (project.link.startsWith("/")) {
+            navigate(project.link);
+          } else {
+            window.open(project.link, "_blank", "noopener,noreferrer");
+          }
+        }
+      }}
+    >
+      {/* MEDIA PREVIEW */}
+      <div className="project-media-wrapper">
+        {project.isVideo ? (
+          <video
+            src={project.media || project.image}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="project-cover"
+          />
+        ) : (
+          <img
+            src={project.image || "/p.jpg"}
+            alt={project.title}
+            className="project-cover"
+            draggable={false}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/p.jpg";
+            }}
+          />
+        )}
+      </div>
+
+      {/* INFO CONTENT */}
+      <div className="project-info">
+        <div className="project-header">
+          <h3>{project.title}</h3>
+          {project.categoryLabel && (
+            <span className="project-cat-badge">{project.categoryLabel}</span>
+          )}
+        </div>
+
+        <p className="project-desc">{project.desc}</p>
+
+        {project.techStack && project.techStack.length > 0 && (
+          <div className="tech-tags">
+            {project.techStack.map((tech, i) => (
+              <span key={i} className="tech-pill">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {project.link ? (
+          project.link.startsWith("/") ? (
+            <Link
+              to={project.link}
+              className="case-btn"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {project.buttonText || "VIEW PROJECT"} →
+            </Link>
+          ) : (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="case-btn"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {project.buttonText || "VIEW PROJECT"} →
+            </a>
+          )
+        ) : (
+          <span className="case-btn static-badge">
+            {project.buttonText || "INTERNAL PROJECT"}
+          </span>
+        )}
+      </div>
+    </motion.div>
+  );
 
   return (
     <motion.section
@@ -189,120 +308,62 @@ const Projects = () => {
         </motion.div>
       )}
 
-      {/* HORIZONTAL CAROUSEL — auto-scrolls, pauses on hover, draggable */}
-      <div
-        className="projects-carousel"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => { setIsPaused(false); isDragging.current = false; }}
-        onMouseDown={handlePointerDown}
-        onMouseMove={handlePointerMove}
-        onMouseUp={handlePointerUp}
-        onTouchStart={handlePointerDown}
-        onTouchMove={handlePointerMove}
-        onTouchEnd={handlePointerUp}
-        onWheel={handleWheel}
-      >
-        <div className="projects-carousel-track" ref={trackRef}>
-          {carouselItems.map((project, idx) => (
-            <motion.div
-              key={`${project.id}-${idx}`}
-              className="project-card glass"
-              style={{ cursor: project.link ? "pointer" : "default" }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: (idx % filteredProjects.length) * 0.1 }}
-              viewport={{ once: false, amount: 0.1 }}
-              onClick={() => {
-                if (isDragging.current) return;
-                if (project.link) {
-                  if (project.link.startsWith("/")) {
-                    navigate(project.link);
-                  } else {
-                    window.open(project.link, "_blank", "noopener,noreferrer");
-                  }
-                }
-              }}
-            >
-              {/* MEDIA PREVIEW */}
-              <div className="project-media-wrapper">
-                {project.isVideo ? (
-                  <video
-                    src={project.media || project.image}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="project-cover"
-                  />
-                ) : (
-                  <img
-                    src={project.image || "/p.jpg"}
-                    alt={project.title}
-                    className="project-cover"
-                    draggable={false}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/p.jpg";
-                    }}
-                  />
-                )}
+      {/* CONTENT AREA: CAROUSEL FOR "ALL", GRID WITHOUT REPEATS FOR FILTERED CATEGORIES */}
+      <AnimatePresence mode="wait">
+        {showCarousel ? (
+          <motion.div
+            key="carousel"
+            className="projects-carousel"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => { setIsPaused(false); isDragging.current = false; }}
+            onMouseDown={handlePointerDown}
+            onMouseMove={handlePointerMove}
+            onMouseUp={handlePointerUp}
+            onTouchStart={handlePointerDown}
+            onTouchMove={handlePointerMove}
+            onTouchEnd={handlePointerUp}
+            onWheel={handleWheel}
+          >
+            <div className="projects-carousel-track" ref={trackRef}>
+              {carouselItems.map((project, idx) =>
+                renderCard(
+                  project,
+                  `${project.id}-${idx}`,
+                  (idx % publishedProjects.length) * 0.08,
+                  true
+                )
+              )}
+            </div>
+
+            {/* Fade edges */}
+            <div className="carousel-fade carousel-fade-left" />
+            <div className="carousel-fade carousel-fade-right" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key={`grid-${activeFilter}`}
+            className="projects-grid"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project, idx) =>
+                renderCard(project, project.id, idx * 0.08, false)
+              )
+            ) : (
+              <div className="projects-empty">
+                <p>No projects found in this category.</p>
               </div>
-
-              {/* INFO CONTENT */}
-              <div className="project-info">
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-                  {project.categoryLabel && (
-                    <span className="project-cat-badge">{project.categoryLabel}</span>
-                  )}
-                </div>
-
-                <p className="project-desc">{project.desc}</p>
-
-                {project.techStack && project.techStack.length > 0 && (
-                  <div className="tech-tags">
-                    {project.techStack.map((tech, i) => (
-                      <span key={i} className="tech-pill">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {project.link ? (
-                  project.link.startsWith("/") ? (
-                    <Link
-                      to={project.link}
-                      className="case-btn"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {project.buttonText || "VIEW PROJECT"} →
-                    </Link>
-                  ) : (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="case-btn"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {project.buttonText || "VIEW PROJECT"} →
-                    </a>
-                  )
-                ) : (
-                  <span className="case-btn static-badge">
-                    {project.buttonText || "INTERNAL PROJECT"}
-                  </span>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Fade edges */}
-        <div className="carousel-fade carousel-fade-left" />
-        <div className="carousel-fade carousel-fade-right" />
-      </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 };

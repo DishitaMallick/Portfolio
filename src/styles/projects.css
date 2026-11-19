@@ -88,6 +88,31 @@
 }
 
 /* ======================================= */
+/* FILTERED PROJECTS GRID (NO REPEAT)      */
+/* ======================================= */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+  gap: 24px;
+  width: 100%;
+  padding: 20px 0 40px;
+}
+
+.projects-grid .project-card {
+  width: 100%;
+  flex: initial;
+}
+
+.projects-empty {
+  grid-column: 1 / -1;
+  padding: 40px 0;
+  color: #9E9D97;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+}
+
+/* ======================================= */
 /* HORIZONTAL CAROUSEL                     */
 /* ======================================= */
 
@@ -290,6 +315,11 @@
 /* ======================================= */
 
 @media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
   .project-card {
     flex: 0 0 300px;
     min-height: 420px;
@@ -301,6 +331,10 @@
 }
 
 @media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
   .project-card {
     flex: 0 0 280px;
     min-height: 400px;
